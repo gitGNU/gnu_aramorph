@@ -39,7 +39,7 @@
 	<section><title>Test de l'analyseur morphologique</title>
 	<p>L'analyseur morphologique est utilisé de cette façon :</p>
 	<source>java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph</source>
-	<note>Le <em>classpath</em> dépend naturellement de l'endroit où <code>ArabicAnalyzer.jar</code> et <code>commons-collections.jar</code> se trouvent.</note>
+	<warning>Le <em>classpath</em> dépend naturellement de l'endroit où <code>ArabicAnalyzer.jar</code> et <code>commons-collections.jar</code> se trouvent.</warning>
 	<p>Utilisé tel quel, c'est à dire sans arguments, le programme renvoie le message d'aide suivant :</p>
 	<source>
 Arabic Morphological Analyzer for Java(tm)

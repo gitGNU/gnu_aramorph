@@ -17,16 +17,19 @@
 	  <ol>
 	  <li>le squelette consonnantique du préfixe (selon le système de translitération de <fork href="http://www.qamus.org/transliteration.htm"><em>Buckwalter</em></fork>)</li>
 	  <li>la vocalisation du préfixe (selon le même système)</li>
-	  <li>la <link href="#morphologie">morphologie</link> du préfixe</li>
+	  <li>la <link href="#categorie_morphologique">catégorie morphologique</link> du préfixe</li>
 	  <li>la <link href="#categorie_grammaticale">catégorie grammaticale</link> du préfixe. Noter le <code>+</code> indiquant qu'un radical est attendu.</li>
 	  </ol>
-	  <fixme author="???">Je suis à la recherche de scripts <em>Perl</em> qui permettraient la traduction de ce format texte vers <em>XML</em> et vice-versa. Idéalement, on devrait privilégier l'arabe natif à la transcription de <em>Bukwalter</em> pour exploiter le support <em>Unicode</em> de <em>Java</em>.</fixme>
+	  <fixme author="vous !">
+		Je suis à la recherche de scripts <em>Perl</em> qui permettraient la traduction de ce format texte vers <em>XML</em> (si possible en <em>UTF-8</em> afin de pouvoir intégrer tous types de glosses, en particulier celles utilisant des caractères accentués européens comme <em>V<strong>é</strong>drine</em> ou <em>Schr<strong>ö</strong>der</em>) et vice-versa.<br/>
+		Ceci permettrait de traiter les dictionnaires directement en arabe plutôt que par l'intermédiaire de la translitération de <em>Bukwalter</em> et permettrait d'exploiter le support <em>Unicode</em> <strong>natif</strong> de <em>Java</em>.
+		</fixme>
 	  <p>Certaines informations sont facultatives. L'exemple le plus caractéristique est celui du préfixe vide :</p>
 	  <source>
 ; The first category is the null prefix (has a null gloss as well):
 		Pref-0	
 		</source>
-		<p>... où seule apparaît la morphologie.</p>
+		<p>... où seule apparaît la catégorie morphologique.</p>
 		<p>Examinons maintenant ce fragment du dictionnaire de suffixes <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictSuffixes</code> :</p>
 		<source>
 ; perfect verb, null suffix: banA-h, daEA-h
@@ -43,7 +46,7 @@ kn	kun~a	PVSuff-0ah	he/it &lt;verb&gt; you           &lt;pos&gt;+(null)/PVSUFF_S
 ny	niy	PVSuff-0ah	he/it &lt;verb&gt; me            &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+niy/PVSUFF_DO:1S&lt;/pos&gt;
 nA	nA	PVSuff-0ah	he/it &lt;verb&lt; us            &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+nA/PVSUFF_DO:1P&lt;/pos&gt;
 		</source>
-		<p>Le principe est strictement le même, bien que l'exemple soit légèrement plus complexe. On a en effet une <strong>double</strong> succession de suffixes, le premier étant le suffixe <em>Ø</em> de la troisième personne singulier masculin de l'accompli. On notera le <code>+</code> de liaison avec le radical.</p>
+		<p>Le principe est strictement le même, bien que l'exemple soit légèrement plus complexe. On a en effet une <strong>double</strong> succession de suffixes, le premier étant le suffixe <em>Ø</em> de la troisième personne singulier masculin de l'accompli le second mentionnant un objet direct pronominal. On notera le <code>+</code> de liaison avec le radical.</p>
 		<p>Examinons ce fragment du dictionnaire de radicaux <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictstems</code> :</p>		
 		<source>
 ;
@@ -148,7 +151,8 @@ mkttb	mukotatib	Nall	subscriber
 ;		
 		</source>
 		<p>Le format est très légèrement différent puisqu'une ligne commençant par <code>;;</code> donne un identifiant de <strong>lemme</strong>. Tout le reste est néanmoins similaire.</p>
-		<p>On remarquera cependant que la catégorie grammaticale est souvent absente car elle peut être <strong>extrapolée</strong> à partir de la morphologie. On notera cependant quelques exemples où la catégorie grammaticale doit être précisée car une morphologie comme les <em>nisbas</em> peut donner lieu à des utilisations nominales ou/ou bien adjectivales.</p>
+		<note>On remarque l'omniprésence des la translitération selon le système de <em>Buckwalter</em>.</note>
+		<p>On remarquera que la catégorie grammaticale est souvent absente car elle peut être <strong>extrapolée</strong> à partir de la catégorie morphologique. On notera cependant quelques exemples où la catégorie grammaticale doit être précisée car une catégorie morphologique comme la <em>nisba</em> peut donner lieu à des utilisations nominales ou/ou bien adjectivales.</p>
 		</section>
 	  <section>
 	  <title>Format des tables de correspondance</title>
@@ -162,190 +166,185 @@ mkttb	mukotatib	Nall	subscriber
 	  <source>IVPref-Antn-tu IVSuff-n</source>
 	  <p>... confirme que le préfixe de la deuxième personne féminin du pluriel de l'inaccompli est compatible avec le suffixe de la deuxième personne féminin du pluriel de l'inaccompli, ce qui est bien la moindre des choses.</p>	 
 	  </section>
-	  <section id="morphologie">
-	  <title>Types de morphologie</title>
+	  <section id="categorie_morphologique">
+	  <title>Types de catégories morphologiques</title>
 	  <p>A traduire. Disponible en anglais dans le 4ème chapitre du fichier <code>gpl/pierrick/brihaye/aramorph/original-stuff/readme.txt</code>.</p>
 	  </section>
 	  <section id="categorie_grammaticale">
 	  <title>Types de catégories grammaticales</title>
 	  <p>Pour les préfixes :</p>
 	  <table>
-		<tr><th>Catégorie</th><th>Description</th></tr>		
-		<tr><td><code>IV1S</code></td><td>1ère personne du singulier de l'accompli</td></tr>		
-		<tr><td><code>IV2MS</code></td><td>2ème personne du masculin singulier de l'accompli</td></tr>
-		<tr><td><code>IV2FS</code></td><td>2ème personne du féminin singulier de l'accompli</td></tr>	  		
-		<tr><td><code>IV3MS</code></td><td>3ème personne du masculin singulier de l'accompli</td></tr>	  
-		<tr><td><code>IV3FS</code></td><td>3ème personne du féminin singulier de l'accompli</td></tr>	  
-		<tr><td><code>IV2D</code></td><td>2ème personne du duel commun de l'accompli</td></tr>
-		<tr><td><code>IV3MD</code></td><td>3ème personne du masculin duel de l'accompli</td></tr>
-		<tr><td><code>IV3FD</code></td><td>3ème personne du féminin duel de l'accompli</td></tr>
-		<tr><td><code>IV1P</code></td><td>1ère personne du pluriel de l'accompli</td></tr>
-		<tr><td><code>IV2MP</code></td><td>2ème personne du masculin pluriel de l'accompli</td></tr>
-		<tr><td><code>IV2FP</code></td><td>2ème personne du féminin pluriel de l'accompli</td></tr>
-		<tr><td><code>IV3MP</code></td><td>3ème personne du masculin pluriel de l'accompli</td></tr>
-		<tr><td><code>IV3FP</code></td><td>3ème personne du féminin pluriel de l'accompli</td></tr>		
-		<tr><td><code>RESULT_CLAUSE_PARTICLE</code></td><td>*</td></tr>		
+		<tr><th>Catégorie</th><th>Description</th><th>Observations</th></tr>		
+		<tr><td><code>CONJ</code></td><td>Conjonction</td><td>TODO : liste à définir et préfixation à approuver</td></tr>		
+		<tr><td><code>EMPHATIC_PARTICLE</code></td><td>Particule emphatique</td><td>TODO : liste à définir et préfixation à approuver</td></tr>										
+		<tr><td><code>FUNC_WORD</code></td><td>TODO : traduire</td><td>TODO : liste à définir et préfixation à approuver</td></tr>	  		
+		<tr><td><code>FUT_PART</code></td><td>Particule du futur</td><td>TODO : liste à définir et préfixation à approuver</td></tr>		
+		<tr><td><code>INTERJ</code></td><td>Interjection</td><td>TODO : liste à définir et préfixation à approuver</td></tr>	  
+		<tr><td><code>INTERROG_PART</code></td><td>Particule interrogative</td><td>TODO : liste à définir et préfixation à approuver</td></tr>
+		<tr><td><code>IV1S</code></td><td>1ère personne du singulier de l'accompli</td><td></td></tr>		
+		<tr><td><code>IV2MS</code></td><td>2ème personne du masculin singulier de l'accompli</td><td></td></tr>
+		<tr><td><code>IV2FS</code></td><td>2ème personne du féminin singulier de l'accompli</td><td></td></tr>	  		
+		<tr><td><code>IV3MS</code></td><td>3ème personne du masculin singulier de l'accompli</td><td></td></tr>	  
+		<tr><td><code>IV3FS</code></td><td>3ème personne du féminin singulier de l'accompli</td><td></td></tr>	  
+		<tr><td><code>IV2D</code></td><td>2ème personne du duel de l'accompli</td><td>TODO : pas de marqueur de genre !</td></tr>
+		<tr><td><code>IV2FD</code></td><td>2ème personne du féminin duel de l'accompli</td><td></td></tr>
+		<tr><td><code>IV3MD</code></td><td>3ème personne du masculin duel de l'accompli</td><td></td></tr>
+		<tr><td><code>IV3FD</code></td><td>3ème personne du féminin duel de l'accompli</td><td></td></tr>
+		<tr><td><code>IV1P</code></td><td>1ère personne du pluriel de l'accompli</td><td></td></tr>
+		<tr><td><code>IV2MP</code></td><td>2ème personne du masculin pluriel de l'accompli</td><td></td></tr>
+		<tr><td><code>IV2FP</code></td><td>2ème personne du féminin pluriel de l'accompli</td><td></td></tr>
+		<tr><td><code>IV3MP</code></td><td>3ème personne du masculin pluriel de l'accompli</td><td></td></tr>
+		<tr><td><code>IV3FP</code></td><td>3ème personne du féminin pluriel de l'accompli</td><td></td></tr>		
+		<tr><td><code>NEG_PART</code></td><td>Particule négative</td><td>TODO : liste à définir et préfixation à approuver</td></tr>
+		<tr><td><code>PREP</code></td><td>Préposition</td><td>TODO : liste à définir et préfixation à approuver</td></tr>
+		<tr><td><code>RESULT_CLAUSE_PARTICLE</code></td><td>Particule de clause résultative</td><td>TODO : liste à définir</td></tr>		
 	  </table>
 	  <p>Pour les suffixes :</p>
 	  <table>
 		<tr><th>Catégorie</th><th>Description</th></tr>	
-		<tr><td><code>CASE_INDEF_NOM</code></td><td>Indéfini, nominatif</td></tr>		
-		<tr><td><code>CASE_INDEF_ACC</code></td><td>Indéfini, accusatif</td></tr>	  
-		<tr><td><code>CASE_INDEF_ACCGEN</code></td><td>Indéfini, accusatif/génitif</td></tr>
-		<tr><td><code>CASE_INDEF_GEN</code></td><td>Indéfini, génitif</td></tr>		
-		<tr><td><code>CASE_DEF_NOM</code></td><td>Défini, nominatif</td></tr>
-		<tr><td><code>CASE_DEF_ACC</code></td><td>Défini, accusatif</td></tr>
-		<tr><td><code>CASE_DEF_ACCGEN</code></td><td>Défini, accusatif/génitif</td></tr>
-		<tr><td><code>CASE_DEF_GEN</code></td><td>Défini, génitif</td></tr>
-		<tr><td><code>NSUFF_MASC_SG_ACC_INDEF</code></td><td>Suffixe nominal : masculin singulier, accusatif, indéfini</td></tr>		
-		<tr><td><code>NSUFF_FEM_SG</code></td><td>Suffixe nominal : féminin singulier</td></tr>		
-		<tr><td><code>NSUFF_MASC_DU_NOM</code></td><td>Suffixe nominal : duel masculin, nominatif</td></tr>		
-		<tr><td><code>NSUFF_MASC_DU_NOM_POSS</code></td><td>Suffixe nominal : duel masculin, nominatif, état construit</td></tr>		
-		<tr><td><code>NSUFF_MASC_DU_ACCGEN</code></td><td>Suffixe nominal : duel masculin, accusatif/génitif</td></tr>		
-		<tr><td><code>NSUFF_MASC_DU_ACCGEN_POSS</code></td><td>Suffixe nominal : duel masculin, accusatif/génitif, état construit</td></tr>		
-		<tr><td><code>NSUFF_FEM_DU_NOM</code></td><td>Suffixe nominal : duel féminin, nominatif</td></tr>		
-		<tr><td><code>NSUFF_FEM_DU_NOM_POSS</code></td><td>Suffixe nominal : duel féminin, nominatif, état construit</td></tr>		
-		<tr><td><code>NSUFF_FEM_DU_ACCGEN</code></td><td>Suffixe nominal : duel féminin, accusatif/génitif</td></tr>		
-		<tr><td><code>NSUFF_FEM_DU_ACCGEN_POSS</code></td><td>Suffixe nominal : duel féminin, nominatif, état construit</td></tr>		
-		<tr><td><code>NSUFF_MASC_PL_NOM</code></td><td>Suffixe nominal : masculin pluriel, nominatif</td></tr>		
-		<tr><td><code>NSUFF_MASC_PL_NOM_POSS</code></td><td>Suffixe nominal : masculin pluriel, nominatif, état construit</td></tr>		
-		<tr><td><code>NSUFF_MASC_PL_ACCGEN</code></td><td>Suffixe nominal : masculin pluriel, accusatif/génitif</td></tr>		
-		<tr><td><code>NSUFF_MASC_PL_ACCGEN_POSS</code></td><td>Suffixe nominal : masculin pluriel, accusatif/génitif, état construit</td></tr>		
-		<tr><td><code>NSUFF_FEM_PL</code></td><td>Suffixe nominal : féminin pluriel</td></tr>			
-		<tr><td><code>POSS_PRON_1S</code></td><td>Suffixe personnel 1ère personne du singulier</td></tr>
-		<tr><td><code>POSS_PRON_2MS</code></td><td>Suffixe personnel 2ère personne du masculin singulier</td></tr>
-		<tr><td><code>POSS_PRON_2FS</code></td><td>Suffixe personnel 2ère personne du féminin singulier</td></tr>
-		<tr><td><code>POSS_PRON_3MS</code></td><td>Suffixe personnel 3ère personne du masculin singulier</td></tr>
-		<tr><td><code>POSS_PRON_3FS</code></td><td>Suffixe personnel 3ère personne du féminin singulier</td></tr>
-		<tr><td><code>POSS_PRON_2D</code></td><td>Suffixe personnel 2ème personne du duel commun</td></tr>	
-		<tr><td><code>POSS_PRON_3D</code></td><td>Suffixe personnel 3ème personne du duel commun</td></tr>	
-		<tr><td><code>POSS_PRON_1P</code></td><td>Suffixe personnel 1ère personne du pluriel</td></tr>		
-		<tr><td><code>POSS_PRON_2MP</code></td><td>Suffixe personnel 2ère personne du masculin pluriel</td></tr>		
-		<tr><td><code>POSS_PRON_2FP</code></td><td>Suffixe personnel 2ère personne du féminin pluriel</td></tr>		
-		<tr><td><code>POSS_PRON_3MP</code></td><td>Suffixe personnel 3ère personne du masculin pluriel</td></tr>		
-		<tr><td><code>POSS_PRON_3FP</code></td><td>Suffixe personnel 3ère personne du féminin pluriel</td></tr>		
-		<tr><td><code>IVSUFF_DO:1S</code></td><td>Objet direct d'un verbe à l'inaccompli : 1ère personne du singulier</td></tr>	  
-		<tr><td><code>IVSUFF_DO:2MS</code></td><td>Objet direct d'un verbe à l'inaccompli : 2ème personne du masculin singulier</td></tr>
-		<tr><td><code>IVSUFF_DO:2FS</code></td><td>Objet direct d'un verbe à l'inaccompli : 2ème personne du féminin singulier</td></tr>		
-		<tr><td><code>IVSUFF_DO:3MS</code></td><td>Objet direct d'un verbe à l'inaccompli : 3ème personne du masculin singulier</td></tr>
-		<tr><td><code>IVSUFF_DO:3FS</code></td><td>Objet direct d'un verbe à l'inaccompli : 3ème personne du féminin singulier</td></tr>
-		<tr><td><code>IVSUFF_DO:2D</code></td><td>Objet direct d'un verbe à l'inaccompli : 2ème personne du duel commun</td></tr>		
-		<tr><td><code>IVSUFF_DO:3D</code></td><td>Objet direct d'un verbe à l'inaccompli : 3ème personne du duel commun</td></tr>
-		<tr><td><code>IVSUFF_DO:1P</code></td><td>Objet direct d'un verbe à l'inaccompli : 1ère personne du pluriel</td></tr>			
-		<tr><td><code>IVSUFF_DO:2MP</code></td><td>Objet direct d'un verbe à l'inaccompli : 2ème personne du masculin pluriel</td></tr>	
-		<tr><td><code>IVSUFF_DO:2FP</code></td><td>Objet direct d'un verbe à l'inaccompli : 2ème personne du féminin pluriel</td></tr>				
-		<tr><td><code>IVSUFF_DO:3MP</code></td><td>Objet direct d'un verbe à l'inaccompli : 3ème personne du masculin pluriel</td></tr>
-		<tr><td><code>IVSUFF_DO:3FP</code></td><td>Objet direct d'un verbe à l'inaccompli : 3ème personne du féminin pluriel</td></tr>					  		
-		<!--TODO : à comprendre -->
-		<tr><td><code>IVSUFF_MOOD:I</code></td><td>Verbe à l'inaccompli : mode indicatif*</td></tr>
-		<tr><td><code>IVSUFF_SUBJ:2FS_MOOD:I</code></td><td>Verbe à l'inaccompli : marqueur de sujet, 2ème personne du féminin singulier, mode indicatif*</td></tr>		              		
-		<tr><td><code>IVSUFF_SUBJ:D_MOOD:I</code></td><td>Verbe à l'inaccompli : marqueur de sujet, duel, mode indicatif*</td></tr>		              
-		<tr><td><code>IVSUFF_SUBJ:3D_MOOD:I</code></td><td>Verbe à l'inaccompli : marqueur de sujet, 3ème personne du duel commun, mode indicatif*</td></tr>		              
-		<tr><td><code>IVSUFF_SUBJ:MP_MOOD:I</code></td><td>Verbe à l'inaccompli : marqueur de sujet, masculin pluriel, mode indicatif*</td></tr>		              
-		<!--TODO : à comprendre -->
-		<tr><td><code>IVSUFF_MOOD:S</code></td><td>Verbe à l'inaccompli : mode subjonctif / jussif*</td></tr>		
-		<tr><td><code>IVSUFF_SUBJ:2FS_MOOD:SJ</code></td><td>Verbe à l'inaccompli : marqueur de sujet, 2ème personne du féminin singulier, mode subjonctif / jussif*</td></tr>		
-		<tr><td><code>IVSUFF_SUBJ:D_MOOD:SJ</code></td><td>Verbe à l'inaccompli : marqueur de sujet, duel, mode subjonctif / jussif*</td></tr>		
-		<tr><td><code>IVSUFF_SUBJ:MP_MOOD:SJ</code></td><td>Verbe à l'inaccompli : marqueur de sujet, masculin pluriel, mode subjonctif / jussif*</td></tr>		
-		<tr><td><code>IVSUFF_SUBJ:3MP_MOOD:SJ</code></td><td>Verbe à l'inaccompli : marqueur de sujet, 3ème personne du masculin pluriel, mode subjonctif / jussif*</td></tr>		
-		<!--TODO : à comprendre -->		
-		<tr><td><code>IVSUFF_SUBJ:FP</code></td><td>Verbe à l'inaccompli : marqueur de sujet, féminin pluriel*</td></tr>				
-		<!--TODO : à comprendre -->		
-		<tr><td><code>PVSUFF_DO:1S</code></td><td>Objet direct d'un verbe à l'accompli : 1ère personne du singulier</td></tr>		
-		<tr><td><code>PVSUFF_DO:2MS</code></td><td>Objet direct d'un verbe à l'accompli : 2ème personne du masculin singulier</td></tr>
-		<tr><td><code>PVSUFF_DO:2FS</code></td><td>Objet direct d'un verbe à l'accompli : 2ème personne du féminin singulier</td></tr>
-		<tr><td><code>PVSUFF_DO:3MS</code></td><td>Objet direct d'un verbe à l'accompli : 3ème personne du masculin singulier</td></tr>
-		<tr><td><code>PVSUFF_DO:3FS</code></td><td>Objet direct d'un verbe à l'accompli : 3ème personne du féminin singulier</td></tr>		
-		<tr><td><code>PVSUFF_DO:2D</code></td><td>Objet direct d'un verbe à l'accompli : 2ème personne du duel commun</td></tr>		  		
-		<tr><td><code>PVSUFF_DO:3D</code></td><td>Objet direct d'un verbe à l'accompli : 3ème personne du duel commun</td></tr>		  		
-		<tr><td><code>PVSUFF_DO:1P</code></td><td>Objet direct d'un verbe à l'accompli : 1ère personne du pluriel</td></tr>
-		<tr><td><code>PVSUFF_DO:2MP</code></td><td>Objet direct d'un verbe à l'accompli : 2ème personne du masculin pluriel</td></tr>
-		<tr><td><code>PVSUFF_DO:2FP</code></td><td>Objet direct d'un verbe à l'accompli : 2ème personne du féminin pluriel</td></tr>
-		<tr><td><code>PVSUFF_DO:3MP</code></td><td>Objet direct d'un verbe à l'accompli : 3ème personne du masculin pluriel</td></tr>
-		<tr><td><code>PVSUFF_DO:3FP</code></td><td>Objet direct d'un verbe à l'accompli : 3ème personne du féminin pluriel</td></tr>
-		<tr><td><code>PVSUFF_SUBJ:1S</code></td><td>Sujet d'un verbe à l'accompli : 1ère personne du singulier</td></tr>		
-		<tr><td><code>PVSUFF_SUBJ:2MS</code></td><td>Sujet d'un verbe à l'accompli : 2ème personne du masculin singulier</td></tr>		
-		<tr><td><code>PVSUFF_SUBJ:2FS</code></td><td>Sujet d'un verbe à l'accompli : 2ème personne du féminin singulier</td></tr>		
-		<tr><td><code>PVSUFF_SUBJ:3MS</code></td><td>Sujet d'un verbe à l'accompli : 3ème personne du masculin singulier</td></tr>		
-		<tr><td><code>PVSUFF_SUBJ:3FS</code></td><td>Sujet d'un verbe à l'accompli : 3ème personne du féminin singulier</td></tr>				
-		<tr><td><code>PVSUFF_SUBJ:2MD</code></td><td>Sujet d'un verbe à l'accompli : 2ème personne du duel masculin</td></tr>
-		<tr><td><code>PVSUFF_SUBJ:2FD</code></td><td>Sujet d'un verbe à l'accompli : 2ème personne du duel féminin</td></tr>		
-		<tr><td><code>PVSUFF_SUBJ:3MD</code></td><td>Sujet d'un verbe à l'accompli : 3ème personne du duel masculin</td></tr>
-		<tr><td><code>PVSUFF_SUBJ:3FD</code></td><td>Sujet d'un verbe à l'accompli : 3ème personne du duel féminin</td></tr>		
-		<tr><td><code>PVSUFF_SUBJ:1P</code></td><td>Sujet d'un verbe à l'accompli : 1ère personne du pluriel</td></tr>
-		<tr><td><code>PVSUFF_SUBJ:2MP</code></td><td>Sujet d'un verbe à l'accompli : 2ème personne du masculin pluriel</td></tr>
-		<tr><td><code>PVSUFF_SUBJ:2FP</code></td><td>Sujet d'un verbe à l'accompli : 2ème personne du féminin pluriel</td></tr>
-		<tr><td><code>PVSUFF_SUBJ:3MP</code></td><td>Sujet d'un verbe à l'accompli : 3ème personne du masculin pluriel</td></tr>
-		<tr><td><code>PVSUFF_SUBJ:3FP</code></td><td>Sujet d'un verbe à l'accompli : 3ème personne du féminin pluriel</td></tr>
-		<tr><td><code>CVSUFF_DO:1S</code></td><td>Objet direct d'un verbe à l'impératif : 1ère personne du singulier</td></tr>	  
-		<tr><td><code>CVSUFF_DO:3MS</code></td><td>Objet direct d'un verbe à l'impératif : 3ème personne du masculin singulier</td></tr>	  
-		<tr><td><code>CVSUFF_DO:3FS</code></td><td>Objet direct d'un verbe à l'impératif : 3ème personne du féminin singulier</td></tr>	  
-		<tr><td><code>CVSUFF_DO:3D</code></td><td>Objet direct d'un verbe à l'impératif : 3ème personne du duel commun</td></tr>
-		<tr><td><code>CVSUFF_DO:1P</code></td><td>Objet direct d'un verbe à l'impératif : 1ère personne du pluriel</td></tr>	  
-		<tr><td><code>CVSUFF_DO:3MP</code></td><td>Objet direct d'un verbe à l'impératif : 3ème personne du masculin pluriel</td></tr>	  
-		<tr><td><code>CVSUFF_DO:3FP</code></td><td>Objet direct d'un verbe à l'impératif : 3ème personne du féminin pluriel</td></tr>	  		
-		<tr><td><code>CVSUFF_SUBJ:2MS</code></td><td>Sujet d'un verbe à l'impératif : 2ème personne du masculin singulier</td></tr>
-		<tr><td><code>CVSUFF_SUBJ:2FS</code></td><td>Sujet d'un verbe à l'impératif : 2ème personne du féminin singulier</td></tr>
+		<tr><td><code>CASE_INDEF_NOM</code></td><td>Indéfini, nominatif</td><td></td></tr>		
+		<tr><td><code>CASE_INDEF_ACC</code></td><td>Indéfini, accusatif</td><td></td></tr>	  
+		<tr><td><code>CASE_INDEF_ACCGEN</code></td><td>Indéfini, accusatif/génitif</td><td></td></tr>
+		<tr><td><code>CASE_INDEF_GEN</code></td><td>Indéfini, génitif</td><td></td></tr>		
+		<tr><td><code>CASE_DEF_NOM</code></td><td>Défini, nominatif</td><td></td></tr>
+		<tr><td><code>CASE_DEF_ACC</code></td><td>Défini, accusatif</td><td></td></tr>
+		<tr><td><code>CASE_DEF_ACCGEN</code></td><td>Défini, accusatif/génitif</td><td></td></tr>
+		<tr><td><code>CASE_DEF_GEN</code></td><td>Défini, génitif</td><td></td></tr>
+		<tr><td><code>NSUFF_MASC_SG_ACC_INDEF</code></td><td>Suffixe nominal : masculin singulier, accusatif, indéfini</td><td></td></tr>		
+		<tr><td><code>NSUFF_FEM_SG</code></td><td>Suffixe nominal : féminin singulier</td><td></td></tr>		
+		<tr><td><code>NSUFF_MASC_DU_NOM</code></td><td>Suffixe nominal : duel masculin, nominatif</td><td></td></tr>		
+		<tr><td><code>NSUFF_MASC_DU_NOM_POSS</code></td><td>Suffixe nominal : duel masculin, nominatif, état construit</td><td></td></tr>		
+		<tr><td><code>NSUFF_MASC_DU_ACCGEN</code></td><td>Suffixe nominal : duel masculin, accusatif/génitif</td><td></td></tr>		
+		<tr><td><code>NSUFF_MASC_DU_ACCGEN_POSS</code></td><td>Suffixe nominal : duel masculin, accusatif/génitif, état construit</td><td></td></tr>		
+		<tr><td><code>NSUFF_FEM_DU_NOM</code></td><td>Suffixe nominal : duel féminin, nominatif</td><td></td></tr>		
+		<tr><td><code>NSUFF_FEM_DU_NOM_POSS</code></td><td>Suffixe nominal : duel féminin, nominatif, état construit</td><td></td></tr>		
+		<tr><td><code>NSUFF_FEM_DU_ACCGEN</code></td><td>Suffixe nominal : duel féminin, accusatif/génitif</td><td></td></tr>		
+		<tr><td><code>NSUFF_FEM_DU_ACCGEN_POSS</code></td><td>Suffixe nominal : duel féminin, nominatif, état construit</td><td></td></tr>		
+		<tr><td><code>NSUFF_MASC_PL_NOM</code></td><td>Suffixe nominal : masculin pluriel, nominatif</td><td></td></tr>		
+		<tr><td><code>NSUFF_MASC_PL_NOM_POSS</code></td><td>Suffixe nominal : masculin pluriel, nominatif, état construit</td><td></td></tr>		
+		<tr><td><code>NSUFF_MASC_PL_ACCGEN</code></td><td>Suffixe nominal : masculin pluriel, accusatif/génitif</td><td></td></tr>		
+		<tr><td><code>NSUFF_MASC_PL_ACCGEN_POSS</code></td><td>Suffixe nominal : masculin pluriel, accusatif/génitif, état construit</td><td></td></tr>		
+		<tr><td><code>NSUFF_FEM_PL</code></td><td>Suffixe nominal : féminin pluriel</td><td></td></tr>			
+		<tr><td><code>POSS_PRON_1S</code></td><td>Suffixe personnel 1ère personne du singulier</td><td></td></tr>
+		<tr><td><code>POSS_PRON_2MS</code></td><td>Suffixe personnel 2ère personne du masculin singulier</td><td></td></tr>
+		<tr><td><code>POSS_PRON_2FS</code></td><td>Suffixe personnel 2ère personne du féminin singulier</td><td></td></tr>
+		<tr><td><code>POSS_PRON_3MS</code></td><td>Suffixe personnel 3ère personne du masculin singulier</td><td></td></tr>
+		<tr><td><code>POSS_PRON_3FS</code></td><td>Suffixe personnel 3ère personne du féminin singulier</td><td></td></tr>
+		<tr><td><code>POSS_PRON_2D</code></td><td>Suffixe personnel 2ème personne du duel commun</td><td></td></tr>	
+		<tr><td><code>POSS_PRON_3D</code></td><td>Suffixe personnel 3ème personne du duel commun</td><td></td></tr>	
+		<tr><td><code>POSS_PRON_1P</code></td><td>Suffixe personnel 1ère personne du pluriel</td><td></td></tr>		
+		<tr><td><code>POSS_PRON_2MP</code></td><td>Suffixe personnel 2ère personne du masculin pluriel</td><td></td></tr>		
+		<tr><td><code>POSS_PRON_2FP</code></td><td>Suffixe personnel 2ère personne du féminin pluriel</td><td></td></tr>		
+		<tr><td><code>POSS_PRON_3MP</code></td><td>Suffixe personnel 3ère personne du masculin pluriel</td><td></td></tr>		
+		<tr><td><code>POSS_PRON_3FP</code></td><td>Suffixe personnel 3ère personne du féminin pluriel</td><td></td></tr>		
+		<tr><td><code>PRON_3D</code></td><td>Pronom personnel : 3ème personne du duel</td><td>TODO : pas de marqueur de genre !</td></tr>
+		<tr><td><code>IVSUFF_DO:1S</code></td><td>Objet direct d'un verbe à l'inaccompli : 1ère personne du singulier</td><td></td></tr>	  
+		<tr><td><code>IVSUFF_DO:2MS</code></td><td>Objet direct d'un verbe à l'inaccompli : 2ème personne du masculin singulier</td><td></td></tr>
+		<tr><td><code>IVSUFF_DO:2FS</code></td><td>Objet direct d'un verbe à l'inaccompli : 2ème personne du féminin singulier</td><td></td></tr>		
+		<tr><td><code>IVSUFF_DO:3MS</code></td><td>Objet direct d'un verbe à l'inaccompli : 3ème personne du masculin singulier</td><td></td></tr>
+		<tr><td><code>IVSUFF_DO:3FS</code></td><td>Objet direct d'un verbe à l'inaccompli : 3ème personne du féminin singulier</td><td></td></tr>
+		<tr><td><code>IVSUFF_DO:2D</code></td><td>Objet direct d'un verbe à l'inaccompli : 2ème personne du duel commun</td><td></td></tr>		
+		<tr><td><code>IVSUFF_DO:3D</code></td><td>Objet direct d'un verbe à l'inaccompli : 3ème personne du duel commun</td><td></td></tr>
+		<tr><td><code>IVSUFF_DO:1P</code></td><td>Objet direct d'un verbe à l'inaccompli : 1ère personne du pluriel</td><td></td></tr>			
+		<tr><td><code>IVSUFF_DO:2MP</code></td><td>Objet direct d'un verbe à l'inaccompli : 2ème personne du masculin pluriel</td><td></td></tr>	
+		<tr><td><code>IVSUFF_DO:2FP</code></td><td>Objet direct d'un verbe à l'inaccompli : 2ème personne du féminin pluriel</td><td></td></tr>				
+		<tr><td><code>IVSUFF_DO:3MP</code></td><td>Objet direct d'un verbe à l'inaccompli : 3ème personne du masculin pluriel</td><td></td></tr>
+		<tr><td><code>IVSUFF_DO:3FP</code></td><td>Objet direct d'un verbe à l'inaccompli : 3ème personne du féminin pluriel</td><td></td></tr>					  				
+		<tr><td><code>IVSUFF_MOOD:I</code></td><td>Verbe à l'inaccompli : mode indicatif</td><td>TODO : trouver un exemple</td></tr>
+		<tr><td><code>IVSUFF_SUBJ:2FS_MOOD:I</code></td><td>Verbe à l'inaccompli : marqueur de sujet, 2ème personne du féminin singulier, mode indicatif</td><td>TODO : trouver un exemple</td></tr>		              		
+		<tr><td><code>IVSUFF_SUBJ:D_MOOD:I</code></td><td>Verbe à l'inaccompli : marqueur de sujet, duel, mode indicatif</td><td>TODO : trouver un exemple</td></tr>		              
+		<tr><td><code>IVSUFF_SUBJ:3D_MOOD:I</code></td><td>Verbe à l'inaccompli : marqueur de sujet, 3ème personne du duel commun, mode indicatif</td><td>TODO : trouver un exemple</td></tr>		              
+		<tr><td><code>IVSUFF_SUBJ:MP_MOOD:I</code></td><td>Verbe à l'inaccompli : marqueur de sujet, masculin pluriel, mode indicatif</td><td>TODO : trouver un exemple</td></tr>		              		
+		<tr><td><code>IVSUFF_MOOD:S</code></td><td>Verbe à l'inaccompli : mode subjonctif / jussif</td><td>TODO : trouver un exemple</td></tr>		
+		<tr><td><code>IVSUFF_SUBJ:2FS_MOOD:SJ</code></td><td>Verbe à l'inaccompli : marqueur de sujet, 2ème personne du féminin singulier, mode subjonctif / jussif</td><td>TODO : trouver un exemple</td></tr>		
+		<tr><td><code>IVSUFF_SUBJ:D_MOOD:SJ</code></td><td>Verbe à l'inaccompli : marqueur de sujet, duel, mode subjonctif / jussif</td><td>TODO : trouver un exemple</td></tr>		
+		<tr><td><code>IVSUFF_SUBJ:MP_MOOD:SJ</code></td><td>Verbe à l'inaccompli : marqueur de sujet, masculin pluriel, mode subjonctif / jussif</td><td>TODO : trouver un exemple</td></tr>		
+		<tr><td><code>IVSUFF_SUBJ:3MP_MOOD:SJ</code></td><td>Verbe à l'inaccompli : marqueur de sujet, 3ème personne du masculin pluriel, mode subjonctif / jussif</td><td>TODO : trouver un exemple</td></tr>				
+		<tr><td><code>IVSUFF_SUBJ:FP</code></td><td>Verbe à l'inaccompli : marqueur de sujet, féminin pluriel</td><td>TODO : trouver un exemple</td></tr>						
+		<tr><td><code>PVSUFF_DO:1S</code></td><td>Objet direct d'un verbe à l'accompli : 1ère personne du singulier</td><td></td></tr>		
+		<tr><td><code>PVSUFF_DO:2MS</code></td><td>Objet direct d'un verbe à l'accompli : 2ème personne du masculin singulier</td><td></td></tr>
+		<tr><td><code>PVSUFF_DO:2FS</code></td><td>Objet direct d'un verbe à l'accompli : 2ème personne du féminin singulier</td><td></td></tr>
+		<tr><td><code>PVSUFF_DO:3MS</code></td><td>Objet direct d'un verbe à l'accompli : 3ème personne du masculin singulier</td><td></td></tr>
+		<tr><td><code>PVSUFF_DO:3FS</code></td><td>Objet direct d'un verbe à l'accompli : 3ème personne du féminin singulier</td><td></td></tr>		
+		<tr><td><code>PVSUFF_DO:2D</code></td><td>Objet direct d'un verbe à l'accompli : 2ème personne du duel commun</td><td></td></tr>		  		
+		<tr><td><code>PVSUFF_DO:3D</code></td><td>Objet direct d'un verbe à l'accompli : 3ème personne du duel commun</td><td></td></tr>		  		
+		<tr><td><code>PVSUFF_DO:1P</code></td><td>Objet direct d'un verbe à l'accompli : 1ère personne du pluriel</td><td></td></tr>
+		<tr><td><code>PVSUFF_DO:2MP</code></td><td>Objet direct d'un verbe à l'accompli : 2ème personne du masculin pluriel</td><td></td></tr>
+		<tr><td><code>PVSUFF_DO:2FP</code></td><td>Objet direct d'un verbe à l'accompli : 2ème personne du féminin pluriel</td><td></td></tr>
+		<tr><td><code>PVSUFF_DO:3MP</code></td><td>Objet direct d'un verbe à l'accompli : 3ème personne du masculin pluriel</td><td></td></tr>
+		<tr><td><code>PVSUFF_DO:3FP</code></td><td>Objet direct d'un verbe à l'accompli : 3ème personne du féminin pluriel</td><td></td></tr>
+		<tr><td><code>PVSUFF_SUBJ:1S</code></td><td>Sujet d'un verbe à l'accompli : 1ère personne du singulier</td><td></td></tr>		
+		<tr><td><code>PVSUFF_SUBJ:2MS</code></td><td>Sujet d'un verbe à l'accompli : 2ème personne du masculin singulier</td><td></td></tr>		
+		<tr><td><code>PVSUFF_SUBJ:2FS</code></td><td>Sujet d'un verbe à l'accompli : 2ème personne du féminin singulier</td><td></td></tr>		
+		<tr><td><code>PVSUFF_SUBJ:3MS</code></td><td>Sujet d'un verbe à l'accompli : 3ème personne du masculin singulier</td><td></td></tr>		
+		<tr><td><code>PVSUFF_SUBJ:3FS</code></td><td>Sujet d'un verbe à l'accompli : 3ème personne du féminin singulier</td><td></td></tr>				
+		<tr><td><code>PVSUFF_SUBJ:2MD</code></td><td>Sujet d'un verbe à l'accompli : 2ème personne du duel masculin</td><td></td></tr>
+		<tr><td><code>PVSUFF_SUBJ:2FD</code></td><td>Sujet d'un verbe à l'accompli : 2ème personne du duel féminin</td><td></td></tr>		
+		<tr><td><code>PVSUFF_SUBJ:3MD</code></td><td>Sujet d'un verbe à l'accompli : 3ème personne du duel masculin</td><td></td></tr>
+		<tr><td><code>PVSUFF_SUBJ:3FD</code></td><td>Sujet d'un verbe à l'accompli : 3ème personne du duel féminin</td><td></td></tr>		
+		<tr><td><code>PVSUFF_SUBJ:1P</code></td><td>Sujet d'un verbe à l'accompli : 1ère personne du pluriel</td><td></td></tr>
+		<tr><td><code>PVSUFF_SUBJ:2MP</code></td><td>Sujet d'un verbe à l'accompli : 2ème personne du masculin pluriel</td><td></td></tr>
+		<tr><td><code>PVSUFF_SUBJ:2FP</code></td><td>Sujet d'un verbe à l'accompli : 2ème personne du féminin pluriel</td><td></td></tr>
+		<tr><td><code>PVSUFF_SUBJ:3MP</code></td><td>Sujet d'un verbe à l'accompli : 3ème personne du masculin pluriel</td><td></td></tr>
+		<tr><td><code>PVSUFF_SUBJ:3FP</code></td><td>Sujet d'un verbe à l'accompli : 3ème personne du féminin pluriel</td><td></td></tr>
+		<tr><td><code>CVSUFF_DO:1S</code></td><td>Objet direct d'un verbe à l'impératif : 1ère personne du singulier</td><td></td></tr>	  
+		<tr><td><code>CVSUFF_DO:3MS</code></td><td>Objet direct d'un verbe à l'impératif : 3ème personne du masculin singulier</td><td></td></tr>	  
+		<tr><td><code>CVSUFF_DO:3FS</code></td><td>Objet direct d'un verbe à l'impératif : 3ème personne du féminin singulier</td><td></td></tr>	  
+		<tr><td><code>CVSUFF_DO:3D</code></td><td>Objet direct d'un verbe à l'impératif : 3ème personne du duel commun</td><td></td></tr>
+		<tr><td><code>CVSUFF_DO:1P</code></td><td>Objet direct d'un verbe à l'impératif : 1ère personne du pluriel</td><td></td></tr>	  
+		<tr><td><code>CVSUFF_DO:3MP</code></td><td>Objet direct d'un verbe à l'impératif : 3ème personne du masculin pluriel</td><td></td></tr>	  
+		<tr><td><code>CVSUFF_DO:3FP</code></td><td>Objet direct d'un verbe à l'impératif : 3ème personne du féminin pluriel</td><td></td></tr>	  		
+		<tr><td><code>CVSUFF_SUBJ:2MS</code></td><td>Sujet d'un verbe à l'impératif : 2ème personne du masculin singulier</td><td></td></tr>
+		<tr><td><code>CVSUFF_SUBJ:2FS</code></td><td>Sujet d'un verbe à l'impératif : 2ème personne du féminin singulier</td><td></td></tr>
 		<!-- non attesté -->
 		<!--
-		<tr><td><code>CVSUFF_SUBJ:2D</code></td><td>Sujet d'un verbe à l'impératif : 2ème personne du duel commun</td></tr>
+		<tr><td><code>CVSUFF_SUBJ:2D</code></td><td>Sujet d'un verbe à l'impératif : 2ème personne du duel commun</td><td></td></tr>
 		-->
-		<tr><td><code>CVSUFF_SUBJ:2MP</code></td><td>Sujet d'un verbe à l'impératif : 2ème personne du masculin pluriel</td></tr>
+		<tr><td><code>CVSUFF_SUBJ:2MP</code></td><td>Sujet d'un verbe à l'impératif : 2ème personne du masculin pluriel</td><td></td></tr>
 		<!-- non attesté -->
 		<!--
-		<tr><td><code>CVSUFF_SUBJ:2FP</code></td><td>Sujet d'un verbe à l'impératif : 2ème personne du féminin pluriel</td></tr>
+		<tr><td><code>CVSUFF_SUBJ:2FP</code></td><td>Sujet d'un verbe à l'impératif : 2ème personne du féminin pluriel</td><td></td></tr>
 		-->
 	</table>
 	<p>Pour les radicaux :</p>		
 	<table>
-		<tr><th>Catégorie</th><th>Description</th><th>Signifiant</th></tr>				
-		<tr><td><code>ABBREV</code></td><td>Abbréviation</td><td>Non</td></tr>		
-		<tr><td><code>ADJ</code></td><td>Adjectif</td><td>Oui</td></tr>
-		<tr><td><code>ADV</code></td><td>Adverbe</td><td>Oui</td></tr>	  
-		<tr><td><code>CONJ</code></td><td>Conjonction*</td><td>Non</td></tr>		
-		<tr><td><code>DEM_PRON_F</code></td><td>Pronom démonstratif féminin*</td><td>Non</td></tr>
-		<tr><td><code>DEM_PRON_FS</code></td><td>Pronom démonstratif féminin singulier</td><td>Non</td></tr>
-		<tr><td><code>DEM_PRON_FD</code></td><td>Pronom démonstratif duel</td><td>Non</td></tr>		
-		<tr><td><code>DEM_PRON_MS</code></td><td>Pronom démonstratif masculin singulier</td><td>Non</td></tr>
-		<tr><td><code>DEM_PRON_MD</code></td><td>Pronom démonstratif masculin duel</td><td>Non</td></tr>
-		<tr><td><code>DEM_PRON_MP</code></td><td>Pronom démonstratif masculin pluriel</td><td>Non</td></tr>		
-		<tr><td><code>DET</code></td><td>*</td><td>Non</td></tr>	  
-		<tr><td><code>FUNC_WORD</code></td><td>*</td><td>Non</td></tr>	  		
-		<tr><td><code>FUT_PART</code></td><td>Particule du futur</td><td>Oui</td></tr>
-		<tr><td><code>INTERJ</code></td><td>Interjection</td><td>Non</td></tr>	  
-		<!--manque INTERROG -->
-		<tr><td><code>INTERROG_PART</code></td><td>Particule interrogative</td><td>Non</td></tr>
-		<tr><td><code>NEG_PART</code></td><td>Particule négative</td><td>Non</td></tr>
-		<tr><td><code>NOUN</code></td><td>Nom</td><td>Oui</td></tr>
-		<tr><td><code>NOUN_PROP</code></td><td>Nom propre</td><td>Oui</td></tr>
-		<tr><td><code>NUMERIC_COMMA</code></td><td>Séparateur décimal</td><td>Non</td></tr>		
-		<tr><td><code>PART</code></td><td>Particule*</td><td>Oui</td></tr>	  
-		<tr><td><code>PREP</code></td><td>Préposition</td><td>Non</td></tr>
-		<tr><td><code>PRON_1S</code></td><td>Pronom personnel : 1ère personne du singulier</td><td>Non</td></tr>
-		<tr><td><code>PRON_2MS</code></td><td>Pronom personnel : 2ème personne du masculin singulier</td><td>Non</td></tr>		
-		<tr><td><code>PRON_2FS</code></td><td>Pronom personnel : 2ème personne du féminin singulier</td><td>Non</td></tr>	  
-		<tr><td><code>PRON_3MS</code></td><td>Pronom personnel : 3ème personne du masculin singulier</td><td>Non</td></tr>		
-		<tr><td><code>PRON_3FS</code></td><td>Pronom personnel : 3ème personne du féminin singulier</td><td>Non</td></tr>			
-		<tr><td><code>PRON_2D</code></td><td>Pronom personnel : 2ème personne du duel commun</td><td>Non</td></tr>
-		<tr><td><code>PRON_3D</code></td><td>Pronom personnel : 3ème personne du duel commun</td><td>Non</td></tr>
-		<tr><td><code>PRON_1P</code></td><td>Pronom personnel : 1ère personne du pluriel</td><td>Non</td></tr>
-		<tr><td><code>PRON_2MP</code></td><td>Pronom personnel : 2ème personne du masculin pluriel</td><td>Non</td></tr>
-		<tr><td><code>PRON_2FP</code></td><td>Pronom personnel : 2ème personne du féminin pluriel</td><td>Non</td></tr>
-		<tr><td><code>PRON_3MP</code></td><td>Pronom personnel : 3ème personne du masculin pluriel</td><td>Non</td></tr>
-		<tr><td><code>PRON_3FP</code></td><td>Pronom personnel : 3ème personne du féminin pluriel</td><td>Non</td></tr>
-		<tr><td><code>REL_PRON</code></td><td>Pronom relatif</td><td>Non</td></tr>
-		<tr><td><code>VERB_IMPERATIVE</code></td><td>Verbe à l'impératif</td><td>Oui</td></tr>
-		<tr><td><code>VERB_IMPERFECT</code></td><td>Verbe à l'inaccompli</td><td>Oui</td></tr>
-		<tr><td><code>VERB_PERFECT</code></td><td>Verbe à l'accompli</td><td>Oui</td></tr>		
-		<tr><td><code>NO_RESULT</code></td><td>Mot qui n'a pu être analysé. Ce mot est conservé dans la mesure où il y a de fortes chances qu'il soit un mot étranger absent du dictionnaire.</td><td>Oui</td></tr>		
-	</table>
-	<p>Catégories attestées mais non encore rencontrées lors des tests :</p>		
-	<table>
-		<tr><th>Catégorie</th><th>Description</th><th>Signifiant</th></tr>						
-		<tr><td><code>EMPHATIC_PARTICLE</code></td><td>*</td><td>Non</td></tr>										
-	  </table>
-	  <note>Les définitions marquées d'un <code>*</code> me sont encore obscures. Des investigations grammaticales sont en cours :-)</note>
-	  <fixme author="???">Si vous rencontrez ces catégories, faites m'en part en me donnant un fragment de texte !</fixme>
+		<tr><th>Catégorie</th><th>Description</th><th>Observations</th><th>Signifiant</th></tr>				
+		<tr><td><code>ABBREV</code></td><td>Abbréviation</td><td></td><td>Oui</td></tr>		
+		<tr><td><code>ADJ</code></td><td>Adjectif</td><td></td><td>Oui</td></tr>
+		<tr><td><code>ADV</code></td><td>Adverbe</td><td></td><td>Oui</td></tr>	  		
+		<tr><td><code>DEM_PRON_F</code></td><td>Pronom démonstratif féminin</td><td>TODO : pas de marqueur de nombre !</td><td>Non</td></tr>
+		<tr><td><code>DEM_PRON_FS</code></td><td>Pronom démonstratif féminin singulier</td><td></td><td>Non</td></tr>
+		<tr><td><code>DEM_PRON_FD</code></td><td>Pronom démonstratif duel</td><td></td><td>Non</td></tr>		
+		<tr><td><code>DEM_PRON_MS</code></td><td>Pronom démonstratif masculin singulier</td><td></td><td>Non</td></tr>
+		<tr><td><code>DEM_PRON_MD</code></td><td>Pronom démonstratif masculin duel</td><td></td><td>Non</td></tr>
+		<tr><td><code>DEM_PRON_MP</code></td><td>Pronom démonstratif masculin pluriel</td><td></td><td>Non</td></tr>		
+		<tr><td><code>DET</code></td><td>Déterminant ?</td><td>TODO : liste à définir et, le cas échéant, à ventiler vers les préfixes.</td><td>Non</td></tr>	  				
+		<tr><td><code>INTERROG</code></td><td>TODO : traduire</td><td>TODO : liste à définir et, le cas échéant, à ventiler vers les préfixes. Double emploi avec <code>INTERROG_PART</code> ?</td><td>Oui</td></tr>						
+		<tr><td><code>NO_STEM</code></td><td>Pas de radical pour le mot</td><td>Marqueur généré par <em>AraMorph</em> après ventilation vers les préfixes et les suffixes</td><td>Non</td></tr>
+		<tr><td><code>NOUN</code></td><td>Nom</td><td></td><td>Oui</td></tr>
+		<tr><td><code>NOUN_PROP</code></td><td>Nom propre</td><td></td><td>Oui</td></tr>
+		<tr><td><code>NUMERIC_COMMA</code></td><td>Séparateur décimal</td><td></td><td>Non</td></tr>		
+		<tr><td><code>PART</code></td><td>Particule</td><td>TODO : liste à définir et, le cas échéant, à ventiler vers les préfixes.</td><td>Non</td></tr>	 
+		<tr><td><code>PRON_1S</code></td><td>Pronom personnel : 1ère personne du singulier</td><td></td><td>Non</td></tr>
+		<tr><td><code>PRON_2MS</code></td><td>Pronom personnel : 2ème personne du masculin singulier</td><td></td><td>Non</td></tr>		
+		<tr><td><code>PRON_2FS</code></td><td>Pronom personnel : 2ème personne du féminin singulier</td><td></td><td>Non</td></tr>	  
+		<tr><td><code>PRON_3MS</code></td><td>Pronom personnel : 3ème personne du masculin singulier</td><td></td><td>Non</td></tr>		
+		<tr><td><code>PRON_3FS</code></td><td>Pronom personnel : 3ème personne du féminin singulier</td><td></td><td>Non</td></tr>			
+		<tr><td><code>PRON_2D</code></td><td>Pronom personnel : 2ème personne du duel commun</td><td></td><td>Non</td></tr>
+		<tr><td><code>PRON_3D</code></td><td>Pronom personnel : 3ème personne du duel commun</td><td></td><td>Non</td></tr>
+		<tr><td><code>PRON_1P</code></td><td>Pronom personnel : 1ère personne du pluriel</td><td></td><td>Non</td></tr>
+		<tr><td><code>PRON_2MP</code></td><td>Pronom personnel : 2ème personne du masculin pluriel</td><td></td><td>Non</td></tr>
+		<tr><td><code>PRON_2FP</code></td><td>Pronom personnel : 2ème personne du féminin pluriel</td><td></td><td>Non</td></tr>
+		<tr><td><code>PRON_3MP</code></td><td>Pronom personnel : 3ème personne du masculin pluriel</td><td></td><td>Non</td></tr>
+		<tr><td><code>PRON_3FP</code></td><td>Pronom personnel : 3ème personne du féminin pluriel</td><td></td><td>Non</td></tr>
+		<tr><td><code>REL_PRON</code></td><td>Pronom relatif</td><td></td><td>Non</td></tr>
+		<tr><td><code>VERB_IMPERATIVE</code></td><td>Verbe à l'impératif</td><td></td><td>Oui</td></tr>
+		<tr><td><code>VERB_IMPERFECT</code></td><td>Verbe à l'inaccompli</td><td></td><td>Oui</td></tr>
+		<tr><td><code>VERB_PERFECT</code></td><td>Verbe à l'accompli</td><td></td><td>Oui</td></tr>		
+		<tr><td><code>NO_RESULT</code></td><td>Mot qui n'a pu être analysé</td><td>Mot conservé dans la mesure où l'expérience semble montrer qu'il y a de fortes chances qu'il soit un mot <strong>étranger</strong> absent du dictionnaire. Il est naturellement tout à fait possible d'écrire un <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/TokenFilter.html">filtre <em>Lucene</em> spécifique</fork> pour affiner l'analyse de ce type de <em>token</em>.</td><td>Oui</td></tr>		
+	</table>		
+	  <fixme author="PB">Compléter les TODO.</fixme>
+	  <fixme author="vous !">Seules sont listées les catégories <strong>effectivement</strong> rencontrées lors des tests. Si vous rencontrez des catégories absentes de ces listes, n'hésitez pas à m'en faire part !</fixme>
 	  </section>
   </body>
 </document>
