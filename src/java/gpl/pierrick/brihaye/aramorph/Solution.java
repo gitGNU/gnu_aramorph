@@ -1316,7 +1316,7 @@ public class Solution {
 				if (!"".equals(POS[i])) sb.append("\t" + "prefix : " + POS[i] + "\n");
 			}		
 		}
-		if (!"NO_STEM".equals(this.getStemLongPOS())) sb.append("\t" + "stem : " + this.getStemLongPOS() + "\n");
+		if (!"NO_STEM".equals(this.getStemPOS())) sb.append("\t" + "stem : " + this.getStemLongPOS() + "\n");
 		POS = this.getSuffixesLongPOS();	
 		if (POS != null) {		
 			for (i = 0 ; i < POS.length ; i++) {				
@@ -1339,7 +1339,7 @@ public class Solution {
 				if (!"".equals(POS[i])) sb.append("\t" + "prefix : " + POS[i] + "\n");
 			}		
 		}
-		if (!"NO_STEM".equals(this.getStemArabicLongPOS())) sb.append("\t" + "stem : " + this.getStemArabicLongPOS() + "\n");
+		if (!"NO_STEM".equals(this.getStemPOS())) sb.append("\t" + "stem : " + this.getStemArabicLongPOS() + "\n");
 		POS = this.getSuffixesArabicLongPOS();	
 		if (POS != null) {		
 			for (i = 0 ; i < POS.length ; i++) {				
