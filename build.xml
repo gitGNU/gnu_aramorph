@@ -90,10 +90,10 @@
 		<property name="html" value="${dist}/html"/>
 		<mkdir dir="${html}/aramorph"/>
 		<mkdir dir="${html}/aramorph/javadoc"/>
-		<copy todir="${html}/aramorph">
+		<copy todir="${html}/aramorph" includeEmptyDirs="false">
 			<fileset dir="${dist}/site"/>			
 		</copy>
-		<copy todir="${html}/aramorph/javadoc">
+		<copy todir="${html}/aramorph/javadoc" includeEmptyDirs="false">
 			<fileset dir="${dist}/javadoc"/>			
 		</copy>	
 		<!-- remove timestamp to avoid unwanted CVS diffs -->			
