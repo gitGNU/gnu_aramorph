@@ -54,7 +54,7 @@ public class TestArabicAnalyzer {
 		System.err.println("");
 		System.err.println("Usage :");
 		System.err.println("");
-		System.err.println("araMorph inFile [inEncoding] [outFile] [outEncoding] [-v]");
+		System.err.println("araMorph inFile [inEncoding] [outFile] [outEncoding]");
 		System.err.println("");
 		System.err.println("inFile : file to be analyzed");
 		System.err.println("inEncoding : encoding for inFile, default CP1256");

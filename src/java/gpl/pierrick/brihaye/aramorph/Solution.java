@@ -244,15 +244,13 @@ public class Solution {
 	public String toString() {
 		return new String(
 		"SOLUTION #" + cnt + "\n"
-		+ "lemma  : " + "\t"
-		+ getLemma() + "\n"
-		+ "vocalized as : " + "\t"
-		+ this.getWordVocalization() + "\n"
-		+ "morphology : " + "\t"
+		+ "lemma  : " + "\t" + getLemma() + "\n"
+		+ "vocalized as : " + "\t" + this.getWordVocalization() + "\n"
+		+ "morphology : " + "\n"
 		+ this.getWordCat() + "\n"
-		+ "grammatical category : " + "\t"
+		+ "grammatical category : " + "\n"
 		+ this.getWordPOS() + "\n"
-		+ "glossed as : " + "\t"
+		+ "glossed as : " + "\n"
 		+ this.getWordGlosses() + "\n"
 		);
 	}
