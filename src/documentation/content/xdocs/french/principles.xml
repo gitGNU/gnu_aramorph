@@ -62,8 +62,8 @@ Glossed as :
 	<table>
 		<tr><th>Message</th><th>Signification</th></tr>
 		<tr><td><code>Processing token</code></td><td>le mot actuellement traité</td></tr>
-		<tr><td><code>Transliteration</code></td><td>la translitération du mot dans le système de <fork href="http://www.qamus.org/transliteration.htm"><em>Buckwalter</em></fork></td></tr>
-		<tr><td><code>Token not yet processed.</code></td><td>indique que le mot n'a pas encore été analysé ; uniquement avec le paramètre <code>-v</code></td></tr>
+		<tr><td><code>Transliteration</code></td><td>la translitération du mot dans le système de <fork href="http://www.qamus.org/transliteration.htm"><em>Buckwalter</em></fork> ; uniquement avec le paramètre <code>-v</code> et si aucun encodage de sortie n'est spécifié</td></tr>
+		<tr><td><code>Token not yet processed.</code></td><td>indique que le mot n'a pas encore été analysé et qu'il n'est donc pas dans le cache d'<em>AraMorph</em> ; uniquement avec le paramètre <code>-v</code></td></tr>
 		<tr><td><code>Token has direct solutions.</code></td>
 			<td>
 			indique que le mot est analysable dans son orthographe actuelle ; uniquement avec le paramètre <code>-v</code>.<br/>
@@ -144,17 +144,103 @@ java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-2003090
 			sa position dans le flux d'entrée (<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#startOffset()"><code>startOffset</code></fork> et 
 			<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#endOffset()"><code>endOffset</code></fork>)			
 			et sa position relative para rapport au <em>token</em> précédent (<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#getPositionIncrement()"><code>positionIncrement</code></fork>).</p>
-		<p>Il faut en effet attirer l'attention sur le fait qu'un même mot arabe, parce qu'il est généralement réduit à son squelette consonnatique, donne souvent lieu à <strong>plusieurs</strong> <em>solutions</em>.</p>
+		<p>Il faut en effet attirer l'attention sur le fait qu'un même mot arabe, parce qu'il est généralement réduit à son squelette consonnantique, donne souvent lieu à <strong>plusieurs</strong> <em>solutions</em>.</p>
 		<fixme author="PB">Quand bien même le texte serait vocalisé, les voyelles ne sont malheureusement pas prises en compte pour lever les ambiguités d'analyse. La résolution de ce problème est <link href="site:todo">à l'étude</link>.</fixme>
 		<note>Dans cet exemple, le texte des <em>tokens</em> est en arabe, mais pour des raisons de performance, il vaut sans doute mieux retourner des tokens transcrits selon le système de Buckwalter.</note>
 		<warning>Dans cet exemple, et bien que <em>كتاب</em> ait 3 solutions, on ne retourne que 2 <em>tokens</em>. En effet, <em>كُتّاب</em> est présent par 2 fois, la première en tant que pluriel de <em>كاتب</em>, le seconde en tant que nom singulier valant pour <em>école coranique</em>.</warning>
+		<p>Essayons un autre exemple avec un fichier <code>tktbn.txt</code> contenant le mot <em>تكتبن</em> :</p>
+		<source>java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/tktb.txt CP1256 results.txt UTF-8</source>
+		<p>Examinons le fichier de sortie <code>results.txt</code> :</p>		
+		<source>
+Processing token : 	تكتبن
+
+SOLUTION #2
+Lemma  : 	katab
+Vocalized as : 	تُكْتَبْنَ
+Morphology : 
+	Prefix : IVPref-Antn-tu
+	Stem : IV_Pass_yu
+	Suffix : IVSuff-n
+Grammatical category : 
+	Prefix : تُ/IV2FP+
+	Stem : كْتَب/VERB_IMPERFECT
+	Suffix : +نَ/IVSUFF_SUBJ:FP
+Glossed as : 
+	Prefix : you [fem.pl.]
+	Stem : be written/be fated/be destined
+	Suffix : [fem.pl.]
+
+
+SOLUTION #4
+Lemma  : 	>akotab
+Vocalized as : 	تُكْتَبْنَ
+Morphology : 
+	Prefix : IVPref-Antn-tu
+	Stem : IV_Pass_yu
+	Suffix : IVSuff-n
+Grammatical category : 
+	Prefix : تُ/IV2FP+
+	Stem : كْتَب/VERB_IMPERFECT
+	Suffix : +نَ/IVSUFF_SUBJ:FP
+Glossed as : 
+	Prefix : you [fem.pl.]
+	Stem : be dictated
+	Suffix : [fem.pl.]
+
+
+SOLUTION #1
+Lemma  : 	katab
+Vocalized as : 	تَكْتُبْنَ
+Morphology : 
+	Prefix : IVPref-Antn-ta
+	Stem : IV
+	Suffix : IVSuff-n
+Grammatical category : 
+	Prefix : تَ/IV2FP+
+	Stem : كْتُب/VERB_IMPERFECT
+	Suffix : +نَ/IVSUFF_SUBJ:FP
+Glossed as : 
+	Prefix : you [fem.pl.]
+	Stem : write
+	Suffix : [fem.pl.]
+
+
+SOLUTION #3
+Lemma  : 	>akotab
+Vocalized as : 	تُكْتِبْنَ
+Morphology : 
+	Prefix : IVPref-Antn-tu
+	Stem : IV_yu
+	Suffix : IVSuff-n
+Grammatical category : 
+	Prefix : تُ/IV2FP+
+	Stem : كْتِب/VERB_IMPERFECT
+	Suffix : +نَ/IVSUFF_SUBJ:FP
+Glossed as : 
+	Prefix : you [fem.pl.]
+	Stem : dictate/make write
+	Suffix : [fem.pl.]		
+		</source>
+		<p>Ici, le découpage en préfixe, radical et suffixe devient très apparent.</p>
+		<p>Pour bien comprendre que l'analyse retourne le <strong>radical</strong> :</p>
+		<source>
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/tktbn.txt results.txt
+		</source>
+		<p>Examinons le fichier de sortie <code>results.txt</code> :</p>		
+		<source>
+kotab	VERB_IMPERFECT	[0-5]	1
+kotub	VERB_IMPERFECT	[0-5]	0
+kotib	VERB_IMPERFECT	[0-5]	0
+		</source>
+		<p>On constate que l'on obtient bien les radicaux des différentes formes que peut recouvrir le verbe <em>كتب</em> au présent. Ainsi, selon ce système, l'analyse d'un verbe à la deuxième personne du féminin pluriel du présent est la <strong>même</strong> que celle de toute autre personne au même temps.</p>
+		<note>Cette implémentation peut tout à fait être rediscutée !</note>
 	</section>
 	<section>
 		<title>L'analyseur anglais pour Lucene</title>
 		<p>Exécutons le code suivant :</p>
 		<source>
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicGlosser src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt
-		</source>		
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/tktbn.txt CP1256 results.txt 
+		</source>				
 		<warning>Naturellement, l'encodage du fichier d'entrée doit être adapté à votre plate-forme.</warning>
 		<p>Examinons le fichier de sortie <code>results.txt</code> :</p>
 		<source>
@@ -167,7 +253,50 @@ school	word	[0-4]	0
 authors	word	[0-4]	0
 writers	word	[0-4]	0
 		</source>		
-		<p>Suite à rédiger</p>
+		<p>Ici, le principe est strictement le même si ce n'est que les glosses sont elles-mêmes tokenisées par le <fork href="http://www.nongnu.org/aramorph/javadoc/gpl/pierrick/brihaye/aramorph/lucene/WhitespaceFilter.html"><code>WhitespaceFilter</code></fork> avant d'intégrer la chaîne de traitement standard de Lucene (<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/standard/StandardFilter.html"><code>StandardFilter</code></fork>, <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/LowerCaseFilter.html"><code>LowerCaseFilter</code></fork> et <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/StopFilter.html"><code>StopFilter</code></fork>).</p>
+		<note>Cette implémentation peut tout à fait être rediscutée !</note>
 	</section>
-  </body>
+	<section>
+	<title>Quelles sont les solutions retenues par les analyseurs ?</title>
+	<p>Comme on peut le voir, les analyseurs renvoient des <em>tokens</em> dont le type correspond à la morphologie du radical.<br/>
+	Cependant, un analyseur considèrera certaines morphologies comme des <strong>mots vides</strong> et ne renverra donc aucun <em>token</em> pour ce radical. La liste des morphologies non signifiantes est décrite ci-après :</p>
+	<ul>
+	<li><code>ABBREV</code></li>
+	<li><code>CONJ</code></li>
+	<li><code>DET</code></li>
+	<li><code>DEM_PRON_F</code></li>
+	<li><code>DEM_PRON_FS</code></li>
+	<li><code>DEM_PRON_FD</code></li>
+	<li><code>DEM_PRON_MD</code></li>
+	<li><code>DEM_PRON_MP</code></li>
+	<li><code>DEM_PRON_MS</code></li>
+	<li><code>FUNC_WORD</code></li>	
+	<li><code>INTERJ</code></li>
+	<li><code>INTERROG</code></li>
+	<li><code>INTERROG_PART</code></li>
+	<li><code>IVSUFF_SUBJ:MP_MOOD:I</code></li>
+	<li><code>NEG_PART</code></li>
+	<li><code>NUMERIC_COMMA</code></li>
+	<li><code>POSS_PRON_1S</code></li>														
+	<li><code>PREP</code></li>
+	<li><code>PRON_1P</code></li>
+	<li><code>PRON_1S</code></li>
+	<li><code>PRON_2D</code></li>
+	<li><code>PRON_2FP</code></li>
+	<li><code>PRON_2FS</code></li>
+	<li><code>PRON_2MP</code></li>
+	<li><code>PRON_2MS</code></li>
+	<li><code>PRON_3D</code></li>
+	<li><code>PRON_3FP</code></li>
+	<li><code>PRON_3FS</code></li>
+	<li><code>PRON_3MP</code></li>														
+	<li><code>PRON_3MS</code></li>	
+	<li><code>REL_PRON</code></li>														
+	<li><code>REL_PRON+bayona</code></li>	
+	<li><code>REL_PRON+bayoni</code></li>															
+	</ul>
+	<note>Les explications sur les indications de morphologie et de catégorie grammaticale sont disponibles dans la rubrique concernant les <link href="site:dictionaries">dictionnaires</link>.</note>		
+	<note>Cette implémentation peut tout à fait être rediscutée !</note>
+	</section>
+  </body>  
 </document>
