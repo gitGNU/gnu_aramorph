@@ -15,7 +15,9 @@ See http://xml.apache.org/forrest/linking.html for more info
 <site label="AraMorph" xmlns="http://apache.org/forrest/linkmap/1.0" tab="french" >
 
 	<general label="A propos" href="french/" tab="french">
-		<tab label="Présentation" href="index.html" description="Description du projet" tab="french"/>		
+		<tab label="Présentation" href="index.html" description="Presentation du projet" tab="french"/>
+		<tab label="Téléchargement" href="download.html" description="Telechargement" tab="french"/>
+		<tab label="Installation" href="install.html" description="Installation" tab="french"/>		
 		<tab label="Principes" href="principles.html" description="Principes techniques" tab="french"/>
 		<tab label="Dictionnaires" href="dictionaries.html" description="Format des dictionnaires" tab="french"/>		
 	</general>
