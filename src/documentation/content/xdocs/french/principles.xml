@@ -99,7 +99,7 @@ Glossed as :
 		<tr><td><code>k</code></td><td><code>t</code></td><td>Ab</td></tr>
 		<tr><td><code>k</code></td><td><code>Ø</code></td><td>tAb</td></tr>
 	</table>
-	<p>Ensuite, <em>AraMorph</em> vérifie la présence de chacun des éléments :</p>
+	<p>Ensuite, <em>AraMorph</em> vérifie la présence de chacun des éléments dans des dictionnaires :</p>
 	<ul>
 		<li>le préfixe, dans <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictPrefixes</code></li>	
 		<li>le radical, dans <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictStems</code></li>	
@@ -107,7 +107,7 @@ Glossed as :
 	</ul>
 	<p>En cas de succès, <em>AraMorph</em> récupère l'information morphologique de chacun des éléments.</p>
 	<note>Un préfixe ou un suffixe Ø sont morphologiquement <strong>signifiants</strong>.</note>
-	<p>Le cas échéant, <em>AraMorph</em> vérifie ensuite si les morphologies de chacun des éléments sont compatibles entre elles :</p>
+	<p>Le cas échéant, <em>AraMorph</em> vérifie ensuite si les morphologies de chacun des éléments sont compatibles entre elles en examinant des tables de correspondances licites :</p>
 	<ul>		
 		<li>entre le préfixe et le radical, dans <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAB</code></li>	
 		<li>entre le préfixe et le suffixe, dans <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAC</code></li>	
@@ -132,7 +132,7 @@ java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-2003090
 kut~Ab	NOUN	[0-4]	1
 kitAb	NOUN	[0-4]	0		
 		</source>		
-		<p>A rédiger</p>
+		<p>Suite à rédiger</p>
 	</section>
 	<section>
 		<title>L'analyseur anglais pour Lucene</title>
@@ -152,7 +152,7 @@ school	word	[0-4]	0
 authors	word	[0-4]	0
 writers	word	[0-4]	0
 		</source>		
-		<p>A rédiger</p>
+		<p>Suite à rédiger</p>
 	</section>
   </body>
 </document>
