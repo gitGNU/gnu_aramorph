@@ -48,15 +48,15 @@ public final class WhitespaceFilter extends TokenFilter {
 		//left trim the token
 		while(true) {
 			if (receivedText.length() == 0) break;
-			char c = receivedText.charAt(0);
-			if (!Character.isWhitespace(c)) break;
+			char c = receivedText.charAt(0);			
+			if (Character.isLetterOrDigit(c)) break;
 			receivedText.deleteCharAt(0);		
 		}				
 		//keep the good stuff
 		while(true) {
 			if (receivedText.length() == 0) break;
 			char c = receivedText.charAt(0);
-			if (Character.isWhitespace(c)) break;
+			if (!Character.isLetterOrDigit(c)) break;
 			emittedText.append(receivedText.charAt(0));
 			receivedText.deleteCharAt(0);			
 		}		
@@ -64,7 +64,7 @@ public final class WhitespaceFilter extends TokenFilter {
 		while(true) {
 			if (receivedText.length() == 0) break;
 			char c = receivedText.charAt(0);
-			if (!Character.isWhitespace(c)) break;
+			if (Character.isLetterOrDigit(c)) break;
 			receivedText.deleteCharAt(0);		
 		}				
 		return emittedText.toString();
@@ -75,21 +75,23 @@ public final class WhitespaceFilter extends TokenFilter {
 	 * @return The word
 	 */
 	public final Token next() throws IOException {
-		while (true) {
-			String emittedText;									
+		
+		boolean newToken = false;
+		
+		while (true) {				
 			//New token ?
 			if (receivedText.length() == 0) {
 				receivedToken = input.next();			
+				newToken = true;
 				if (receivedToken == null)	return null;
 				receivedText.append(receivedToken.termText());				
 			}
-			//sanity check
-			if (receivedToken == null)	return null;
-			emittedText = getNextPart();						
-			if (emittedText.length() > 0) {
-				//TODO : should we keep the receivedToken's type ?
-				Token emittedToken = new Token(emittedText, receivedToken.startOffset(), receivedToken.endOffset());
-				emittedToken.setPositionIncrement(receivedToken.getPositionIncrement());				
+			String emittedText = getNextPart();						
+			if (emittedText.length() > 0) {				
+				//TODO : should we untype the token and let the next Filters operate ?
+				Token emittedToken = new Token(emittedText, receivedToken.startOffset(), receivedToken.endOffset(), receivedToken.type());								
+				if (newToken) emittedToken.setPositionIncrement(receivedToken.getPositionIncrement());				
+				else emittedToken.setPositionIncrement(0);				
 				return emittedToken;
 			}				
 		}

@@ -26,8 +26,10 @@ import gpl.pierrick.brihaye.aramorph.AraMorph;
 import gpl.pierrick.brihaye.aramorph.Solution;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 import org.apache.lucene.analysis.Token;
 import org.apache.lucene.analysis.TokenFilter;
@@ -42,8 +44,8 @@ public class ArabicGlosser extends TokenFilter {
 	private String romanizedToken = null;
 	private Token receivedToken = null;
 	private boolean processingToken = false;
-	private ArrayList tokenGlosses = null;
-	private ArrayList tokenPOS = null;
+	private LinkedList tokenGlosses = null;
+	private LinkedList tokenPOS = null;
 	
 	/** Constructs a filter that will return english glosses from arabic stems.
 	 * @param input The token stream from a tokenizer
@@ -78,15 +80,15 @@ public class ArabicGlosser extends TokenFilter {
 	private Token nextGloss(boolean firstOne) {
 		Token emittedToken = null;
 		String tokenText = null;
-		String tokenType = null;
+		String tokenType = null;			
 		try {
-			tokenText = (String)tokenGlosses.get(0);			
+			tokenText = (String)tokenGlosses.getFirst();
 			//Token is typed in order to filter it later			
-			tokenType = (String)tokenPOS.get(0);
+			tokenType = (String)tokenPOS.getFirst();
 			//OK : we're done with this gloss
-			tokenGlosses.remove(0);
-			tokenPOS.remove(0);
-			//Will there be further treatment ?
+			tokenGlosses.removeFirst();
+			tokenPOS.removeFirst();
+			//Will there be further treatment for this token ?
 			processingToken = !tokenGlosses.isEmpty();
 		}
 		//It should not be normally possible !
@@ -96,11 +98,10 @@ public class ArabicGlosser extends TokenFilter {
 			//Re-emit the same token text (romanized) : not the best solution :-(
 			tokenText = romanizedToken;
 			tokenType = "PLACE_HOLDER";
-		}
-		//TODO : further normalization : remove punctuation and the like
+		}		
 		emittedToken = new Token(tokenText,receivedToken.startOffset(),receivedToken.endOffset(),tokenType);
-		if (!firstOne) emittedToken.setPositionIncrement(0);
-		if (debug) System.out.println(emittedToken.termText() + "\t" + emittedToken.type() + "\t" + "[" + emittedToken.startOffset() + "-" + emittedToken.endOffset() + "]" + "\t" + emittedToken.getPositionIncrement());
+		if (!firstOne) emittedToken.setPositionIncrement(0);				
+		if (debug) System.out.println(emittedToken.termText() + "\t" + emittedToken.type() + "\t" + "[" + emittedToken.startOffset() + "-" + emittedToken.endOffset() + "]" + "\t" + emittedToken.getPositionIncrement());			
 		return emittedToken;
 	}
 	
@@ -120,23 +121,15 @@ public class ArabicGlosser extends TokenFilter {
 			romanizedToken = araMorph.romanizeWord(receivedToken.termText());
 			//Analyse it (in arabic)
 			if (araMorph.analyzeToken(receivedToken.termText(), false)) {				
-				tokenGlosses = new ArrayList();
-				tokenPOS = new ArrayList();
+				tokenGlosses = new LinkedList();
+				tokenPOS = new LinkedList();
 				Iterator it_solutions = araMorph.getWordSolutions(romanizedToken).iterator();
+				//Feed solutions
 				while (it_solutions != null && it_solutions.hasNext()) {
 					Solution currentSolution = (Solution)it_solutions.next();
-					for (int i = 0; i < currentSolution.getStemGlossesList().length ; i++) {
-						tokenGlosses.add(currentSolution.getStemGlossesList()[i]);
-						//same POS for all glosses
-						tokenPOS.add(currentSolution.getStemPOS());						
-					}					
-				}
-				
-				//DEBUG : this does actually nothing, good place for a breakpoint
-				if (tokenGlosses.isEmpty() || tokenPOS.isEmpty()) { //oh, no !
-					tokenGlosses.clear();
-				}
-				
+					tokenGlosses.add(currentSolution.getStemGloss());								
+					tokenPOS.add(currentSolution.getStemPOS());					
+				}	
 				return nextGloss(true);
 			}
 			else {

@@ -96,7 +96,7 @@ public class ArabicStemmer extends TokenFilter {
 			if (outputBuckwalter)
 				tokenText = currentSolution.getStemVocalization(); //TODO : should we use the "entry" ?
 			else
-				tokenText = araMorph.arabizeWord(currentSolution.getStemVocalization()); //TODO : should we use the "entry" ?
+				tokenText = currentSolution.getStemArabicVocalization(); //TODO : should we use the "entry" ?
 			//Token is typed in order to filter it later			
 			tokenType = currentSolution.getStemPOS();
 			//OK : we're done with this solution
@@ -111,8 +111,8 @@ public class ArabicStemmer extends TokenFilter {
 			//Re-emit the same token text (romanized) : not the best solution :-(
 			tokenText = romanizedToken;
 			tokenType = "PLACE_HOLDER";
-		}
-		emittedToken = new Token(tokenText,receivedToken.startOffset(),receivedToken.endOffset(),tokenType);
+		}		
+		emittedToken = new Token(tokenText,receivedToken.startOffset(),receivedToken.endOffset(),tokenType);		
 		if (!firstOne) emittedToken.setPositionIncrement(0);
 		if (debug) System.out.println(emittedToken.termText() + "\t" + emittedToken.type() + "\t" + "[" + emittedToken.startOffset() + "-" + emittedToken.endOffset() + "]" + "\t" + emittedToken.getPositionIncrement());
 		return emittedToken;
@@ -121,7 +121,7 @@ public class ArabicStemmer extends TokenFilter {
 	/** Returns the next token in the stream, or <CODE>null</CODE> at EOS.
 	 * @throws IOException If a problem occurs
 	 * @return The token with its <CODE>type</CODE> set to the morphological identification of the
-	 * <STRONG>stem</STRONG>. Tokens with no morphological identification have their <CODE>type</CODE> set to
+	 * <STRONG>stem</STRONG>. Tokens with no grammatical identification have their <CODE>type</CODE> set to
 	 * <CODE>NO_RESULT</CODE>. Token's termText is the romanized form of the
 	 * <STRONG>stem</STRONG>
 	 * @see org.apache.lucene.analysis.Token#type()
@@ -135,6 +135,7 @@ public class ArabicStemmer extends TokenFilter {
 			//Analyse it (in arabic)
 			if (araMorph.analyzeToken(receivedToken.termText(), outputBuckwalter)) {			
 				tokenSolutions = new ArrayList(araMorph.getWordSolutions(romanizedToken));
+				
 				//DEBUG : this does actually nothing, good place for a breakpoint
 				if (tokenSolutions.isEmpty()) { //oh, no !
 					tokenSolutions.clear();

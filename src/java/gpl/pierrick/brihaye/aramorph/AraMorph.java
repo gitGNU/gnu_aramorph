@@ -26,12 +26,25 @@ http://www.fsf.org/copyleft/gpl.html
 
 package gpl.pierrick.brihaye.aramorph;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.IllegalCharsetNameException;
 import java.nio.charset.UnsupportedCharsetException;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
 
 /** A java port of Buckwalter Arabic Morphological Analyzer Version 1.0.
  * Original Perl distribution avalaible from :
@@ -526,7 +539,7 @@ public class AraMorph {
 											//Stem/Suffix compatibility
 											if (dict.hasBC(stem.getMorphology(), suffix.getMorphology())) {
 												//All tests passed : it is a solution
-												wordSolutions.add(new Solution(++cnt, prefix, stem, suffix));
+												wordSolutions.add(new Solution(verbose, ++cnt, prefix, stem, suffix));
 											}
 										}
 									}

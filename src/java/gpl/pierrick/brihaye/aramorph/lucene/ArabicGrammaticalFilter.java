@@ -38,41 +38,18 @@ public class ArabicGrammaticalFilter extends TokenFilter {
 	protected boolean debug = false;
 	
 	private String[] WORTHY_CATEGORIES = {
+		"ABBREV",
 		"ADJ",
-		"ADV",
-		"FUT_PART",
+		"ADV",		
 		"NOUN",
-		"NOUN_PROP",
-		//TODO : revisit has nothing to do here since these are suffixes
-		"NSUFF_FEM_DU_ACCGEN",
-		"NSUFF_FEM_DU_ACCGEN_POSS",
-		"NSUFF_FEM_DU_NOM", //not attested in my tests
-		"NSUFF_FEM_DU_NOM_POSS",
-		"NSUFF_MASC_DU_ACCGEN",
-		"NSUFF_MASC_DU_ACCGEN_POSS",
-		"NSUFF_MASC_DU_NOM",
-		"NSUFF_MASC_DU_NOM_POSS",
-		//
-		"PART",
-		//TODO : revisit has nothing to do here since these are suffixes
-		"PVSUFF_SUBJ:1S",
-		"PVSUFF_SUBJ:2FP",
-		"PVSUFF_SUBJ:2FS",
-		"PVSUFF_SUBJ:2MP",
-		"PVSUFF_SUBJ:2MS",
-		"PVSUFF_SUBJ:3FP",
-		"PVSUFF_SUBJ:3FS",
-		"PVSUFF_SUBJ:3MP",
-		"PVSUFF_SUBJ:3MS",
-		//
+		"NOUN_PROP",				
 		"VERB_IMPERATIVE",
 		"VERB_IMPERFECT",
 		"VERB_PERFECT",
 		"NO_RESULT" //Mainly concerns words that are not in the dictionary (e.g. foreign words)
 	};
 	
-	private String[] UNWORTHY_CATEGORIES = {
-		"ABBREV",
+	private String[] UNWORTHY_CATEGORIES = {		
 		"CONJ",		
 		"DEM_PRON_F",
 		"DEM_PRON_FS",
@@ -83,14 +60,10 @@ public class ArabicGrammaticalFilter extends TokenFilter {
 		"DET",
 		"FUNC_WORD",
 		"INTERJ",
-		"INTERROG",
-		"INTERROG_PART",
-		//TODO : revisit has nothing to do here since this is a suffix
-		"IVSUFF_SUBJ:MP_MOOD:I", //TODO : check occurences and decide
-		"NEG_PART",
+		"INTERROG",		
+		"NO_STEM",	
 		"NUMERIC_COMMA",	
-		//TODO : revisit has nothing to do here since this is a suffix
-		"POSS_PRON_1S", //Special case for >abiy
+		"PART", 
 		"PREP",
 		"PRON_1P",
 		"PRON_1S",
@@ -105,8 +78,6 @@ public class ArabicGrammaticalFilter extends TokenFilter {
 		"PRON_3MP",
 		"PRON_3MS",
 		"REL_PRON",
-		"REL_PRON+bayona",
-		"REL_PRON+bayoni"
 	};
 	
 	private ArrayList worthyCategories = null;
@@ -158,7 +129,7 @@ public class ArabicGrammaticalFilter extends TokenFilter {
 			}
 			//Additionnal ckeck for categories that are not yet handled. To be removed when all is tested.
 			else if (!unworthyCategories.contains((String)token.type())) {				
-				System.err.println("What to do with category : " + token.type() + " ?");
+				System.err.println("What to do with category : \"" + token.type() + "\" ?");
 				//Has this termText already been delivered ?
 				if (!tokenStems.contains(token.termText())) {
 					//Mark it as delivered

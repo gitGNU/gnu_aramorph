@@ -26,6 +26,8 @@ http://www.fsf.org/copyleft/gpl.html
 
 package gpl.pierrick.brihaye.aramorph;
 
+import java.util.Arrays;
+
 /** An abstraction of a dictionary entry for a word. 
  @author Pierrick Brihaye, 2003
  */
@@ -36,15 +38,41 @@ class DictionaryEntry {
 	private String vocalization;
 	private String morphology;
 	private String gloss;
-	private String POS;
+	private String[] glosses;	
+	private String[] POS;
 	
 	protected DictionaryEntry(String entry, String lemmaID, String vocalization, String morphology, String gloss, String POS) {
-		this.entry = entry;
-		this.lemmaID = lemmaID;
-		this.vocalization = vocalization;
-		this.morphology = morphology;
+		this.entry = entry.trim();
+		this.lemmaID = lemmaID.trim();
+		this.vocalization = vocalization.trim();
+		this.morphology = morphology.trim();				
 		this.gloss = gloss;
-		this.POS = POS;		
+		int i, offset;
+		String[] array = null;
+		//split("[/()]");			
+		array = gloss.split("\\+");
+		for (i = 0 ; i < array.length ; i++) {
+			array[i] = array[i].trim();
+		}	
+		//For suffixes
+		if ("".equals(array[0])) offset = 1;
+		else offset = 0;
+		this.glosses = new String[array.length - offset];
+		for (i = offset ; i < array.length ; i++) {
+			this.glosses[i - offset] = array[i];
+		}		
+		//replaceFirst("^.*/","");
+		array = POS.split("\\+");
+		for (i = 0 ; i < array.length ; i++) {
+			array[i] = array[i].trim();
+		}
+		//For suffixes
+		if ("".equals(array[0])) offset = 1;
+		else offset = 0;
+		this.POS = new String[array.length - offset];
+		for (i = offset ; i < array.length ; i++) {
+			this.POS[i - offset] = array[i];
+		}		
 	}
 	
 	protected String getEntry() { return this.entry; }
@@ -55,20 +83,11 @@ class DictionaryEntry {
 	
 	protected String getMorphology() {	return this.morphology; }	
 	
-	protected String  getPOS() { return this.POS; }
-	
-	protected String getArabicPOS() {	
-		if (this.POS.indexOf("/") == -1) return AraMorph.arabizeWord(this.POS);
-		String[] array = this.POS.split("/");
-		array[0] = AraMorph.arabizeWord(array[0]);
-		StringBuffer sb = new StringBuffer(array[0] + "/");
-		for (int i = 1 ; i < array.length ; i++) {
-			sb.append(array[i]);
-		}
-		return sb.toString(); 
-	}	
-	
+	protected String[]  getPOS() { return this.POS; }	
+			
 	protected String getGloss() { return this.gloss; }
+	
+	protected String[] getGlosses() { return this.glosses; }
 	
 }
 
