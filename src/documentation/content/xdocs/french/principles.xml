@@ -13,7 +13,7 @@
 	<source>
 java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt UTF-8 -v</source>
 	<warning>Naturellement, l'encodage du fichier d'entrée doit être adapté à votre plate-forme.</warning>
-	<p>Examinons maintenant le fichier de sortie <code>results.txt</code> qui est, lui, en <code>UTF-8</code> pour pouvoir bénéficier des possibilités de vocalisation :</p>
+	<p>Examinons le fichier de sortie <code>results.txt</code> qui est, lui, en <code>UTF-8</code> pour pouvoir bénéficier des possibilités de vocalisation :</p>
 	<source>
 Processing token : 	كتاب
 Transliteration : 	ktAb
@@ -98,6 +98,11 @@ Glossed as :
 		<tr><td><code>k</code></td><td><code>tA</code></td><td>b</td></tr>
 		<tr><td><code>k</code></td><td><code>t</code></td><td>Ab</td></tr>
 		<tr><td><code>k</code></td><td><code>Ø</code></td><td>tAb</td></tr>
+		<tr><td><code>Ø</code></td><td><code>ktAb</code></td><td>Ø</td></tr>
+		<tr><td><code>Ø</code></td><td><code>ktA</code></td><td>b</td></tr>
+		<tr><td><code>Ø</code></td><td><code>kt</code></td><td>Ab</td></tr>
+		<tr><td><code>Ø</code></td><td><code>k</code></td><td>tAb</td></tr>
+		<tr><td><code>Ø</code></td><td><code>Ø</code></td><td>ktAb</td></tr>		
 	</table>
 	<p>Ensuite, <em>AraMorph</em> vérifie la présence de chacun des éléments dans des dictionnaires :</p>
 	<ul>
@@ -124,15 +129,25 @@ Glossed as :
 		<title>L'analyseur arabe pour Lucene</title>
 		<p>Exécutons le code suivant :</p>
 		<source>
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt UTF-8
 		</source>		
 		<warning>Naturellement, l'encodage du fichier d'entrée doit être adapté à votre plate-forme.</warning>
-		<p>Examinons maintenant le fichier de sortie <code>results.txt</code> :</p>
+		<p>Examinons le fichier de sortie <code>results.txt</code> :</p>
 		<source>
-kut~Ab	NOUN	[0-4]	1
-kitAb	NOUN	[0-4]	0		
+كِتاب	NOUN	[0-4]	1
+كُتّاب	NOUN	[0-4]	0	
 		</source>		
-		<p>Suite à rédiger</p>
+		<p>Le principe est donc le suivant : chaque <strong>radical</strong> pertinent retourne un 
+			<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html"><em>token</em></fork> 
+			au sens où l'entend Lucene. Ici apparaissent le texte du <em>token</em> 
+			(<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#termText()"><code>termText</code></fork>),
+			sa position dans le flux d'entrée (<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#startOffset()"><code>startOffset</code></fork> et 
+			<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#endOffset()"><code>endOffset</code></fork>)			
+			et sa position relative para rapport au <em>token</em> précédent (<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#getPositionIncrement()"><code>positionIncrement</code></fork>).</p>
+		<p>Il faut en effet attirer l'attention sur le fait qu'un même mot arabe, parce qu'il est généralement réduit à son squelette consonnatique, donne souvent lieu à <strong>plusieurs</strong> <em>solutions</em>.</p>
+		<fixme author="PB">Quand bien même le texte serait vocalisé, les voyelles ne sont malheureusement pas prises en compte pour lever les ambiguités d'analyse. La résolution de ce problème est <link href="site:todo">à l'étude</link>.</fixme>
+		<note>Dans cet exemple, le texte des <em>tokens</em> est en arabe, mais pour des raisons de performance, il vaut sans doute mieux retourner des tokens transcrits selon le système de Buckwalter.</note>
+		<warning>Dans cet exemple, et bien que <em>كتاب</em> ait 3 solutions, on ne retourne que 2 <em>tokens</em>. En effet, <em>كُتّاب</em> est présent par 2 fois, la première en tant que pluriel de <em>كاتب</em>, le seconde en tant que nom singulier valant pour <em>école coranique</em>.</warning>
 	</section>
 	<section>
 		<title>L'analyseur anglais pour Lucene</title>
@@ -141,7 +156,7 @@ kitAb	NOUN	[0-4]	0
 java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicGlosser src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt
 		</source>		
 		<warning>Naturellement, l'encodage du fichier d'entrée doit être adapté à votre plate-forme.</warning>
-		<p>Examinons maintenant le fichier de sortie <code>results.txt</code> :</p>
+		<p>Examinons le fichier de sortie <code>results.txt</code> :</p>
 		<source>
 book	word	[0-4]	1
 kuttab	word	[0-4]	0

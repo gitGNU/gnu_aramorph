@@ -58,7 +58,8 @@ araMorph inFile [inEncoding] [outFile] [outEncoding] [-v]
 inFile : file to be analyzed
 inEncoding : encoding for inFile, default CP1256
 outFile : result file, default console
-outEncoding : encoding for outFile, default CP1256
+outEncoding : encoding for outFile, if not specified use Buckwalter transliterat
+ion with system's file.encoding
 -v : verbose mode
 	</source>
 		<p>La description du paramètrage ne devrait nomalement poser aucun problème :</p>
@@ -67,7 +68,7 @@ outEncoding : encoding for outFile, default CP1256
 			<tr><td><em>inFile</em></td><td>Le chemin d'un fichier texte à analyser (obligatoire)</td></tr>
 			<tr><td><em>inEncoding</em></td><td>L'encodage de ce fichier texte (<code>CP1256</code> par défaut)</td></tr>
 			<tr><td><em>outFile</em></td><td>Le chemin du fichier de sortie des résultats de l'analyse morphologique (la console par défaut)</td></tr>
-			<tr><td><em>outEncoding</em></td><td>L'encodage du fichier de sortie (<code>CP1256</code> par défaut)</td></tr>
+			<tr><td><em>outEncoding</em></td><td>L'encodage du fichier de sortie (<code>file.encoding</code> par défaut, avec utilisation de la translitération de Buckwalter)</td></tr>
 			<tr><td><code>-v</code></td><td>Un drapeau indiquant que l'on désire une plus grande verbosité</td></tr>
 		</table>
 		<p>Voici quelques exemples d'utilisation :</p>
