@@ -7,7 +7,7 @@
   <body>   
 	<section>
 	<title>Construction du code source</title>
-	<p>Les sources sont livrées avec les bibliothèques <jump href="http://ant.apache.org/"><em>Ant</em></jump> nécessaires et un fichier <code>build.xml</code>.</p>
+	<p>Les sources sont livrées avec les bibliothèques <fork href="http://ant.apache.org/"><em>Ant</em></fork> nécessaires et un fichier <code>build.xml</code>.</p>
 	<warning>En l'état actuel du code, qui utilise abondamment les expressions régulières, <em>AraMorph</em> ne peut être construit et utilisé que sur un <em>JDK <strong>1.4</strong></em> ou supérieur. La modification du code qui permettrait l'utilisation de bibliothèques d'expressions régulières externes compatibles avec un <em>JDK</em> antérieur reste <link href="site:todo">à réaliser</link></warning>
 	<p>La construction s'effectue simplement en lançant <code>build.bat</code> suivi du nom de la cible à exécuter.</p>
 	<fixme author="???">Un grand merci à qui me fournira un script <em>Unix</em> fonctionnel pour la distribution.</fixme>
@@ -27,7 +27,7 @@
 		<tr>
 			<td><code>site</code></td>
 			<td>
-				Construit la documentation HTML à l'aide de <jump href="http://xml.apache.org/forrest/"><em>Apache Forrest</em></jump>.<br/>
+				Construit la documentation HTML à l'aide de <fork href="http://xml.apache.org/forrest/"><em>Apache Forrest</em></fork>.<br/>
 				Par défaut, le résultat sera généré dans <code>${dist}/html</code>. Vous pouvez définir le chemin de <em>Forrest</em> à partir d'une variable d'environnement <code>FORREST_HOME</code> ou définir la propriété <code>forrest.home</code> dans un fichier <code>./forrest.properties</code>.
 			</td>
 		</tr>
@@ -87,11 +87,11 @@ java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-2003090
 	</section>
 	<section>
 		<title>Test de l'analyseur anglais pour Lucene</title>
-		<note>Oui, on peut analyser un texte arabe pour retourner des <jump href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html"><em>tokens</em></jump> en anglais !<br/> 
+		<note>Oui, on peut analyser un texte arabe pour retourner des <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html"><em>tokens</em></fork> en anglais !<br/> 
 		Ne pas en attendre de miracles cependant, <em>AraMorph</em> n'ayant pas vocation à jouer le rôle de traducteur automatique.</note>
 		<p>Les paramètres sont les mêmes mis à part <code>-v</code>, inutile ici. Il faut cependant inclure le <code>jar</code> <em>Lucene</em> dans le <em>classpath</em>.</p>
 		<source>
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar TestArabicGlosser src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt results.txt
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicGlosser src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt results.txt
 		</source>	
 		<warning>Le <em>classpath</em> dépend naturellement de l'endroit où <code>ArabicAnalyzer.jar</code>, <code>commons-collections.jar</code> et  <code>lucene*.jar</code> se trouvent.</warning>
 	</section>
