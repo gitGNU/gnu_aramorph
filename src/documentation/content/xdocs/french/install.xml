@@ -23,6 +23,7 @@
 			</td>
 		</tr>
 		<tr><td><code>zip</code></td><td>Construit un fichier <code>ArabicAnalyzer-src.zip</code> contenant les fichiers source. Par défaut, le résultat sera généré dans <code>${dist}</code>.</td></tr>
+		<tr><td><code>dist</code></td><td>Construit un fichier <code>ArabicAnalyzer-dist.zip</code> contenant tous les fichiers de la distribution. Par défaut, le résultat sera généré dans <code>${dist}</code>.</td></tr>		
 		<tr><td><code>javadoc</code></td><td>Construit les <em>javadocs</em> des fichiers source. Par défaut, le résultat sera généré dans <code>${dist}/javadoc</code>.</td></tr>
 		<tr>
 			<td><code>site</code></td>

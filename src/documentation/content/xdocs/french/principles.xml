@@ -307,8 +307,7 @@ book	NOUN	[0-4]	0
 		<li><code>NOUN_PROP</code></li>		
 		<li><code>VERB_IMPERATIVE</code></li>		
 		<li><code>VERB_IMPERFECT</code></li>		
-		<li><code>VERB_PERFECT</code></li>		
-		<li><code>VERB_PERFECT</code></li>
+		<li><code>VERB_PERFECT</code></li>			
 		<li><code>NO_RESULT</code></li>
 	</ul>
 	<note label="Rappel">Les explications sur les catégories grammaticales sont disponibles dans la rubrique concernant les <link href="site:dictionaries">dictionnaires</link>.</note>		

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." default="help" name="ArabMorph">
+<project basedir="." default="help" name="AraMorph">
 
 	<target name="help" description="Displays help about avalaible targets.">
 	 <echo>
-	 ArabMorph build targets :
+	 AraMorph build file. Specify the target you want to execute :
 	 
-	 Specify the target you want to execute :
 	 compile : Compiles the source code.
 	 jar : Creates the jar file.
 	 zip : Creates a zip file containing the source files.
+	 dist : Creates a zip file containing all the files.
 	 javadoc : Builds the javadocs.
 	 site : Builds HTML documentation using Apache Forrest.	
 	 clean : Cleans all build products.
@@ -51,6 +51,17 @@
 		</zip>
 	</target>	
 
+    <target name="dist" depends="init" description="Creates a zip file containing all the files.">
+        <zip destfile="${dist}/ArabicAnalyzer-dist.zip" duplicate="fail">			
+			<fileset dir=".">
+				<include name="*.*"/>
+				<include name="lib/**"/>
+				<include name="src/java/**"/>
+				<include name="tools/**"/>
+			</fileset>											
+		</zip>
+	</target>	
+	
     <target name="javadoc" depends="init" description="Builds the javadocs." >        
         <javadoc destdir="${dist}/javadoc" packagenames="gpl.pierrick.brihaye.*">
             <sourcepath>
@@ -104,6 +115,11 @@
 
     <target name="clean" depends="init" description="Cleans all build products.">
         <delete dir="${dist}"/>
+		<delete>
+			<fileset dir="./src/java">						  
+				<include name="**/*.class"/>							
+			</fileset>
+		</delete>
     </target>
 
 </project>

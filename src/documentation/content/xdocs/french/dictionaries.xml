@@ -44,7 +44,7 @@ kmA	kumA	PVSuff-0ah	he/it &lt;verb&gt; you (both)    &lt;pos&gt;+(null)/PVSUFF_S
 km	kum	PVSuff-0ah	he/it &lt;verb&gt; you           &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+kum/PVSUFF_DO:2MP&lt;/pos&gt;
 kn	kun~a	PVSuff-0ah	he/it &lt;verb&gt; you           &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+kun~a/PVSUFF_DO:2FP&lt;/pos&gt;
 ny	niy	PVSuff-0ah	he/it &lt;verb&gt; me            &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+niy/PVSUFF_DO:1S&lt;/pos&gt;
-nA	nA	PVSuff-0ah	he/it &lt;verb&lt; us            &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+nA/PVSUFF_DO:1P&lt;/pos&gt;
+nA	nA	PVSuff-0ah	he/it &lt;verb&gt; us            &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+nA/PVSUFF_DO:1P&lt;/pos&gt;
 		</source>
 		<p>Le principe est strictement le même, bien que l'exemple soit légèrement plus complexe. On a en effet une <strong>double</strong> succession de suffixes, le premier étant le suffixe <em>Ø</em> de la troisième personne singulier masculin de l'accompli le second mentionnant un objet direct pronominal. On notera le <code>+</code> de liaison avec le radical.</p>
 		<p>Examinons ce fragment du dictionnaire de radicaux <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictstems</code> :</p>		
