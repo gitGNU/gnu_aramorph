@@ -59,7 +59,7 @@ public class TestArabicAnalyzer {
 		System.err.println("inFile : file to be analyzed");
 		System.err.println("inEncoding : encoding for inFile, default CP1256");
 		System.err.println("outFile : result file, default console");
-		System.err.println("outEncoding : encoding for outFile, default CP1256");
+		System.err.println("outEncoding : encoding for outFile, if not specified use Buckwalter transliteration with system's file.encoding");
 	}
 	
 	/** Entry point for command line interface.
@@ -117,14 +117,15 @@ public class TestArabicAnalyzer {
 		else {
 			
 			if (inputEncoding == null) inputEncoding = "Cp1256"; //TODO : change default ?
-			//if (outputEncoding == null) outputEncoding = System.getProperty("file.encoding");
-			if (outputEncoding == null) outputEncoding = "Cp1256"; //TODO : change default ?
 			BufferedReader IN = null;
 			PrintStream ps = null;
 			
 			if (outputFile != null) {
 				try {
-					ps = new PrintStream(new FileOutputStream(outputFile), true, outputEncoding);
+					if (outputEncoding == null)
+						ps = new PrintStream(new FileOutputStream(outputFile), true);
+					else
+						ps = new PrintStream(new FileOutputStream(outputFile), true, outputEncoding);						
 				}
 				catch (FileNotFoundException e) {
 					System.err.println("Can't write to output file : " + outputFile);
@@ -137,8 +138,12 @@ public class TestArabicAnalyzer {
 			
 			try {
 				IN = new BufferedReader(new InputStreamReader(new FileInputStream(inputFile),inputEncoding));
-				ArabicStemAnalyzer arabicStemAnalyzer = new ArabicStemAnalyzer();
-				TokenStream tokenStream = arabicStemAnalyzer.tokenStream(null, IN);
+				ArabicStemAnalyzer arabicStemAnalyzer = null;
+				if (outputEncoding == null)
+					arabicStemAnalyzer = new ArabicStemAnalyzer(true);
+				else
+					arabicStemAnalyzer = new ArabicStemAnalyzer(false);
+				TokenStream tokenStream = arabicStemAnalyzer.tokenStream(null, IN);				
 				Token token = tokenStream.next();
 				while (token != null) {
 					ps.println(token.termText()  + "\t" + token.type() + "\t" + "[" + token.startOffset() + "-" + token.endOffset() + "]" + "\t" + token.getPositionIncrement());

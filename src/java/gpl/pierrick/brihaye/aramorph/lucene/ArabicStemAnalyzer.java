@@ -35,7 +35,24 @@ import org.apache.lucene.analysis.TokenStream;
  * Final tokens are a romanized version of the canonical word.
  * @author Pierrick Brihaye, 2003
  */
-public final class ArabicStemAnalyzer extends Analyzer {	
+public final class ArabicStemAnalyzer extends Analyzer {
+	
+	/** Whether or not the analyzer should output tokens in the Buckwalter transliteration system */
+	protected boolean outputBuckwalter = true; //TODO : revisit default value ?
+	
+	/** Constructs an analyzer that will return morphologically significant arabic tokens in the Buckwalter transliteration system.
+	 */	
+	public ArabicStemAnalyzer() {
+		this(true); //TODO : change default value ?
+	}
+
+	/** Constructs an analyzer that will return morphologically significant arabic tokens.
+	 * @param outputBuckwalter Whether or not the tokens should be translitered
+	 */	
+	public ArabicStemAnalyzer(boolean outputBuckwalter) {
+		super();
+		this.outputBuckwalter = outputBuckwalter;
+	}
 	
 	/** Returns a token stream of romanized arabic words whose morphological categories are found to be semantically meaningful.
 	 * @return The token stream
@@ -43,7 +60,7 @@ public final class ArabicStemAnalyzer extends Analyzer {
 	 */
     public TokenStream tokenStream(String FieldName, Reader reader)    {
         TokenStream result = new ArabicTokenizer(reader);
-		result = new ArabicStemmer(result);
+		result = new ArabicStemmer(result, false, outputBuckwalter);
         result = new ArabicGrammaticalFilter(result);
         return result;
     }

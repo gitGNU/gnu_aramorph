@@ -59,7 +59,7 @@ public class TestArabicGlosser {
 		System.err.println("inFile : file to be analyzed");
 		System.err.println("inEncoding : encoding for inFile, default CP1256");
 		System.err.println("outFile : result file, default console");
-		System.err.println("outEncoding : encoding for outFile, default CP1256");
+		System.err.println("outEncoding : encoding for outFile, if not specified use system's file.encoding");
 	}
 	
 	/** Entry point for command line interface.

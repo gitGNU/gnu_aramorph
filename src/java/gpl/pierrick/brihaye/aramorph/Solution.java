@@ -85,8 +85,15 @@ public class Solution {
 	 * @return The vocalization
 	 */
 	public String getWordVocalization() {
-		return AraMorph.arabizeWord(prefix.getVocalization() + stem.getVocalization() + suffix.getVocalization());
+		return prefix.getVocalization() + stem.getVocalization() + suffix.getVocalization();
 	}
+
+	/** Returns the vocalization of the word.
+	 * @return The vocalization in arabic
+	 */
+	public String getWordArabicVocalization() {
+		return AraMorph.arabizeWord(prefix.getVocalization() + stem.getVocalization() + suffix.getVocalization());
+	}	
 	
 	/** Returns the morphology of the prefix.
 	 * @return The morphological category
@@ -254,6 +261,23 @@ public class Solution {
 		+ this.getWordGlosses()
 		);
 	}
+	
+	/** Returns a string representation of how the word can be analyzed.
+	 * @return The representation, in arabic wherever possible
+	 */
+	public String toArabizedString() {
+		return new String(
+		"\n" + "SOLUTION #" + cnt + "\n"
+		+ "Lemma  : " + "\t" + getLemma() + "\n"
+		+ "Vocalized as : " + "\t" + this.getWordArabicVocalization() + "\n"
+		+ "Morphology : " + "\n"
+		+ this.getWordCat()
+		+ "Grammatical category : " + "\n"
+		+ this.getWordPOS()
+		+ "Glossed as : " + "\n"
+		+ this.getWordGlosses()
+		);
+	}	
 }
 
 

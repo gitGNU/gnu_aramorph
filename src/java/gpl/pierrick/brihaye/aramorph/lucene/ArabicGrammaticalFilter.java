@@ -34,7 +34,8 @@ import org.apache.lucene.analysis.TokenStream;
  */
 public class ArabicGrammaticalFilter extends TokenFilter {
 	
-	private boolean debug = false;
+	/** Whether or not the analyzer should output debug messages */
+	protected boolean debug = false;
 	
 	private String[] WORTHY_CATEGORIES = {
 		"ADJ",

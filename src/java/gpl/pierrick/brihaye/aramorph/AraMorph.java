@@ -48,10 +48,12 @@ public class AraMorph {
 	private static InMemoryDictionaryHandler dict = null;
 	/** The solutions handler.
 	 * TODO : use more generic interface.
-	 */
-	private static InMemorySolutionsHandler sol = null;
+	 */	
+	protected static InMemorySolutionsHandler sol = null;
+	/** Whether or not the analyzer should output tokens in the Buckwalter transliteration system */
+	protected boolean outputBuckwalter = true; //TODO : revisit default value ?
 	/** Whether or not the analyzer should output some convenience messages */
-	boolean verbose = false;
+	protected boolean verbose = false;
 	/** The stream where to output the results */
 	PrintStream outputStream = null;
 	
@@ -255,7 +257,7 @@ public class AraMorph {
 	/** Analyze the content of a stream
 	 * @param IN The stream to be analyzed
 	 */
-	private void analyze(LineNumberReader IN) {
+	private void analyze(LineNumberReader IN, boolean outputBuckwalter) {
 		try {
 			String line = null;
 			while ((line = IN.readLine()) != null) {
@@ -265,7 +267,7 @@ public class AraMorph {
 				Iterator it_tokens = tokens.iterator();
 				while (it_tokens != null && it_tokens.hasNext()) {
 					String token = (String)it_tokens.next();
-					analyzeToken(token);
+					analyzeToken(token, outputBuckwalter);
 				}
 			}
 		}
@@ -296,13 +298,16 @@ public class AraMorph {
 		return tokens;
 	}
 	
-	
+	public boolean analyzeToken(String token) {
+		return this.analyzeToken(token, this.outputBuckwalter);
+	}
+		
 	/** Analyzes a token.
 	 * For performance issues, the analyzer keeps track of the results.
 	 * @param token The token to be analyzed
 	 * @return Whether or not the word has a solution in arabic
 	 */
-	public boolean analyzeToken(String token) {
+	public boolean analyzeToken(String token, boolean outputBuckwalter) {
 		if (outputStream != null) outputStream.println("Processing token : " + "\t" + token);
 		//TODO : check accuracy
 		//ignored \u0688 : ARABIC LETTER DDAL
@@ -417,7 +422,10 @@ public class AraMorph {
 						Iterator it_solutions = sol.getSolutionsIterator(translitered);
 						while (it_solutions != null && it_solutions.hasNext()) {
 							Solution solution = (Solution)it_solutions.next();
-							outputStream.println(solution.toString());
+							if (outputBuckwalter) 
+								outputStream.println(solution.toString());
+							else
+								outputStream.println(solution.toArabizedString());
 						}
 					}
 					if (sol.hasAlternativeSpellings(translitered)) {
@@ -431,7 +439,10 @@ public class AraMorph {
 								Iterator it_solutions = sol.getSolutionsIterator(alternative);
 								while (it_solutions != null && it_solutions.hasNext()) {
 									Solution solution = (Solution)it_solutions.next();
-									outputStream.println(solution.toString());
+									if (outputBuckwalter) 
+										outputStream.println(solution.toString());
+									else
+										outputStream.println(solution.toArabizedString());
 								}
 							}
 						}
@@ -783,7 +794,7 @@ public class AraMorph {
 		System.err.println("inFile : file to be analyzed");
 		System.err.println("inEncoding : encoding for inFile, default CP1256");
 		System.err.println("outFile : result file, default console");
-		System.err.println("outEncoding : encoding for outFile, default CP1256");
+		System.err.println("outEncoding : encoding for outFile, if not specified use Buckwalter transliteration with system's file.encoding");
 		System.err.println("-v : verbose mode");
 	}
 	
@@ -853,9 +864,7 @@ public class AraMorph {
 		if (!argsOK || inputFile == null) PrintUsage();
 		else {
 			
-			if (inputEncoding == null) inputEncoding = "Cp1256"; //TODO : change default ?
-			//if (outputEncoding == null) outputEncoding = System.getProperty("file.encoding");
-			if (outputEncoding == null) outputEncoding = "Cp1256"; //TODO : change default ?
+			if (inputEncoding == null) inputEncoding = "Cp1256"; //TODO : change default ?						
 			if (verbose == null) verbose = new Boolean(false);
 			LineNumberReader IN = null;
 			PrintStream ps = null;
@@ -876,7 +885,10 @@ public class AraMorph {
 			try {
 				AraMorph araMorph = new AraMorph(ps, verbose.booleanValue());				
 				IN = new LineNumberReader(new BufferedReader(new InputStreamReader(new FileInputStream(inputFile),inputEncoding)));
-				araMorph.analyze(IN);
+				if (outputEncoding == null) 
+					araMorph.analyze(IN, true);
+				else
+					araMorph.analyze(IN, false);
 				araMorph.printStats();
 			}
 			catch (IOException e) {

@@ -35,29 +35,42 @@ import org.apache.lucene.analysis.TokenStream;
 /** A stemmer that will return the possible stems for arabic tokens.*/
 public class ArabicStemmer extends TokenFilter {
 	
-	private boolean debug = false;
+	/** Whether or not the analyzer should output debug messages */
+	protected boolean debug = false;
+	/** Whether or not the analyzer should output tokens in the Buckwalter transliteration system */
+	protected boolean outputBuckwalter = true; //TODO : revisit default value ?
 	private AraMorph araMorph = null;
 	private String romanizedToken = null;
 	private Token receivedToken = null;
 	private boolean processingToken = false;	
 	private ArrayList tokenSolutions = null;
 	
-	/** Constructs a stemmer that will return the possible stems for arabic tokens.
+	/** Constructs a stemmer that will return the possible stems for arabic tokens in the Buckwalter transliteration system.
 	 * @param input The token stream from a tokenizer
 	 */
 	public ArabicStemmer(TokenStream input) {
-		this(input, false);
+		this(input, false, true);
+	}
+	
+	/** Constructs a stemmer that will return the possible stems for arabic tokens in the Buckwalter transliteration system.
+	 * @param input The reader
+	 * @param debug Whether or not the stemmer should display convenience messages on <CODE>System.out</CODE>
+	 */
+	public ArabicStemmer(TokenStream input, boolean debug) {
+		this(input, debug, true);
 	}
 	
 	/** Constructs a stemmer that will return the possible stems for arabic tokens.
 	 * @param input The reader
 	 * @param debug Whether or not the stemmer should display convenience messages on <CODE>System.out</CODE>
+	 * @param outputBuckwalter Whether or not the analyzer should output tokens in the Buckwalter transliteration system
 	 */
-	public ArabicStemmer(TokenStream input, boolean debug) {
+	public ArabicStemmer(TokenStream input, boolean debug, boolean outputBuckwalter) {
 		super(input);
 		this.debug = debug;
+		this.outputBuckwalter = outputBuckwalter;
 		araMorph = new AraMorph();
-	}
+	}	
 	
 	/** Returns the arabic stemmer in use.
 	 * @return The arabic stemmer
@@ -80,7 +93,10 @@ public class ArabicStemmer extends TokenFilter {
 			//Get the first solution
 			Solution currentSolution = (Solution)tokenSolutions.get(0);
 			//This is the trick ! Only the canonical form of the stem is to be considered
-			tokenText = currentSolution.getStemVocalization(); //TODO : should we use the "entry" ?
+			if (outputBuckwalter)
+				tokenText = currentSolution.getStemVocalization(); //TODO : should we use the "entry" ?
+			else
+				tokenText = araMorph.arabizeWord(currentSolution.getStemVocalization()); //TODO : should we use the "entry" ?
 			//Token is typed in order to filter it later			
 			tokenType = currentSolution.getStemPOS();
 			//OK : we're done with this solution
@@ -117,9 +133,8 @@ public class ArabicStemmer extends TokenFilter {
 			if (receivedToken == null) return null;
 			romanizedToken = araMorph.romanizeWord(receivedToken.termText());
 			//Analyse it (in arabic)
-			if (araMorph.analyzeToken(receivedToken.termText())) {
+			if (araMorph.analyzeToken(receivedToken.termText(), outputBuckwalter)) {			
 				tokenSolutions = new ArrayList(araMorph.getWordSolutions(romanizedToken));
-				
 				//DEBUG : this does actually nothing, good place for a breakpoint
 				if (tokenSolutions.isEmpty()) { //oh, no !
 					tokenSolutions.clear();

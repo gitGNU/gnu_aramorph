@@ -36,7 +36,8 @@ import org.apache.lucene.analysis.TokenStream;
 /** A filter that will return english glosses from arabic stems.*/
 public class ArabicGlosser extends TokenFilter {
 	
-	private boolean debug = false;
+	/** Whether or not the analyzer should output debug messages */
+	protected boolean debug = false;
 	private AraMorph araMorph = null;
 	private String romanizedToken = null;
 	private Token receivedToken = null;
@@ -118,7 +119,7 @@ public class ArabicGlosser extends TokenFilter {
 			if (receivedToken == null) return null;			
 			romanizedToken = araMorph.romanizeWord(receivedToken.termText());
 			//Analyse it (in arabic)
-			if (araMorph.analyzeToken(receivedToken.termText())) {				
+			if (araMorph.analyzeToken(receivedToken.termText(), false)) {				
 				tokenGlosses = new ArrayList();
 				tokenPOS = new ArrayList();
 				Iterator it_solutions = araMorph.getWordSolutions(romanizedToken).iterator();
