@@ -141,6 +141,7 @@ java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-2003090
 			<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html"><em>token</em></fork> 
 			au sens où l'entend Lucene. Ici apparaissent le texte du <em>token</em> 
 			(<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#termText()"><code>termText</code></fork>),
+			son type grammatical, 
 			sa position dans le flux d'entrée (<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#startOffset()"><code>startOffset</code></fork> et 
 			<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#endOffset()"><code>endOffset</code></fork>)			
 			et sa position relative para rapport au <em>token</em> précédent (<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#getPositionIncrement()"><code>positionIncrement</code></fork>).</p>
@@ -148,6 +149,7 @@ java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-2003090
 		<fixme author="PB">Quand bien même le texte serait vocalisé, les voyelles ne sont malheureusement pas prises en compte pour lever les ambiguités d'analyse. La résolution de ce problème est <link href="site:todo">à l'étude</link>.</fixme>
 		<note>Dans cet exemple, le texte des <em>tokens</em> est en arabe, mais pour des raisons de performance, il vaut sans doute mieux retourner des tokens transcrits selon le système de Buckwalter.</note>
 		<warning>Dans cet exemple, et bien que <em>كتاب</em> ait 3 solutions, on ne retourne que 2 <em>tokens</em>. En effet, <em>كُتّاب</em> est présent par 2 fois, la première en tant que pluriel de <em>كاتب</em>, le seconde en tant que nom singulier valant pour <em>école coranique</em>.</warning>
+		<fixme author="PB">Que faire si un même texte de <em>token</em> renvoie des types grammaticaux différents ? Etant donné que les index <em>Lucene</em> perdent l'information de type, ce problème n'en est peut-être pas un.</fixme>
 		<p>Essayons un autre exemple avec un fichier <code>tktbn.txt</code> contenant le mot <em>تكتبن</em> :</p>
 		<source>java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/tktb.txt CP1256 results.txt UTF-8</source>
 		<p>Examinons le fichier de sortie <code>results.txt</code> :</p>		
@@ -232,7 +234,7 @@ kotab	VERB_IMPERFECT	[0-5]	1
 kotub	VERB_IMPERFECT	[0-5]	0
 kotib	VERB_IMPERFECT	[0-5]	0
 		</source>
-		<p>On constate que l'on obtient bien les radicaux des différentes formes que peut recouvrir le verbe <em>كتب</em> au présent. Ainsi, selon ce système, l'analyse d'un verbe à la deuxième personne du féminin pluriel du présent est la <strong>même</strong> que celle de toute autre personne au même temps.</p>
+		<p>On constate que l'on obtient bien les radicaux des différentes formes que peut recouvrir le verbe <em>كتب</em> à l'inaccompli. Ainsi, selon ce système, l'analyse d'un verbe à la deuxième personne du féminin pluriel de l'inaccompli est la <strong>même</strong> que celle de toute autre personne au même temps.</p>
 		<note>Cette implémentation peut tout à fait être rediscutée !</note>
 	</section>
 	<section>
@@ -254,6 +256,7 @@ authors	word	[0-4]	0
 writers	word	[0-4]	0
 		</source>		
 		<p>Ici, le principe est strictement le même si ce n'est que les glosses sont elles-mêmes tokenisées par le <fork href="http://www.nongnu.org/aramorph/javadoc/gpl/pierrick/brihaye/aramorph/lucene/WhitespaceFilter.html"><code>WhitespaceFilter</code></fork> avant d'intégrer la chaîne de traitement standard de Lucene (<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/standard/StandardFilter.html"><code>StandardFilter</code></fork>, <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/LowerCaseFilter.html"><code>LowerCaseFilter</code></fork> et <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/StopFilter.html"><code>StopFilter</code></fork>).</p>
+		<note>Le type de <em>token</em> (<code>word</code>) est le type <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#type()">par défaut</fork> de <em>Lucene</em></note>
 		<note>Cette implémentation peut tout à fait être rediscutée !</note>
 	</section>
 	<section>
@@ -294,8 +297,8 @@ writers	word	[0-4]	0
 	<li><code>REL_PRON</code></li>														
 	<li><code>REL_PRON+bayona</code></li>	
 	<li><code>REL_PRON+bayoni</code></li>															
-	</ul>
-	<note>Les explications sur les indications de morphologie et de catégorie grammaticale sont disponibles dans la rubrique concernant les <link href="site:dictionaries">dictionnaires</link>.</note>		
+	</ul>	
+	<note>Les explications sur les indications relatives à la catégorie grammaticale sont disponibles dans la rubrique concernant les <link href="site:dictionaries">dictionnaires</link>.</note>		
 	<note>Cette implémentation peut tout à fait être rediscutée !</note>
 	</section>
   </body>  

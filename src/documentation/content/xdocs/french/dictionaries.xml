@@ -4,7 +4,171 @@
   <header> 
     <title>Format des dictionnaires</title> 
   </header> 
-  <body>     
-      <p>A rédiger</p>    
+  <body>   
+	<section>
+	<title>Format des fichiers des dictionnaires</title>
+      <p>Examinons ce fragment du dictionnaire de préfixes <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictPrefixes</code> :</p>
+	  <source>
+	  ; conjunctions
+	  w	wa	Pref-Wa	and &lt;pos&gt;wa/CONJ+&lt;/pos&gt;
+	  f	fa	Pref-Wa	and;so &lt;pos&gt;fa/CONJ+&lt;/pos&gt;
+	  </source>
+	  <p>On constate que les commentaires sont introduits par <code>;</code> et que les lignes significatives sont divisées au moyen de tabulations déterminant respectivement :</p>
+	  <ol>
+	  <li>le squelette consonnantique du préfixe (selon le système de translitération de <fork href="http://www.qamus.org/transliteration.htm"><em>Buckwalter</em></fork>)</li>
+	  <li>la vocalisation du préfixe (selon le même système)</li>
+	  <li>la <link href="#morphologie">morphologie</link> du préfixe</li>
+	  <li>la <link href="#categorie_grammaticale">catégorie grammaticale</link> du préfixe. Noter le <code>+</code> indiquant qu'un radical est attendu.</li>
+	  </ol>
+	  <fixme author="???">Je suis à la recherche de scripts <em>Perl</em> qui permettraient la traduction de ce format texte vers <em>XML</em> et vice-versa. Idéalement, on devrait privilégier l'arabe natif à la transcription de <em>Bukwalter</em> pour exploiter le support <em>Unicode</em> de <em>Java</em>.</fixme>
+	  <p>Certaines informations sont facultatives. L'exemple le plus caractéristique est celui du préfixe vide :</p>
+	  <source>
+; The first category is the null prefix (has a null gloss as well):
+		Pref-0	
+		</source>
+		<p>... où seule apparaît la morphologie.</p>
+		<p>Examinons maintenant ce fragment du dictionnaire de suffixes <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictSuffixes</code> :</p>
+		<source>
+; perfect verb, null suffix: banA-h, daEA-h
+h	hu	PVSuff-0ah	he/it &lt;verb&gt; it/him        &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+hu/PVSUFF_DO:3MS&lt;/pos&gt;
+hmA	humA	PVSuff-0ah	he/it &lt;verb&gt; them (both)   &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+humA/PVSUFF_DO:3D&lt;/pos&gt;
+hm	hum	PVSuff-0ah	he/it &lt;verb&gt; them          &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+hum/PVSUFF_DO:3MP&lt;/pos&gt;
+hA	hA	PVSuff-0ah	he/it &lt;verb&gt; it/them/her   &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+hA/PVSUFF_DO:3FS&lt;/pos&gt;
+hn	hun~a	PVSuff-0ah	he/it &lt;verb&gt; them          &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+hun~a/PVSUFF_DO:3FP&lt;/pos&gt;
+k	ka	PVSuff-0ah	he/it &lt;verb&gt; you           &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+ka/PVSUFF_DO:2MS&lt;/pos&gt;
+k	ki	PVSuff-0ah	he/it &lt;verb&gt; you           &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+ki/PVSUFF_DO:2FS&lt;/pos&gt;
+kmA	kumA	PVSuff-0ah	he/it &lt;verb&gt; you (both)    &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+kumA/PVSUFF_DO:2D&lt;/pos&gt;
+km	kum	PVSuff-0ah	he/it &lt;verb&gt; you           &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+kum/PVSUFF_DO:2MP&lt;/pos&gt;
+kn	kun~a	PVSuff-0ah	he/it &lt;verb&gt; you           &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+kun~a/PVSUFF_DO:2FP&lt;/pos&gt;
+ny	niy	PVSuff-0ah	he/it &lt;verb&gt; me            &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+niy/PVSUFF_DO:1S&lt;/pos&gt;
+nA	nA	PVSuff-0ah	he/it &lt;verb&lt; us            &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+nA/PVSUFF_DO:1P&lt;/pos&gt;
+		</source>
+		<p>Le principe est strictement le même, bien que l'exemple soit légèrement plus complexe. On a en effet une <strong>double</strong> succession de suffixes, le premier étant le suffixe <em>Ø</em> de la troisième personne singulier masculin de l'accompli. On notera le <code>+</code> de liaison avec le radical.</p>
+		<p>Examinons ce fragment du dictionnaire de radicaux <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictstems</code> :</p>		
+		<source>
+;
+;--- ktb
+;; katab-u_1
+ktb	katab	PV	write
+ktb	kotub	IV	write
+ktb	kutib	PV_Pass	be written;be fated;be destined
+ktb	kotab	IV_Pass_yu	be written;be fated;be destined
+;; kAtab_1
+kAtb	kAtab	PV	correspond with
+kAtb	kAtib	IV_yu	correspond with
+;; &gt;akotab_1
+&gt;ktb	&gt;akotab	PV	dictate;make write
+Aktb	&gt;akotab	PV	dictate;make write
+ktb	kotib	IV_yu	dictate;make write
+ktb	kotab	IV_Pass_yu	be dictated
+;; takAtab_1
+tkAtb	takAtab	PV	correspond
+tkAtb	takAtab	IV	correspond
+;; {inokatab_1
+&lt;nktb	{inokatab	PV	subscribe
+Anktb	{inokatab	PV	subscribe
+nktb	nokatib	IV	subscribe
+;; {ikotatab_1
+&lt;kttb	{ikotatab	PV	register;enroll
+Akttb	{ikotatab	PV	register;enroll
+kttb	kotatib	IV	register;enroll
+;; {isotakotab_1
+&lt;stktb	{isotakotab	PV	make write;dictate
+Astktb	{isotakotab	PV	make write;dictate
+stktb	sotakotib	IV	make write;dictate
+;; kitAb_1
+ktAb	kitAb	Ndu	book
+ktb	kutub	N	books
+;; kitAboxAnap_1
+ktAbxAn	kitAboxAn	NapAt	library;bookstore
+ktbxAn	kutuboxAn	NapAt	library;bookstore
+;; kutubiy~_1
+ktby	kutubiy~	Ndu	book-related
+;; kutubiy~_2
+ktby	kutubiy~	Ndu	bookseller
+ktby	kutubiy~	Nap	booksellers     &lt;pos&gt;kutubiy~/NOUN&lt;/pos&gt;
+;; kut~Ab_1
+ktAb	kut~Ab	N	kuttab (village school);Quran school
+ktAtyb	katAtiyb	Ndip	kuttab (village schools);Quran schools
+;; kutay~ib_1
+ktyb	kutay~ib	NduAt	booklet
+;; kitAbap_1
+ktAb	kitAb	Nap	writing
+;; kitAbap_2
+ktAb	kitAb	Napdu	essay;piece of writing
+ktAb	kitAb	NAt	writings;essays
+;; kitAbiy~_1
+ktAby	kitAbiy~	N-ap	writing;written     &lt;pos&gt;kitAbiy~/ADJ&lt;/pos&gt;
+;; katiybap_1
+ktyb	katiyb	Napdu	brigade;squadron;corps
+ktA}b	katA}ib	Ndip	brigades;squadrons;corps
+ktA}b	katA}ib	Ndip	Phalangists
+;; katA}ibiy~_1
+ktA}by	katA}ibiy~	Nall	brigade;corps     &lt;pos&gt;katA}ibiy~/NOUN&lt;/pos&gt;
+ktA}by	katA}ibiy~	Nall	brigade;corps     &lt;pos&gt;katA}ibiy~/ADJ&lt;/pos&gt;
+;; katA}ibiy~_2
+ktA}by	katA}ibiy~	Nall	Phalangist     &lt;pos&gt;katA}ibiy~/NOUN&lt;/pos&gt;
+ktA}by	katA}ibiy~	Nall	Phalangist     &lt;pos&gt;katA}ibiy~/ADJ&lt;/pos&gt;
+;; makotab_1
+mktb	makotab	Ndu	bureau;office;department
+mkAtb	makAtib	Ndip	bureaus;offices
+;; makotabiy~_1
+mktby	makotabiy~	N-ap	office     &lt;pos&gt;makotabiy~/ADJ&lt;/pos&gt;
+;; makotabap_1
+mktb	makotab	NapAt	library;bookstore
+mkAtb	makAtib	Ndip	libraries;bookstores
+;; mikotAb_1
+mktAb	mikotAb	Ndu	printer
+;; mukAtabap_1
+mkAtb	mukAtab	NapAt	correspondence
+;; {ikotitAb_1
+&lt;kttAb	{ikotitAb	N/At	enrollment;registration;subscription
+AkttAb	{ikotitAb	N/At	enrollment;registration;subscription
+;; {isotikotAb_1
+&lt;stktAb	{isotikotAb	N/At	dictation
+AstktAb	{isotikotAb	N/At	dictation
+&lt;stktAby	{isotikotAbiy~	N-ap	dictation     &lt;pos&gt;{isotikotAbiy~/ADJ&lt;/pos&gt;
+AstktAby	{isotikotAbiy~	N-ap	dictation     &lt;pos&gt;{isotikotAbiy~/ADJ&lt;/pos&gt;
+;; kAtib_1
+kAtb	kAtib	N/ap	writer;author
+kAtb	kAtib	N/ap	clerk
+ktAb	kut~Ab	N	authors;writers
+ktb	katab	Nap	authors;writers
+;; kAtib_2
+kAtb	kAtib	Nall	writing     &lt;pos&gt;kAtib/ADJ&lt;/pos&gt;
+;; makotuwb_1
+mktwb	makotuwb	N-ap	written     &lt;pos&gt;makotuwb/ADJ&lt;/pos&gt;
+;; makotuwb_2
+mktwb	makotuwb	Ndu	letter;message
+mkAtyb	makAtiyb	Ndip	letters;messages
+;; mukAtib_1
+mkAtb	mukAtib	Nall	correspondent;reporter
+;; mukotatib_1
+mkttb	mukotatib	Nall	subscriber
+;		
+		</source>
+		<p>Le format est très légèrement différent puisqu'une ligne commençant par <code>;;</code> donne un identifiant de <strong>lemme</strong>. Tout le reste est néanmoins similaire.</p>
+		<p>On remarquera cependant que la catégorie grammaticale est souvent absente car elle peut être <strong>extrapolée</strong> à partir de la morphologie. On notera cependant quelques exemples où la catégorie grammaticale doit être précisée car une morphologie comme les <em>nisbas</em> peut donner lieu à des utilisations nominales ou/ou bien adjectivales.</p>
+		</section>
+	  <section>
+	  <title>Format des tables de correspondance</title>
+	  <p>Leur format est extrêmement simple. Examinons ce fragment de la table de correspondance entre préfixe et radical <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAB</code> :</p>
+	  <source>IVPref-Antn-tu IV_Pass_yu</source>
+	  <p>Ici, le préfixe de la deuxième personne féminin du pluriel de l'inaccompli (<em>تُـ</em>) est déclaré compatible avec un verbe à l'inaccompli passif acceptant le préfixe <em>يُـ</em>.</p>
+	  <p>Examinons maintenant la table de correspondance entre radical et suffixe <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableBC</code> :</p>
+	  <source>IV_Pass_yu IVSuff-n</source>
+	  <p>Ici, ce même verbe à l'inaccompli passif est déclaré compatible avec le suffixe de la deuxième personne féminin du pluriel de l'inaccompli <em>ـنَ</em>.</p> 
+	  <p>Enfin, la table de correspondance entre préfixe et suffixe <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAC</code> :</p>
+	  <source>IVPref-Antn-tu IVSuff-n</source>
+	  <p>... confirme que le préfixe de la deuxième personne féminin du pluriel de l'inaccompli est compatible avec le suffixe de la deuxième personne féminin du pluriel de l'inaccompli, ce qui est bien la moindre des choses.</p>	 
+	  </section>
+	  <section id="morphologie">
+	  <title>Types de morphologie</title>
+	  <p>A rédiger</p>
+	  </section>
+	  <section id="categorie_grammaticale">
+	  <title>Types de catégories grammaticales</title>
+	  <p>A rédiger</p>
+	  </section>
   </body>
 </document>
