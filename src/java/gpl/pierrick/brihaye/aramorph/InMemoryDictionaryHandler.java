@@ -217,8 +217,10 @@ class InMemoryDictionaryHandler {
 					}
 					// (2) by deduction: use the cat (and sometimes the voc and gloss) to deduce the appropriate POS
 					else {
-						gloss = glossPOS; // we need the gloss to guess proper names
-						if (cat.matches("^(Pref-0|Suff-0)$")) { // null prefix or suffix
+						// we need the gloss to guess proper names
+						gloss = glossPOS; 
+						// null prefix or suffix
+						if (cat.matches("^(Pref-0|Suff-0)$")) { 
 							POS = "";
 						}
 						else if (cat.matches("^F" + ".*")) {
@@ -232,15 +234,18 @@ class InMemoryDictionaryHandler {
 						}
 						else if (cat.matches("^CV" + ".*")) {
 							POS = voc + "/VERB_IMPERATIVE";
-						}
-						else if (cat.matches("^N" + ".*") && gloss.matches("^[A-Z]" + ".*")) { // educated guess (99% correct)
-							POS = voc + "/NOUN_PROP";
-						}
-						else if (cat.matches("^N" + ".*") && voc.matches(".*" + "iy~$")) { // (was NOUN_ADJ: some of these are really ADJ's and need to be tagged manually)
-							POS = voc + "/NOUN";
-						}
+						}						
 						else if (cat.matches("^N" + ".*")) {
-							POS = voc + "/NOUN";
+							// educated guess (99% correct)
+							if (gloss.matches("^[A-Z]" + ".*")) {
+								POS = voc + "/NOUN_PROP";
+							}
+							// (was NOUN_ADJ: some of these are really ADJ's and need to be tagged manually)
+							else if (voc.matches(".*" + "iy~$")) { 
+								POS = voc + "/NOUN";
+							}
+							else 
+								POS = voc + "/NOUN";
 						}
 						else {
 							throw new RuntimeException("No POS can be deduced in " + name + " (line " + IN.getLineNumber() + ")");
