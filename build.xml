@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="all" name="ArabicAnalyzer">
+    
+	<target name="init" description="Builds necessary directories.">        
+        <property name="dist" value="./build"/>
+		<property name="lucene.file" value="lucene-20030909"/>
+		<property name="with.sources" value="true"/>
+		<mkdir dir="${dist}"/>		
+    </target>
+
+    <target name="compile" depends="init"  description="Compiles the source code.">
+		<mkdir dir="${dist}/src"/>
+        <javac debug="true" deprecation="true" destdir="${dist}/src" srcdir="./src/java">            
+            <classpath>
+				<pathelement location="./lib/commons-collections.jar"/>
+				<pathelement location="./lib/${lucene.file}.jar"/>
+			</classpath>
+        </javac>
+    </target>
+
+    <target name="jar" depends="init,compile" description="Creates the jar file.">
+		<copy todir="${dist}/src">
+			<fileset dir="./src/java">						  
+				<exclude name="**/*.java" unless="with.sources"/>							
+			</fileset>
+		</copy>
+        <jar basedir="${dist}/src" compress="true" jarfile="${dist}/ArabicAnalyzer.jar"/>		
+	</target>
+	
+    <target name="zip" depends="init" description="Creates a zip file containing the source files.">
+        <zip destfile="${dist}/ArabicAnalyzer-src.zip" duplicate="fail">			
+			<fileset dir=".">
+				<include name="*.*"/>
+				<include name="src/java/**"/>
+			</fileset>											
+		</zip>
+	</target>	
+
+    <target name="javadoc" depends="init" description="Builds the javadocs." >        
+        <javadoc destdir="${dist}/javadoc" packagenames="gpl.pierrick.brihaye.*">
+            <sourcepath>
+                <pathelement location="./src/java"/>
+            </sourcepath>
+            <classpath>
+				<pathelement location="./lib/commons-collections.jar"/>
+				<pathelement location="./lib/${lucene.file}.jar"/>
+			</classpath>			
+        </javadoc>
+    </target>
+	
+	 <target name="site" depends="init,javadoc" description="Build documentation unsing Apache Forrest.">
+		<!-- An opportunity to override default settings -->
+		<property file="forrest.properties"/>
+		<property environment="env"/>
+		<property name="forrest.home" value="${env.FORREST_HOME}"/>		
+		<property name="project.home" location="." />
+		<property name="project.name" value="AraMorph"/>		
+		<property name="project.build-dir" value="dist"/>				
+		<delete dir="${dist}/site" failonerror="false"/>
+		<mkdir dir="${dist}/site"/>
+		<ant antfile="${forrest.home}/forrest.antproxy.xml" target="site"/>
+		<mkdir dir="nongnu/aramorph"/>
+		<mkdir dir="nongnu/aramorph/javadoc"/>
+		<copy todir="nongnu/aramorph">
+			<fileset dir="${dist}/site"/>			
+		</copy>
+		<copy todir="nongnu/aramorph/javadoc">
+			<fileset dir="${dist}/javadoc"/>			
+		</copy>		
+    </target>
+
+    <target name="clean" depends="init" description="Clean all build products.">
+        <delete dir="${dist}"/>
+    </target>
+
+</project>
