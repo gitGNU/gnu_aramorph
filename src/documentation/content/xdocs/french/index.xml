@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
-<document>
+<document xml:lang="fr">
 	<header>
 		<title>Description du projet</title>
 	</header>
 	<body>
-		<p>
-			<em>AraMorph</em> est un portage en <em>Java</em> du produit homonyme développé en <em>Perl</em> par Tim <em>Buckwalter</em> pour le compte du <em>Linguistic Data Consortium (LDC)</em> et accessible en ligne à l'adresse <link href="http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49">http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49</link>.</p>
-		<p>Ce projet inclut des classes d'analyse compatibles avec l'architecture de <link href="http://jakarta.apache.org/lucene/">Lucene</link>,
+		<p><em>AraMorph</em> est un portage en <em>Java</em> du produit homonyme développé en <em>Perl</em> par Tim <em>Buckwalter</em> pour le compte du <em>Linguistic Data Consortium (LDC)</em> et accessible en ligne à l'adresse <jump href="http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49">http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49</jump>.</p>
+		<p>Le projet inclut des classes <em>Java</em> permettant l'analyse morphologique de fichiers textuels en arabe et ce, quel que soit leur encodage. A cet effet, il est proposé 3 fichiers de test dans les principaux encodages utilisés pour la langue arabe : <code>UTF-8</code>, <code>ISO-8859-6</code> et <code>CP1256</code>.</p>
+		<p>Ce projet inclut également des classes compatibles avec l'architecture de <jump href="http://jakarta.apache.org/lucene/">Lucene</jump>,
 		 ce qui permet l'analyse, l'indexation et l'interrogation de documents en arabe.</p>
-		<p>Le projet inclut également des classes permettant l'analyse morphologique de fichiers textuels en arabe et ce, quel que soit leur encodage. A cet effet, il est proposé 3 fichiers de test dans les principaux encodages utilisés pour la langue arabe : <code>UTF-8</code>, <code>ISO-8859-6</code> et <code>CP1256</code>.</p>
 	</body>
 </document>

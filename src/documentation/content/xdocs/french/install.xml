@@ -1,10 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
-<document> 
+<document xml:lang="fr"> 
   <header> 
     <title>Installation</title> 
   </header> 
-  <body>     
-      <p>A rédiger</p>    
+  <body>   
+	<section>
+	<title>Construction du code source</title>
+	<p>Les sources sont livrées avec les bibliothèques <jump href="http://ant.apache.org/"><em>Ant</em></jump> nécessaires et un fichier <code>build.xml</code>.</p>
+	<warning>En l'état actuel du code, qui utilise abondamment les expressions régulières, <em>AraMorph</em> ne peut être construit et utilisé que sur un <em>JDK 1.4</em> ou supérieur. La modification du code qui permettrait l'utilisation de bibliothèques d'expressions régulières externes compatibles avec un <em>JDK</em> antérieur reste <link href="site:todo">à réaliser</link></warning>
+	<p>La construction s'effectue simplement en lançant <code>build.bat</code> suivi du nom de la cible à exécuter.</p>
+	<fixme author="???">Un grand merci à qui me fournira un script <em>Unix</em> fonctionnel pour la distribution.</fixme>
+	<p>Les <em>cibles</em> disponibles sont :</p>
+	<table>
+		<tr><th>Cible</th><th>Action</th></tr>
+		<tr><td><code>compile</code></td><td>Compile le code source. Par défaut, le résultat sera généré dans <code>${dist}/src</code>.</td></tr>
+		<tr>
+			<td><code>jar</code></td>
+			<td>
+			Construit le fichier <code>ArabicAnalyzer.jar</code>. Par défaut, le résultat sera généré dans <code>${dist}</code>.<br/>
+			Selon la valeur de la propriété <code>with.sources</code> (<code>true</code> par défaut), les sources peuvent être incluses dans le fichier.
+			</td>
+		</tr>
+		<tr><td><code>zip</code></td><td>Construit un fichier <code>ArabicAnalyzer-src.zip</code> contenant les fichiers source. Par défaut, le résultat sera généré dans <code>${dist}</code>.</td></tr>
+		<tr><td><code>javadoc</code></td><td>Construit les <em>javadocs</em> des fichiers source. Par défaut, le résultat sera généré dans <code>${dist}/javadoc</code>.</td></tr>
+		<tr>
+			<td><code>site</code></td>
+			<td>
+				Construit la documentation HTML à l'aide de <jump href="http://xml.apache.org/forrest/"><em>Apache Forrest</em></jump>.<br/>
+				Par défaut, le résultat sera généré dans <code>${dist}/html</code>. Vous pouvez définir le chemin de <em>Forrest</em> à partir d'une variable d'environnement <code>FORREST_HOME</code> ou définir la propriété <code>forrest.home</code> dans un fichier <code>./forrest.properties</code>.
+			</td>
+		</tr>
+		<tr><td><code>clean</code></td><td>Détruit le répertoire de construction, par défaut <code>${dist}</code></td></tr>
+		<tr><td><code>help</code></td><td>Affiche l'aide sur les différentes cibles disponibles (cible par défaut). </td></tr>		
+	</table>
+	<note>Par défaut, <code>${dist}</code> est égal à <code>./build</code>.</note>
+	</section>
+	<section><title>Test de l'analyseur morphologique</title>
+	<p>L'analyseur morphologique est utilisé de cette façon :</p>
+	<source>java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph</source>
+	<note>Le <em>classpath</em> dépend naturellement de l'endroit où <code>ArabicAnalyzer.jar</code> et <code>commons-collections.jar</code> se trouvent.</note>
+	<p>Utilisé tel quel, c'est à dire sans arguments, le programme renvoie le message d'aide suivant :</p>
+	<source>
+Arabic Morphological Analyzer for Java(tm)
+Ported to Java(tm) by Pierrick Brihaye, 2003.
+Based on :
+BUCKWALTER ARABIC MORPHOLOGICAL ANALYZER
+Portions (c) 2002 QAMUS LLC (www.qamus.org),
+(c) 2002 Trustees of the University of Pennsylvania.
+This program is governed by :
+The Apache Software License, Version 1.1
+
+Usage :
+
+araMorph inFile [inEncoding] [outFile] [outEncoding] [-v]
+
+inFile : file to be analyzed
+inEncoding : encoding for inFile, default CP1256
+outFile : result file, default console
+outEncoding : encoding for outFile, default CP1256
+-v : verbose mode
+	</source>
+		<p>La description du paramètrage ne devrait nomalement poser aucun problème :</p>
+		<table>
+			<tr><th>Paramètre</th><th>Fonction</th></tr>
+			<tr><td><em>inFile</em></td><td>Le chemin d'un fichier texte à analyser (obligatoire)</td></tr>
+			<tr><td><em>inEncoding</em></td><td>L'encodage de ce fichier texte (<code>CP1256</code> par défaut)</td></tr>
+			<tr><td><em>outFile</em></td><td>Le chemin du fichier de sortie des résultats de l'analyse morphologique (la console par défaut)</td></tr>
+			<tr><td><em>outEncoding</em></td><td>L'encodage du fichier de sortie (<code>CP1256</code> par défaut)</td></tr>
+			<tr><td><code>-v</code></td><td>Un drapeau indiquant que l'on désire une plus grande verbosité</td></tr>
+		</table>
+		<p>Voici quelques exemples d'utilisation :</p>
+		<source>
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/UTF-8.txt UTF-8
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/iso8859-6.txt ISO-8859-6 results.txt CP1256 -v
+		</source>
+	</section>
+	<section>
+		<title>Test de l'analyseur arabe pour Lucene</title>
+		<p>Les paramètres sont les mêmes mis à part <code>-v</code>, inutile ici. Il faut cependant inclure le <code>jar</code> <em>Lucene</em> dans le <em>classpath</em>.</p>
+		<source>
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt results.txt
+		</source>	
+		<note>Le <em>classpath</em> dépend naturellement de l'endroit où <code>ArabicAnalyzer.jar</code>, <code>commons-collections.jar</code> et  <code>lucene*.jar</code> se trouvent.</note>	
+	</section>
+	<section>
+		<title>Test de l'analyseur anglais pour Lucene</title>
+		<note>Oui, on peut analyser un texte arabe pour retourner des <jump href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html"><em>tokens</em></jump> en anglais !<br/> 
+		Ne pas en attendre de miracles cependant, <em>AraMorph</em> n'ayant pas vocation à jouer le rôle de traducteur automatique.</note>
+		<p>Les paramètres sont les mêmes mis à part <code>-v</code>, inutile ici. Il faut cependant inclure le <code>jar</code> <em>Lucene</em> dans le <em>classpath</em>.</p>
+		<source>
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar TestArabicGlosser src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt results.txt
+		</source>	
+		<note>Le <em>classpath</em> dépend naturellement de l'endroit où <code>ArabicAnalyzer.jar</code>, <code>commons-collections.jar</code> et  <code>lucene*.jar</code> se trouvent.</note>	
+	</section>
   </body>
 </document>

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
-<document> 
+<document xml:lang="fr"> 
   <header> 
     <title>Téléchargement</title> 
   </header> 
   <body>     
-      <p>A rédiger</p>    
+      <p>En attendant que je fasse les <jump href="http://savannah.gnu.org/forum/forum.php?forum_id=2838">manipulations nécessaires</jump> pour offrir un fichier <code>jar</code> téléchargeable, vous devrez télécharger les sources contenues dans l'entrepôt CVS comme indiqué à l'<link href="http://savannah.nongnu.org/cvs/?group=aramorph">adresse suivante</link>.</p>
+	  <p>Vous devrez ensuite construire votre propre fichier <code>jar</code> comme indiqué dans la rubrique <link href="site:install">installation</link>.</p>
+	  <p>A terme, les <code>jar</code> (contenant les sources) seront disponibles à l'adresse <link href="http://savannah.nongnu.org/download/aramorph/">suivante</link>.</p>
   </body>
 </document>

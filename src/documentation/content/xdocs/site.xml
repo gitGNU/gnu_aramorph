@@ -15,23 +15,23 @@ See http://xml.apache.org/forrest/linking.html for more info
 <site label="AraMorph" xmlns="http://apache.org/forrest/linkmap/1.0" tab="french" >
 
 	<general label="A propos" href="french/" tab="french">
-		<tab label="Présentation" href="index.html" description="Presentation du projet" tab="french"/>
-		<tab label="Téléchargement" href="download.html" description="Telechargement" tab="french"/>
-		<tab label="Installation" href="install.html" description="Installation" tab="french"/>		
-		<tab label="Principes" href="principles.html" description="Principes techniques" tab="french"/>
-		<tab label="Dictionnaires" href="dictionaries.html" description="Format des dictionnaires" tab="french"/>		
+		<index label="Présentation" href="index.html" description="Presentation du projet" tab="french"/>
+		<download label="Téléchargement" href="download.html" description="Telechargement" tab="french"/>
+		<install label="Installation" href="install.html" description="Installation" tab="french"/>		
+		<principles label="Principes" href="principles.html" description="Principes techniques" tab="french"/>
+		<dictionaries label="Dictionnaires" href="dictionaries.html" description="Format des dictionnaires" tab="french"/>		
 	</general>
 	<technical label="Aspect techniques" href="french/" tab="french">		
-		<tab label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" tab="french"/>
-		<tab label="Lucene" href="lucene.html" tab="french"/>
-		<tab label="TODO" href="todo.html" tab="french"/>
+		<javadoc label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" tab="french"/>
+		<lucene label="Lucene" href="lucene.html" tab="french"/>
+		<todo label="TODO" href="todo.html" tab="french"/>
 	</technical>	
 		
 	<general label="About" href="english/" tab="english">
-		<tab label="Presentation" href="index.html" description="Project's presentation" tab="english"/>		
+		<index label="Presentation" href="index.html" description="Project's presentation" tab="english"/>		
 	</general>
 	<technical label="Technical aspects" href="english/" tab="english">		 		
-		<tab label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" tab="english"/>
+		<javadoc label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" tab="english"/>
 		<!--
 		<tab label="Lucene" href="lucene.html" tab="english"/>
 		<tab label="TODO" href="todo.html" tab="english"/>		
@@ -39,10 +39,10 @@ See http://xml.apache.org/forrest/linking.html for more info
 	</technical>
 	
 	<general label="About" href="arabic/" tab="arabic">
-		<tab label="Presentation" href="index.html" description="Project's presentation" tab="arabic"/>
+		<index label="Presentation" href="index.html" description="Project's presentation" tab="arabic"/>
 	</general>
 	<technical label="Technical aspects" href="arabic/" tab="arabic">	
-		<tab label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" tab="arabic"/>
+		<javadoc label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" tab="arabic"/>
 		<!--
 		<tab label="Lucene" href="lucene.html" tab="arabic"/>
 		<tab label="TODO" href="todo.html" tab="arabic"/>				
