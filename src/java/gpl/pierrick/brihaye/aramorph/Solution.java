@@ -85,7 +85,7 @@ public class Solution {
 	 * @return The vocalization
 	 */
 	public String getWordVocalization() {
-		return prefix.getVocalization() + stem.getVocalization() + suffix.getVocalization();
+		return AraMorph.arabizeWord(prefix.getVocalization() + stem.getVocalization() + suffix.getVocalization());
 	}
 	
 	/** Returns the morphology of the prefix.
@@ -115,11 +115,11 @@ public class Solution {
 	public String getWordCat() {
 		StringBuffer sb = new StringBuffer();
 		if (!"".equals(prefix.getCat()))
-			sb.append("Prefix : " + prefix.getCat() + "\n");		
+			sb.append("\t" + "Prefix : " + prefix.getCat() + "\n");		
 		if (!"".equals(stem.getCat()))
-			sb.append("Stem : " + stem.getCat() + "\n");
+			sb.append("\t" + "Stem : " + stem.getCat() + "\n");
 		if (!"".equals(suffix.getCat()))
-			sb.append("Suffix : " + suffix.getCat());
+			sb.append("\t" + "Suffix : " + suffix.getCat() + "\n");
 		return sb.toString();
 	}
 	
@@ -150,11 +150,11 @@ public class Solution {
 	public String getWordPOS() {
 		StringBuffer sb = new StringBuffer();
 		if (!"".equals(prefix.getPOS()))
-			sb.append("Prefix : " + prefix.getPOS() + "\n");		
+			sb.append("\t" + "Prefix : " + prefix.getPOS() + "\n");		
 		if (!"".equals(stem.getPOS()))
-			sb.append("Stem : " + stem.getPOS() + "\n");
+			sb.append("\t" + "Stem : " + stem.getPOS() + "\n");
 		if (!"".equals(suffix.getPOS()))
-			sb.append("Suffix : " + suffix.getPOS());
+			sb.append("\t" + "Suffix : " + suffix.getPOS() + "\n");
 		return sb.toString();
 	}
 	
@@ -215,11 +215,11 @@ public class Solution {
 	public String getWordGlosses() {
 		StringBuffer sb = new StringBuffer();
 		if (!"".equals(prefix.getGloss()))
-			sb.append("Prefix : " + prefix.getGloss() + "\n");		
+			sb.append("\t" + "Prefix : " + prefix.getGloss() + "\n");		
 		if (!"".equals(stem.getGloss()))
-			sb.append("Stem : " + stem.getGloss() + "\n");
+			sb.append("\t" + "Stem : " + stem.getGloss() + "\n");
 		if (!"".equals(suffix.getGloss()))
-			sb.append("Suffix : " + suffix.getGloss());
+			sb.append("\t" + "Suffix : " + suffix.getGloss() + "\n");
 		return sb.toString();		
 	}
 	
@@ -243,15 +243,15 @@ public class Solution {
 	 */
 	public String toString() {
 		return new String(
-		"SOLUTION #" + cnt + "\n"
-		+ "lemma  : " + "\t" + getLemma() + "\n"
-		+ "vocalized as : " + "\t" + this.getWordVocalization() + "\n"
-		+ "morphology : " + "\n"
-		+ this.getWordCat() + "\n"
-		+ "grammatical category : " + "\n"
-		+ this.getWordPOS() + "\n"
-		+ "glossed as : " + "\n"
-		+ this.getWordGlosses() + "\n"
+		"\n" + "SOLUTION #" + cnt + "\n"
+		+ "Lemma  : " + "\t" + getLemma() + "\n"
+		+ "Vocalized as : " + "\t" + this.getWordVocalization() + "\n"
+		+ "Morphology : " + "\n"
+		+ this.getWordCat()
+		+ "Grammatical category : " + "\n"
+		+ this.getWordPOS()
+		+ "Glossed as : " + "\n"
+		+ this.getWordGlosses()
 		);
 	}
 }
