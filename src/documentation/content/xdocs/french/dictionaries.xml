@@ -18,7 +18,7 @@
 	  <li>le squelette consonnantique du préfixe (selon le système de translitération de <fork href="http://www.qamus.org/transliteration.htm"><em>Buckwalter</em></fork>)</li>
 	  <li>la vocalisation du préfixe (selon le même système)</li>
 	  <li>la <link href="#categorie_morphologique">catégorie morphologique</link> du préfixe</li>
-	  <li>la <link href="#categorie_grammaticale">catégorie grammaticale</link> du préfixe. Noter le <code>+</code> indiquant qu'un radical est attendu.</li>
+	  <li>une ou plusieurs traductions du préfixe suivies d'une ou plusieurs <link href="#categorie_grammaticale">catégories grammaticales</link>. Noter le <code>+</code> indiquant qu'un radical est attendu après ce préfixe.</li>
 	  </ol>
 	  <fixme author="vous !">
 		Je suis à la recherche de scripts <em>Perl</em> qui permettraient la traduction de ce format texte vers <em>XML</em> (si possible en <em>UTF-8</em> afin de pouvoir intégrer tous types de glosses, en particulier celles utilisant des caractères accentués européens comme <em>V<strong>é</strong>drine</em> ou <em>Schr<strong>ö</strong>der</em>) et vice-versa.<br/>
@@ -46,7 +46,7 @@ kn	kun~a	PVSuff-0ah	he/it &lt;verb&gt; you           &lt;pos&gt;+(null)/PVSUFF_S
 ny	niy	PVSuff-0ah	he/it &lt;verb&gt; me            &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+niy/PVSUFF_DO:1S&lt;/pos&gt;
 nA	nA	PVSuff-0ah	he/it &lt;verb&gt; us            &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+nA/PVSUFF_DO:1P&lt;/pos&gt;
 		</source>
-		<p>Le principe est strictement le même, bien que l'exemple soit légèrement plus complexe. On a en effet une <strong>double</strong> succession de suffixes, le premier étant le suffixe <em>Ø</em> de la troisième personne singulier masculin de l'accompli le second mentionnant un objet direct pronominal. On notera le <code>+</code> de liaison avec le radical.</p>
+		<p>Le principe est strictement le même, bien que l'exemple soit légèrement plus complexe. On a en effet une <strong>double</strong> succession de suffixes, le premier étant le suffixe <em>Ø</em> de la troisième personne singulier masculin de l'accompli, le second étant relatif à un objet direct pronominal. On notera le <code>+</code> de liaison avec le radical.</p>
 		<p>Examinons ce fragment du dictionnaire de radicaux <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictstems</code> :</p>		
 		<source>
 ;

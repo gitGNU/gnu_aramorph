@@ -21,7 +21,7 @@ See http://xml.apache.org/forrest/linking.html for more info
 		<principles label="Principes" href="principles.html" description="Principes techniques" tab="french"/>
 		<dictionaries label="Dictionnaires" href="dictionaries.html" description="Format des dictionnaires" tab="french"/>		
 	</general>
-	<technical label="Aspect techniques" href="french/" tab="french">		
+	<technical label="Aspects techniques" href="french/" tab="french">		
 		<javadoc label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" tab="french"/>
 		<lucene label="Lucene" href="lucene.html" tab="french"/>
 		<todo label="TODO" href="todo.html" tab="french"/>
