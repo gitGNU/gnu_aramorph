@@ -5,8 +5,8 @@
     <title>Téléchargement</title> 
   </header> 
   <body>     
-      <p>En attendant que je fasse les <jump href="http://savannah.gnu.org/forum/forum.php?forum_id=2838">manipulations nécessaires</jump> pour offrir un fichier <code>jar</code> téléchargeable, vous devrez télécharger les sources contenues dans l'entrepôt CVS comme indiqué à l'<link href="http://savannah.nongnu.org/cvs/?group=aramorph">adresse suivante</link>.</p>
-	  <p>Vous devrez ensuite construire votre propre fichier <code>jar</code> comme indiqué dans la rubrique <link href="site:install">installation</link>.</p>
-	  <p>A terme, les <code>jar</code> (contenant les sources) seront disponibles à l'adresse <link href="http://savannah.nongnu.org/download/aramorph/">suivante</link>.</p>
+      <p>En attendant que je fasse les <jump href="http://savannah.gnu.org/forum/forum.php?forum_id=2838">manipulations nécessaires</jump> pour vous offrir un fichier <code>ArabicAnalyzer.jar</code> téléchargeable, vous devrez télécharger les sources contenues dans l'entrepôt CVS comme indiqué à l'<link href="http://savannah.nongnu.org/cvs/?group=aramorph">adresse suivante</link>.</p>
+	  <p>Vous devrez ensuite construire votre propre fichier <code>ArabicAnalyzer.jar</code> comme indiqué dans la rubrique <link href="site:install">installation</link>.</p>
+	  <p>A terme, les différentes versions de <code>ArabicAnalyzer.jar</code> (contenant les sources) seront disponibles à l'adresse <link href="http://savannah.nongnu.org/download/aramorph/">suivante</link>.</p>
   </body>
 </document>

@@ -8,7 +8,7 @@
 	<section>
 	<title>Construction du code source</title>
 	<p>Les sources sont livrées avec les bibliothèques <jump href="http://ant.apache.org/"><em>Ant</em></jump> nécessaires et un fichier <code>build.xml</code>.</p>
-	<warning>En l'état actuel du code, qui utilise abondamment les expressions régulières, <em>AraMorph</em> ne peut être construit et utilisé que sur un <em>JDK 1.4</em> ou supérieur. La modification du code qui permettrait l'utilisation de bibliothèques d'expressions régulières externes compatibles avec un <em>JDK</em> antérieur reste <link href="site:todo">à réaliser</link></warning>
+	<warning>En l'état actuel du code, qui utilise abondamment les expressions régulières, <em>AraMorph</em> ne peut être construit et utilisé que sur un <em>JDK <strong>1.4</strong></em> ou supérieur. La modification du code qui permettrait l'utilisation de bibliothèques d'expressions régulières externes compatibles avec un <em>JDK</em> antérieur reste <link href="site:todo">à réaliser</link></warning>
 	<p>La construction s'effectue simplement en lançant <code>build.bat</code> suivi du nom de la cible à exécuter.</p>
 	<fixme author="???">Un grand merci à qui me fournira un script <em>Unix</em> fonctionnel pour la distribution.</fixme>
 	<p>Les <em>cibles</em> disponibles sont :</p>
@@ -83,7 +83,7 @@ java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.briha
 		<source>
 java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt results.txt
 		</source>	
-		<note>Le <em>classpath</em> dépend naturellement de l'endroit où <code>ArabicAnalyzer.jar</code>, <code>commons-collections.jar</code> et  <code>lucene*.jar</code> se trouvent.</note>	
+		<warning>Le <em>classpath</em> dépend naturellement de l'endroit où <code>ArabicAnalyzer.jar</code>, <code>commons-collections.jar</code> et  <code>lucene*.jar</code> se trouvent.</warning>
 	</section>
 	<section>
 		<title>Test de l'analyseur anglais pour Lucene</title>
@@ -93,7 +93,7 @@ java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-2003090
 		<source>
 java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar TestArabicGlosser src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt results.txt
 		</source>	
-		<note>Le <em>classpath</em> dépend naturellement de l'endroit où <code>ArabicAnalyzer.jar</code>, <code>commons-collections.jar</code> et  <code>lucene*.jar</code> se trouvent.</note>	
+		<warning>Le <em>classpath</em> dépend naturellement de l'endroit où <code>ArabicAnalyzer.jar</code>, <code>commons-collections.jar</code> et  <code>lucene*.jar</code> se trouvent.</warning>
 	</section>
   </body>
 </document>

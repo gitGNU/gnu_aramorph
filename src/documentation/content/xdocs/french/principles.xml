@@ -4,7 +4,129 @@
   <header> 
     <title>Principes techniques</title> 
   </header> 
-  <body>     
-      <p>A rédiger</p>    
+  <body>
+	<warning>Vous utilisez <em>Mozilla</em> sous <em>Windows 98</em> ? Votez pour le <jump href="http://bugzilla.mozilla.org/show_bug.cgi?id=180112">Bug 180112</jump> !</warning>
+	<section>      
+	<title>L'analyseur morphologique</title>
+	<p>Créons un fichier <code>src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt</code> dans lequel nous allons saisir un seul mot, <em>كتاب</em>.</p> 
+	<p>Exécutons maintenant le code suivant :</p>
+	<source>
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt UTF-8 -v</source>
+	<warning>Naturellement, l'encodage du fichier d'entrée doit être adapté à votre plate-forme.</warning>
+	<p>Examinons maintenant le fichier de sortie <code>results.txt</code> qui est, lui, en <code>UTF-8</code> pour pouvoir bénéficier des possibilités de vocalisation :</p>
+	<source>
+Processing token : 	كتاب
+Transliteration : 	ktAb
+Token not yet processed.
+Token has direct solutions.
+
+SOLUTION #1
+Lemma  : 	kitAb
+Vocalized as : 	كِتاب
+Morphology : 
+	Prefix : Pref-0
+	Stem : Ndu
+	Suffix : Suff-0
+Grammatical category : 
+	Stem : kitAb/NOUN
+Glossed as : 
+	Stem : book
+
+
+SOLUTION #3
+Lemma  : 	kAtib
+Vocalized as : 	كُتّاب
+Morphology : 
+	Prefix : Pref-0
+	Stem : N
+	Suffix : Suff-0
+Grammatical category : 
+	Stem : kut~Ab/NOUN
+Glossed as : 
+	Stem : authors/writers
+
+
+SOLUTION #2
+Lemma  : 	kut~Ab
+Vocalized as : 	كُتّاب
+Morphology : 
+	Prefix : Pref-0
+	Stem : N
+	Suffix : Suff-0
+Grammatical category : 
+	Stem : kut~Ab/NOUN
+Glossed as : 
+	Stem : kuttab (village school)/Quran school
+	</source>
+	<p>Le fonctionnement de l'analyseur morphologique devient dès lors plus évident :</p>
+	<table>
+		<tr><th>Message</th><th>Signification</th></tr>
+		<tr><td><code>Processing token</code></td><td>le mot actuellement traité</td></tr>
+		<tr><td><code>Transliteration</code></td><td>la translitération du mot dans le système de <jump href="http://www.qamus.org/transliteration.htm"><em>Buckwalter</em></jump></td></tr>
+		<tr><td><code>Token not yet processed.</code></td><td>indique que le mot n'a pas encore été analysé ; uniquement avec le paramètre <code>-v</code></td></tr>
+		<tr><td><code>Token has direct solutions.</code></td>
+			<td>
+			indique que le mot est analysable dans son orthographe actuelle ; uniquement avec le paramètre <code>-v</code>.<br/>
+			En effet, <em>AraMorph</em> est capable de considérer des orthographes alternatives comme un <em>ـه</em> final en lieu et place de <em>ـة</em> ou un <em>ـى</em> final en lieu et place de <em>ـي</em>...
+			</td>
+		</tr>
+		<tr><td><code>SOLUTION</code></td>
+			<td>indique chacune des solutions pour le mot. L'ordre d'affichage n'est pas signifiant.</td>
+		</tr>	
+		<tr><td><code>Lemma</code></td><td>indique l'identifant du lemme de la solution dans le <link href="site:dictionaries">dictionnaire</link>.</td></tr>	
+		<tr><td><code>Vocalized as :</code></td><td>indique la vocalisation de la solution.</td></tr>
+		<tr><td><code>Morphology :</code></td><td>indique la morphologie du préfixe, du radical et du suffixe de la solution.</td></tr>
+		<tr><td><code>Grammatical category :</code></td><td>indique la catégorie grammaticale du préfixe, du radical et du suffixe de la solution.</td></tr>
+		<tr><td><code>Glossed as :</code></td><td>indique une ou plusieurs traductions anglaises pour le préfixe, le radical et le suffixe de la solution.</td></tr>
+	</table>
+	<note>Les explications sur les codes morphologiques et les codes de catégorie grammaticales sont disponibles dans la rubrique concernant les <link href="site:dictionaries">dictionnaires</link>.</note>
+	</section>
+	<section>      
+	<title>Comment <em>AraMorph</em> parvient-il à proposer des solutions acceptables ?</title>	
+	<p>Avant toute chose, il faut savoir que <em>AraMorph</em>, comme son ancêtre en <em>Perl</em>, travaille sur une <strong>translitération</strong> du mot arabe. Cette transliteration est établie selon la translitération de <em>Buckwalter</em>. Ainsi, <em>كتاب</em> sera au préalable transcrit en <em>ktAb</em>.</p>
+	<fixme author="PB">Cette opération ne devrait pas être nécessaire car <em>Java</em> travaille <strong>nativement</strong> en <em>Unicode</em>. Cette tâche, qui permettrait de se passer de l'étape de translitération et donc de gagner de la performance, reste <link href="site:todo">à réaliser</link>.</fixme>
+	<p>Ensuite, <em>AraMorph</em> utilise un algorithme de force brute pour <strong>décomposer</strong> le mot en une succession de préfixe, radical et préfixe <strong>possibles</strong> :</p>
+	<table>
+		<tr><th>préfixe</th><th>radical</th><th>suffixe</th></tr>
+		<tr><td><code>ktAb</code></td><td><code>Ø</code></td><td>Ø</td></tr>
+		<tr><td><code>ktA</code></td><td><code>b</code></td><td>Ø</td></tr>
+		<tr><td><code>ktA</code></td><td><code>Ø</code></td><td>b</td></tr>
+		<tr><td><code>kt</code></td><td><code>Ab</code></td><td>Ø</td></tr>
+		<tr><td><code>kt</code></td><td><code>A</code></td><td>b</td></tr>
+		<tr><td><code>kt</code></td><td><code>Ø</code></td><td>Ab</td></tr>
+		<tr><td><code>k</code></td><td><code>tAb</code></td><td>Ø</td></tr>
+		<tr><td><code>k</code></td><td><code>tA</code></td><td>b</td></tr>
+		<tr><td><code>k</code></td><td><code>t</code></td><td>Ab</td></tr>
+		<tr><td><code>k</code></td><td><code>Ø</code></td><td>tAb</td></tr>
+	</table>
+	<p>Ensuite, on vérifie la présence de chacun des éléments dans les dictionnaires ad hoc :</p>
+	<ul>
+		<li><code>gpl/pierrick/brihaye/aramorph/dictionaries/dictPrefixes</code> pour le préfixe</li>	
+		<li><code>gpl/pierrick/brihaye/aramorph/dictionaries/dictStems</code> pour le radical</li>	
+		<li><code>gpl/pierrick/brihaye/aramorph/dictionaries/dictSuffixes</code> pour le suffixe</li>	
+	</ul>
+	<p>En cas de succès, on récupère leur information morphologique.</p>
+	<note>Un préfixe ou un suffixe Ø sont morphologiquement <strong>signifiants</strong>.</note>
+	<p>Ensuite, on vérifie le cas échéant dans les tables ad hoc si les morphologies des différents éléments sont compatibles entre elles :</p>
+	<ul>		
+		<li><code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAB</code> pour la compatibilité entre le préfixe et le radical</li>	
+		<li><code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAC</code> pour la compatibilité entre le préfixe et le suffixe</li>	
+		<li><code>gpl/pierrick/brihaye/aramorph/dictionaries/tableBC</code> pour la compatibilité entre le radical et le suffixe</li>	
+	</ul>
+	<p>Une décomposition de mot pour laquelle :</p>
+	<ol>
+		<li>préfixe, radical <strong>et</strong> suffixe disposent d'une entrée de dictionnaire,</li>
+		<li>préfixe, radical <strong>et</strong> suffixe sont morphologiquement compatibles entre eux,</li>
+	</ol>
+	<p>... <strong>est</strong> une solution.</p>	
+	</section>
+	<section>
+		<title>L'analyseur arabe pour Lucene</title>
+		<p>A rédiger</p>
+	</section>
+	<section>
+		<title>L'analyseur anglais pour Lucene</title>
+		<p>A rédiger</p>
+	</section>
   </body>
 </document>
