@@ -63,7 +63,7 @@ public class ArabicGlosser extends TokenFilter {
 	
 	/** Returns the arabic morphological analyzer in use.
 	 * @return The arabic morphological analyzer
-	 * @see org.apache.lucene.analysis.ar.aramorph.AraMorph
+	 * @see gpl.pierrick.brihaye.aramorph.AraMorph
 	 */
 	public AraMorph getAramorph() { return araMorph; }
 	

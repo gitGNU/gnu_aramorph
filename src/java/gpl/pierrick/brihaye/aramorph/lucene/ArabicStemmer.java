@@ -61,7 +61,7 @@ public class ArabicStemmer extends TokenFilter {
 	
 	/** Returns the arabic stemmer in use.
 	 * @return The arabic stemmer
-	 * @see org.apache.lucene.analysis.ar.aramorph.AraMorph
+	 * @see gpl.pierrick.brihaye.aramorph.AraMorph
 	 */
 	public AraMorph getAramorph() { return araMorph; }
 	
