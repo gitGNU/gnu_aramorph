@@ -34,15 +34,15 @@ class DictionaryEntry {
 	private String entry;
 	private String lemmaID;
 	private String vocalization;
-	private String cat;
+	private String morphology;
 	private String gloss;
 	private String POS;
 	
-	protected DictionaryEntry(String entry, String lemmaID, String vocalization, String cat, String gloss, String POS) {
+	protected DictionaryEntry(String entry, String lemmaID, String vocalization, String morphology, String gloss, String POS) {
 		this.entry = entry;
 		this.lemmaID = lemmaID;
 		this.vocalization = vocalization;
-		this.cat = cat;
+		this.morphology = morphology;
 		this.gloss = gloss;
 		this.POS = POS;		
 	}
@@ -53,7 +53,7 @@ class DictionaryEntry {
 	
 	protected String getVocalization() { return this.vocalization; }
 	
-	protected String getCat() {	return this.cat; }	
+	protected String getMorphology() {	return this.morphology; }	
 	
 	protected String  getPOS() { return this.POS; }
 	

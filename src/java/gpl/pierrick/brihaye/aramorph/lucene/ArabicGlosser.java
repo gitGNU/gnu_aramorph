@@ -70,7 +70,7 @@ public class ArabicGlosser extends TokenFilter {
 	
 	/** Returns the next gloss for the given stem.
 	 * @param firstOne Whether or not this gloss is the first one
-	 * @return The gloss. Its <CODE>termText</CODE> is the gloss of the <STRONG>stem</STRONG>. Its <CODE>type</CODE> is the morphological category of the <STRONG>stem</STRONG>.
+	 * @return The gloss. Its <CODE>termText</CODE> is the gloss of the <STRONG>stem</STRONG>. Its <CODE>type</CODE> is the grammatical category of the <STRONG>stem</STRONG>.
 	 * When several glosses are available, every emitted token's
 	 * <CODE>PositionIncrement</CODE> but the first one is set to <CODE>0</CODE>
 	 * @see org.apache.lucene.analysis.Token#setPositionIncrement(int)
@@ -106,8 +106,8 @@ public class ArabicGlosser extends TokenFilter {
 	
 	/** Returns the next token in the stream, or <CODE>null</CODE> at EOS.
 	 * @throws IOException If a problem occurs
-	 * @return The gloss with its <CODE>type</CODE> set to the morphological identification of the
-	 * <STRONG>stem</STRONG>. Glosses with no morphological identification have their <CODE>type</CODE> set to
+	 * @return The gloss with its <CODE>type</CODE> set to the grammatical category of the
+	 * <STRONG>stem</STRONG>. Glosses with no identifiable grammatical category have their <CODE>type</CODE> set to
 	 * <CODE>NO_RESULT</CODE>. termText() is the english gloss of the
 	 * <STRONG>stem</STRONG>
 	 * @see org.apache.lucene.analysis.Token#type()

@@ -32,8 +32,8 @@ import org.apache.lucene.analysis.standard.StandardFilter;
 
 /** An english glosser for the arabic language. This glosser uses Tim Buckwalter's algorithm
  * (available at <a href="http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49">LDC
- * Catalog</a>) to identify the morphological category of arabic tokens and then return their glosses.
- * The meaningful morphological categories are still to be determined but the current list gives
+ * Catalog</a>) to identify the grammatical category of arabic tokens and then return their glosses.
+ * The significant grammatical categories are still to be determined but the current list gives
  * good results. 
  * @author Pierrick Brihaye, 2003
  */
@@ -49,7 +49,7 @@ public final class ArabicGlossAnalyzer extends Analyzer {
 	"they", "this", "to", "was", "will", "with"
     };	
 	
-	/** Returns a token stream of glosses of arabic words whose morphological categories are found to be semantically meaningful.
+	/** Returns a token stream of glosses of arabic words whose grammatical categories are found to be significant.
 	 * @return The token stream
 	 * @param reader The reader
 	 */

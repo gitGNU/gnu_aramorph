@@ -30,7 +30,7 @@ import org.apache.lucene.analysis.TokenStream;
 /** Analyzer for the arabic language. This analyzer uses Tim Buckwalter's algorithm
  * (available at <a href="http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49">LDC
  * Catalog</a>) to identify the morphological category of arabic tokens.
- * The meaningful morphological categories are still to be determined but the current list gives
+ * The significant grammatical categories are still to be determined but the current list gives
  * good results.
  * Final tokens are a romanized version of the canonical word.
  * @author Pierrick Brihaye, 2003
@@ -40,13 +40,13 @@ public final class ArabicStemAnalyzer extends Analyzer {
 	/** Whether or not the analyzer should output tokens in the Buckwalter transliteration system */
 	protected boolean outputBuckwalter = true; //TODO : revisit default value ?
 	
-	/** Constructs an analyzer that will return morphologically significant arabic tokens in the Buckwalter transliteration system.
+	/** Constructs an analyzer that will return grammatically significant arabic tokens in the Buckwalter transliteration system.
 	 */	
 	public ArabicStemAnalyzer() {
 		this(true); //TODO : change default value ?
 	}
 
-	/** Constructs an analyzer that will return morphologically significant arabic tokens.
+	/** Constructs an analyzer that will return grammatically significant arabic tokens.
 	 * @param outputBuckwalter Whether or not the tokens should be translitered
 	 */	
 	public ArabicStemAnalyzer(boolean outputBuckwalter) {
@@ -54,7 +54,7 @@ public final class ArabicStemAnalyzer extends Analyzer {
 		this.outputBuckwalter = outputBuckwalter;
 	}
 	
-	/** Returns a token stream of romanized arabic words whose morphological categories are found to be semantically meaningful.
+	/** Returns a token stream of arabic words whose grammatically categories are found to be significant.
 	 * @return The token stream
 	 * @param reader The reader
 	 */

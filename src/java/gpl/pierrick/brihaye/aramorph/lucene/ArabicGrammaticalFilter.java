@@ -29,7 +29,7 @@ import org.apache.lucene.analysis.Token;
 import org.apache.lucene.analysis.TokenFilter;
 import org.apache.lucene.analysis.TokenStream;
 
-/** A filter that will filter arabic tokens regarding to their morphological category.
+/** A filter that will filter arabic tokens regarding to their grammatical category.
  * @author Pierrick Brihaye, 2003
  */
 public class ArabicGrammaticalFilter extends TokenFilter {

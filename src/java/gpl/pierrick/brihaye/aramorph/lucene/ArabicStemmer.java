@@ -80,7 +80,7 @@ public class ArabicStemmer extends TokenFilter {
 	
 	/** Returns the next stem for the given token.
 	 * @param firstOne Whether or not this stem is the first one
-	 * @return The token. Its <CODE>termText</CODE> is the romanized arabic <STRONG>stem</STRONG>. Its <CODE>type</CODE> is the morphological category of the <STRONG>stem</STRONG>.
+	 * @return The token. Its <CODE>termText</CODE> is arabic <STRONG>stem</STRONG>. Its <CODE>type</CODE> is the grammatical category of the <STRONG>stem</STRONG>.
 	 * When several stems are available, every emitted token's
 	 * <CODE>PositionIncrement</CODE> but the first one is set to <CODE>0</CODE>
 	 * @see org.apache.lucene.analysis.Token#setPositionIncrement(int)

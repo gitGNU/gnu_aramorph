@@ -81,7 +81,7 @@ public class Solution {
 		return suffix.getVocalization();
 	}	
 	
-	/** Returns the vocalization of the word.
+	/** Returns the vocalization of the word in the Buckwalter transliteration system.
 	 * @return The vocalization
 	 */
 	public String getWordVocalization() {
@@ -89,70 +89,70 @@ public class Solution {
 	}
 
 	/** Returns the vocalization of the word.
-	 * @return The vocalization in arabic
+	 * @return The vocalization
 	 */
 	public String getWordArabicVocalization() {
 		return AraMorph.arabizeWord(prefix.getVocalization() + stem.getVocalization() + suffix.getVocalization());
 	}	
 	
 	/** Returns the morphology of the prefix.
-	 * @return The morphological category
+	 * @return The morphology
 	 */
-	public String getPrefixCat() {
-		return prefix.getCat();
+	public String getPrefixMorphology() {
+		return prefix.getMorphology();
 	}
 
 	/** Returns the morphology of the stem.
-	 * @return The morphological category
+	 * @return The morphology
 	 */
-	public String getStemCat() {
-		return stem.getCat();
+	public String getStemMorphology() {
+		return stem.getMorphology();
 	}
 
 	/** Returns the morphology of the suffix.
-	 * @return The morphological category
+	 * @return The morphology
 	 */
-	public String getSuffixCat() {
-		return suffix.getCat();
+	public String getSuffixMorphology() {
+		return suffix.getMorphology();
 	}
 	
 	/** Returns the morphology of the word.
-	 * @return The morphological category
+	 * @return The morphology
 	 */
-	public String getWordCat() {
+	public String getWordMorphology() {
 		StringBuffer sb = new StringBuffer();
-		if (!"".equals(prefix.getCat()))
-			sb.append("\t" + "Prefix : " + prefix.getCat() + "\n");		
-		if (!"".equals(stem.getCat()))
-			sb.append("\t" + "Stem : " + stem.getCat() + "\n");
-		if (!"".equals(suffix.getCat()))
-			sb.append("\t" + "Suffix : " + suffix.getCat() + "\n");
+		if (!"".equals(prefix.getMorphology()))
+			sb.append("\t" + "Prefix : " + prefix.getMorphology() + "\n");		
+		if (!"".equals(stem.getMorphology()))
+			sb.append("\t" + "Stem : " + stem.getMorphology() + "\n");
+		if (!"".equals(suffix.getMorphology()))
+			sb.append("\t" + "Suffix : " + suffix.getMorphology() + "\n");
 		return sb.toString();
 	}
 	
 	/** Returns the grammatical category of the prefix.
-	 * @return The morphological category
+	 * @return The grammatical category
 	 */
 	public String getPrefixPOS() {
 		return prefix.getPOS().replaceFirst("^.*/","");
 	}
 
 	/** Returns the grammatical category of the stem.
-	 * @return The morphological category
+	 * @return The grammatical category
 	 */
 	public String getStemPOS() {
 		return stem.getPOS().replaceFirst("^.*/","");
 	}
 
 	/** Returns the grammatical category of the suffix.
-	 * @return The morphological category
+	 * @return The grammatical category
 	 */
 	public String getSuffixPOS() {
 		return suffix.getPOS().replaceFirst("^.*/","");
 	}
 	
-	/** Returns the grammatical category of the word.
-	 * @return The morphological category
+	/** Returns the word in the Buckwalter transliteration system an its grammatical category.
+	 * @return The grammatical category
 	 */
 	public String getWordPOS() {
 		StringBuffer sb = new StringBuffer();
@@ -165,6 +165,9 @@ public class Solution {
 		return sb.toString();
 	}
 	
+	/** Returns the word in arabic and its grammatical category.
+	 * @return The grammatical category
+	 */
 	public String getWordArabicPOS() {
 		StringBuffer sb = new StringBuffer();
 		if (!"".equals(prefix.getArabicPOS()))
@@ -174,9 +177,7 @@ public class Solution {
 		if (!"".equals(suffix.getArabicPOS()))
 			sb.append("\t" + "Suffix : " + suffix.getArabicPOS() + "\n");
 		return sb.toString();
-	}	
-	
-	
+	}		
 	
 	/** Returns the english glosses of the prefix.
 	 * @return The glosses.
@@ -258,7 +259,7 @@ public class Solution {
 	 */
 	public DictionaryEntry getSuffix() { return this.suffix; }
 	
-	/** Returns a string representation of how the word can be analyzed.
+	/** Returns a string representation of how the word can be analyzed using the Buckwalter transliteration system.
 	 * @return The representation
 	 */
 	public String toString() {
@@ -267,7 +268,7 @@ public class Solution {
 		+ "Lemma  : " + "\t" + getLemma() + "\n"
 		+ "Vocalized as : " + "\t" + this.getWordVocalization() + "\n"
 		+ "Morphology : " + "\n"
-		+ this.getWordCat()
+		+ this.getWordMorphology()
 		+ "Grammatical category : " + "\n"
 		+ this.getWordPOS()
 		+ "Glossed as : " + "\n"
@@ -275,8 +276,8 @@ public class Solution {
 		);
 	}
 	
-	/** Returns a string representation of how the word can be analyzed.
-	 * @return The representation, in arabic wherever possible
+	/** Returns a string representation of how the word can be analyzed using arabic wherever possible.
+	 * @return The representation,
 	 */
 	public String toArabizedString() {
 		return new String(
@@ -284,7 +285,7 @@ public class Solution {
 		+ "Lemma  : " + "\t" + getLemma() + "\n"
 		+ "Vocalized as : " + "\t" + this.getWordArabicVocalization() + "\n"
 		+ "Morphology : " + "\n"
-		+ this.getWordCat()
+		+ this.getWordMorphology()
 		+ "Grammatical category : " + "\n"
 		+ this.getWordArabicPOS()
 		+ "Glossed as : " + "\n"

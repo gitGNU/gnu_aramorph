@@ -50,8 +50,6 @@ public class AraMorph {
 	 * TODO : use more generic interface.
 	 */	
 	protected static InMemorySolutionsHandler sol = null;
-	/** Whether or not the analyzer should output tokens in the Buckwalter transliteration system */
-	protected boolean outputBuckwalter = true; //TODO : revisit default value ?
 	/** Whether or not the analyzer should output some convenience messages */
 	protected boolean verbose = false;
 	/** The stream where to output the results */
@@ -298,14 +296,20 @@ public class AraMorph {
 		return tokens;
 	}
 	
+	/** Analyzes a token and return the results in the Buckwalter transliteration system.
+	 * For performance issues, the analyzer keeps track of the results.
+	 * @param token The token to be analyzed
+	 * @return Whether or not the word has a solution in arabic
+	 */
 	public boolean analyzeToken(String token) {
-		return this.analyzeToken(token, this.outputBuckwalter);
+		return this.analyzeToken(token, true);
 	}
 		
 	/** Analyzes a token.
 	 * For performance issues, the analyzer keeps track of the results.
-	 * @param token The token to be analyzed
 	 * @return Whether or not the word has a solution in arabic
+	 * @param outputBuckwalter Whether or not the Buckwalter transliteration system should be used. If not, outputs will be in arabic wherever possible
+	 * @param token The token to be analyzed
 	 */
 	public boolean analyzeToken(String token, boolean outputBuckwalter) {
 		if (outputStream != null) outputStream.println("Processing token : " + "\t" + token);
@@ -513,14 +517,14 @@ public class AraMorph {
 							while (it_stem != null && it_stem.hasNext()) {
 								DictionaryEntry stem = (DictionaryEntry)it_stem.next();
 								//Prefix/Stem compatibility
-								if (dict.hasAB(prefix.getCat(), stem.getCat())) {
+								if (dict.hasAB(prefix.getMorphology(), stem.getMorphology())) {
 									Iterator it_suffix = dict.getSuffixIterator(segmentedWord.getSuffix());
 									while (it_suffix != null && it_suffix.hasNext()) {
 										DictionaryEntry suffix = (DictionaryEntry)it_suffix.next();
 										//Prefix/Suffix compatiblity
-										if (dict.hasAC(prefix.getCat(), suffix.getCat())) {
+										if (dict.hasAC(prefix.getMorphology(), suffix.getMorphology())) {
 											//Stem/Suffix compatibility
-											if (dict.hasBC(stem.getCat(), suffix.getCat())) {
+											if (dict.hasBC(stem.getMorphology(), suffix.getMorphology())) {
 												//All tests passed : it is a solution
 												wordSolutions.add(new Solution(++cnt, prefix, stem, suffix));
 											}

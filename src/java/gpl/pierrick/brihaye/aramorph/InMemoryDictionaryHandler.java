@@ -197,8 +197,8 @@ class InMemoryDictionaryHandler {
 						throw new RuntimeException("Entry in " + name + " (line " + IN.getLineNumber() + ") doesn't have 4 fields (3 tabs)");
 					}
 					String entry = split[0]; // get the entry for use as key
-					String voc = split[1];
-					String cat = split[2];
+					String vocalization = split[1];
+					String morphology = split[2];
 					String glossPOS = split[3];
 					
 					String gloss;
@@ -215,37 +215,37 @@ class InMemoryDictionaryHandler {
 						POS = m.group(1); //extract POS from glossPOS
 						gloss = glossPOS; //we clean up the gloss later (see below)
 					}
-					// (2) by deduction: use the cat (and sometimes the voc and gloss) to deduce the appropriate POS
+					// (2) by deduction: use the morphology (and sometimes the voc and gloss) to deduce the appropriate POS
 					else {
 						// we need the gloss to guess proper names
 						gloss = glossPOS; 
 						// null prefix or suffix
-						if (cat.matches("^(Pref-0|Suff-0)$")) { 
+						if (morphology.matches("^(Pref-0|Suff-0)$")) { 
 							POS = "";
 						}
-						else if (cat.matches("^F" + ".*")) {
-							POS = voc + "/FUNC_WORD";
+						else if (morphology.matches("^F" + ".*")) {
+							POS = vocalization + "/FUNC_WORD";
 						}
-						else if (cat.matches("^IV" + ".*")) {
-							POS = voc + "/VERB_IMPERFECT";
+						else if (morphology.matches("^IV" + ".*")) {
+							POS = vocalization + "/VERB_IMPERFECT";
 						}
-						else if (cat.matches("^PV" + ".*")) {
-							POS = voc + "/VERB_PERFECT";
+						else if (morphology.matches("^PV" + ".*")) {
+							POS = vocalization + "/VERB_PERFECT";
 						}
-						else if (cat.matches("^CV" + ".*")) {
-							POS = voc + "/VERB_IMPERATIVE";
+						else if (morphology.matches("^CV" + ".*")) {
+							POS = vocalization + "/VERB_IMPERATIVE";
 						}						
-						else if (cat.matches("^N" + ".*")) {
+						else if (morphology.matches("^N" + ".*")) {
 							// educated guess (99% correct)
 							if (gloss.matches("^[A-Z]" + ".*")) {
-								POS = voc + "/NOUN_PROP";
+								POS = vocalization + "/NOUN_PROP";
 							}
 							// (was NOUN_ADJ: some of these are really ADJ's and need to be tagged manually)
-							else if (voc.matches(".*" + "iy~$")) { 
-								POS = voc + "/NOUN";
+							else if (vocalization.matches(".*" + "iy~$")) { 
+								POS = vocalization + "/NOUN";
 							}
 							else 
-								POS = voc + "/NOUN";
+								POS = vocalization + "/NOUN";
 						}
 						else {
 							throw new RuntimeException("No POS can be deduced in " + name + " (line " + IN.getLineNumber() + ")");
@@ -316,7 +316,7 @@ class InMemoryDictionaryHandler {
 					gloss = gloss.replaceAll("ž","zh");
 					// note that although we read 4 fields from the dict we now save 5 fields in the hash table
 					// because the info in last field, glossPOS, was split into two: gloss and POS
-					DictionaryEntry de = new DictionaryEntry(entry, lemmaID, voc, cat, gloss, POS);
+					DictionaryEntry de = new DictionaryEntry(entry, lemmaID, vocalization, morphology, gloss, POS);
 					if (set.containsKey(entry)) {
 						((Collection)set.get(entry)).add(de);
 					}
