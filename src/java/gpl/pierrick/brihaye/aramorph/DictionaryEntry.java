@@ -30,7 +30,7 @@ package gpl.pierrick.brihaye.aramorph;
  @author Pierrick Brihaye, 2003
  */
 class DictionaryEntry {
-	
+		
 	private String entry;
 	private String lemmaID;
 	private String vocalization;
@@ -44,7 +44,7 @@ class DictionaryEntry {
 		this.vocalization = vocalization;
 		this.cat = cat;
 		this.gloss = gloss;
-		this.POS = POS;
+		this.POS = POS;		
 	}
 	
 	protected String getEntry() { return this.entry; }
@@ -53,9 +53,20 @@ class DictionaryEntry {
 	
 	protected String getVocalization() { return this.vocalization; }
 	
-	protected String getCat() {	return this.cat; }
+	protected String getCat() {	return this.cat; }	
 	
 	protected String  getPOS() { return this.POS; }
+	
+	protected String getArabicPOS() {	
+		if (this.POS.indexOf("/") == -1) return AraMorph.arabizeWord(this.POS);
+		String[] array = this.POS.split("/");
+		array[0] = AraMorph.arabizeWord(array[0]);
+		StringBuffer sb = new StringBuffer(array[0] + "/");
+		for (int i = 1 ; i < array.length ; i++) {
+			sb.append(array[i]);
+		}
+		return sb.toString(); 
+	}	
 	
 	protected String getGloss() { return this.gloss; }
 	

@@ -165,6 +165,19 @@ public class Solution {
 		return sb.toString();
 	}
 	
+	public String getWordArabicPOS() {
+		StringBuffer sb = new StringBuffer();
+		if (!"".equals(prefix.getArabicPOS()))
+			sb.append("\t" + "Prefix : " + prefix.getArabicPOS() + "\n");		
+		if (!"".equals(stem.getArabicPOS()))
+			sb.append("\t" + "Stem : " + stem.getArabicPOS() + "\n");
+		if (!"".equals(suffix.getArabicPOS()))
+			sb.append("\t" + "Suffix : " + suffix.getArabicPOS() + "\n");
+		return sb.toString();
+	}	
+	
+	
+	
 	/** Returns the english glosses of the prefix.
 	 * @return The glosses.
 	 */
@@ -273,7 +286,7 @@ public class Solution {
 		+ "Morphology : " + "\n"
 		+ this.getWordCat()
 		+ "Grammatical category : " + "\n"
-		+ this.getWordPOS()
+		+ this.getWordArabicPOS()
 		+ "Glossed as : " + "\n"
 		+ this.getWordGlosses()
 		);

@@ -871,7 +871,10 @@ public class AraMorph {
 			
 			if (outputFile != null) {
 				try {
-					ps = new PrintStream(new FileOutputStream(outputFile), true, outputEncoding);
+					if (outputEncoding == null)
+						ps = new PrintStream(new FileOutputStream(outputFile), true);
+					else
+						ps = new PrintStream(new FileOutputStream(outputFile), true, outputEncoding);
 				}
 				catch (FileNotFoundException e) {
 					System.err.println("Can't write to output file : " + outputFile);
