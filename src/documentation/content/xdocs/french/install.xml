@@ -44,13 +44,13 @@
 	<p>Utilisé tel quel, c'est à dire sans arguments, le programme renvoie le message d'aide suivant :</p>
 	<source>
 Arabic Morphological Analyzer for Java(tm)
-Ported to Java(tm) by Pierrick Brihaye, 2003.
+Ported to Java(tm) by Pierrick Brihaye, 2003-2004.
 Based on :
 BUCKWALTER ARABIC MORPHOLOGICAL ANALYZER
 Portions (c) 2002 QAMUS LLC (www.qamus.org),
 (c) 2002 Trustees of the University of Pennsylvania.
 This program is governed by :
-The Apache Software License, Version 1.1
+The GNU General Public License
 
 Usage :
 
@@ -62,6 +62,7 @@ outFile : result file, default console
 outEncoding : encoding for outFile, if not specified use Buckwalter transliterat
 ion with system's file.encoding
 -v : verbose mode
+
 	</source>
 		<p>La description du paramètrage ne devrait nomalement poser aucun problème :</p>
 		<table>
