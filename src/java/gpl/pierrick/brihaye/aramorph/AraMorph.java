@@ -351,7 +351,7 @@ public class AraMorph {
 			boolean hasSolutions = false;
 			arabicTokensCounter++;
 			String translitered = romanizeWord(token);
-			if (outputStream != null && verbose) outputStream.println("Transliteration : " + "\t" + translitered);
+			if (outputStream != null) outputStream.println("Transliteration : " + "\t" + translitered);
 			//Already processed : previously found
 			if (found.containsKey(translitered)) {
 				if (outputStream != null && verbose) outputStream.println("Token already processed.");
@@ -466,7 +466,7 @@ public class AraMorph {
 					}
 				}
 				else if (notFound.containsKey(translitered)) {
-					outputStream.println("No solution");
+					outputStream.println("\nNo solution\n");
 				}
 				else throw new RuntimeException(translitered + " is neither in found or notFound !");
 			}

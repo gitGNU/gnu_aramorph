@@ -236,8 +236,7 @@ mkttb	mukotatib	Nall	subscriber
 		<tr><td><code>POSS_PRON_2MP</code></td><td>Suffixe personnel 2ère personne du masculin pluriel</td><td></td></tr>		
 		<tr><td><code>POSS_PRON_2FP</code></td><td>Suffixe personnel 2ère personne du féminin pluriel</td><td></td></tr>		
 		<tr><td><code>POSS_PRON_3MP</code></td><td>Suffixe personnel 3ère personne du masculin pluriel</td><td></td></tr>		
-		<tr><td><code>POSS_PRON_3FP</code></td><td>Suffixe personnel 3ère personne du féminin pluriel</td><td></td></tr>		
-		<tr><td><code>PRON_3D</code></td><td>Pronom personnel : 3ème personne du duel</td><td>TODO : pas de marqueur de genre !</td></tr>
+		<tr><td><code>POSS_PRON_3FP</code></td><td>Suffixe personnel 3ère personne du féminin pluriel</td><td></td></tr>				
 		<tr><td><code>IVSUFF_DO:1S</code></td><td>Objet direct d'un verbe à l'inaccompli : 1ère personne du singulier</td><td></td></tr>	  
 		<tr><td><code>IVSUFF_DO:2MS</code></td><td>Objet direct d'un verbe à l'inaccompli : 2ème personne du masculin singulier</td><td></td></tr>
 		<tr><td><code>IVSUFF_DO:2FS</code></td><td>Objet direct d'un verbe à l'inaccompli : 2ème personne du féminin singulier</td><td></td></tr>		

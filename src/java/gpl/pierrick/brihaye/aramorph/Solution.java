@@ -1184,7 +1184,7 @@ public class Solution {
 	 */
 	public String getStemLongPOS() {
 		//replaceFirst("^.*/","");		
-		if (stemsPOS.isEmpty()) return "NO_STEM";
+		if (stemsPOS.isEmpty()) return "/NO_STEM";
 		String[] POS = new String[stemsPOS.size()];
 		int i, j;
 		String pos = null;
@@ -1210,7 +1210,7 @@ public class Solution {
 	 */
 	public String getStemArabicLongPOS() {
 		//replaceFirst("^.*/","");		
-		if (stemsPOS.isEmpty()) return "NO_STEM";
+		if (stemsPOS.isEmpty()) return "/NO_STEM";
 		String[] POS = new String[stemsPOS.size()];
 		int i, j;
 		String pos = null;
