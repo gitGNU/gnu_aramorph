@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2003  Pierrick Brihaye
+Copyright (C) 2003-2004 Pierrick Brihaye
 pierrick.brihaye@wanadoo.fr
  
 Original Perl code :
@@ -44,13 +44,13 @@ public class TestArabicAnalyzer {
 	/** Display help for command line interface. */
 	private static void PrintUsage() {
 		System.err.println("Arabic Morphological Analyzer for Java(tm)");
-		System.err.println("Ported to Java(tm) by Pierrick Brihaye, 2003.");		
+		System.err.println("Ported to Java(tm) by Pierrick Brihaye, 2003-2004.");		
 		System.err.println("Based on :");
 		System.err.println("BUCKWALTER ARABIC MORPHOLOGICAL ANALYZER");
 		System.err.println("Portions (c) 2002 QAMUS LLC (www.qamus.org),");
 		System.err.println("(c) 2002 Trustees of the University of Pennsylvania.");
 		System.err.println("This program is governed by :");
-		System.err.println("The Apache Software License, Version 1.1");		
+		System.err.println("The GNU General Public License");		
 		System.err.println("");
 		System.err.println("Usage :");
 		System.err.println("");
