@@ -43,6 +43,7 @@ public class ArabicGrammaticalFilter extends TokenFilter {
 		"FUT_PART",
 		"NOUN",
 		"NOUN_PROP",
+		//TODO : revisit has nothing to do here since these are suffixes
 		"NSUFF_FEM_DU_ACCGEN",
 		"NSUFF_FEM_DU_ACCGEN_POSS",
 		"NSUFF_FEM_DU_NOM", //not attested in my tests
@@ -51,7 +52,9 @@ public class ArabicGrammaticalFilter extends TokenFilter {
 		"NSUFF_MASC_DU_ACCGEN_POSS",
 		"NSUFF_MASC_DU_NOM",
 		"NSUFF_MASC_DU_NOM_POSS",
+		//
 		"PART",
+		//TODO : revisit has nothing to do here since these are suffixes
 		"PVSUFF_SUBJ:1S",
 		"PVSUFF_SUBJ:2FP",
 		"PVSUFF_SUBJ:2FS",
@@ -61,6 +64,7 @@ public class ArabicGrammaticalFilter extends TokenFilter {
 		"PVSUFF_SUBJ:3FS",
 		"PVSUFF_SUBJ:3MP",
 		"PVSUFF_SUBJ:3MS",
+		//
 		"VERB_IMPERATIVE",
 		"VERB_IMPERFECT",
 		"VERB_PERFECT",
@@ -69,22 +73,24 @@ public class ArabicGrammaticalFilter extends TokenFilter {
 	
 	private String[] UNWORTHY_CATEGORIES = {
 		"ABBREV",
-		"CONJ",
-		"DET",
+		"CONJ",		
 		"DEM_PRON_F",
 		"DEM_PRON_FS",
 		"DEM_PRON_FD",
 		"DEM_PRON_MD",
 		"DEM_PRON_MP",
 		"DEM_PRON_MS",
+		"DET",
 		"FUNC_WORD",
 		"INTERJ",
 		"INTERROG",
 		"INTERROG_PART",
+		//TODO : revisit has nothing to do here since this is a suffix
 		"IVSUFF_SUBJ:MP_MOOD:I", //TODO : check occurences and decide
 		"NEG_PART",
-		"NUMERIC_COMMA",
-		"POSS_PRON_1S",
+		"NUMERIC_COMMA",	
+		//TODO : revisit has nothing to do here since this is a suffix
+		"POSS_PRON_1S", //Special case for >abiy
 		"PREP",
 		"PRON_1P",
 		"PRON_1S",
