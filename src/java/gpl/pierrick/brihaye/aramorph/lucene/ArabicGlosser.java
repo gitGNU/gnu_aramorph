@@ -79,8 +79,8 @@ public class ArabicGlosser extends TokenFilter {
 		String tokenText = null;
 		String tokenType = null;
 		try {
-			tokenText = (String)tokenGlosses.get(0);
-			//Token is typed in order to filter it
+			tokenText = (String)tokenGlosses.get(0);			
+			//Token is typed in order to filter it later			
 			tokenType = (String)tokenPOS.get(0);
 			//OK : we're done with this gloss
 			tokenGlosses.remove(0);
@@ -99,7 +99,7 @@ public class ArabicGlosser extends TokenFilter {
 		//TODO : further normalization : remove punctuation and the like
 		emittedToken = new Token(tokenText,receivedToken.startOffset(),receivedToken.endOffset(),tokenType);
 		if (!firstOne) emittedToken.setPositionIncrement(0);
-		if (debug) System.out.println(emittedToken.termText() + "\t" + emittedToken.type() + "\t" + "[" + emittedToken.startOffset() + "-" + emittedToken.endOffset() + "]");
+		if (debug) System.out.println(emittedToken.termText() + "\t" + emittedToken.type() + "\t" + "[" + emittedToken.startOffset() + "-" + emittedToken.endOffset() + "]" + "\t" + emittedToken.getPositionIncrement());
 		return emittedToken;
 	}
 	
@@ -111,11 +111,11 @@ public class ArabicGlosser extends TokenFilter {
 	 * <STRONG>stem</STRONG>
 	 * @see org.apache.lucene.analysis.Token#type()
 	 */
-	public final Token next() throws IOException {
-		//If no token is currently, fetch another one
+	public final Token next() throws IOException {		
+		//If no token is currently processed, fetch another one
 		if (!processingToken) {
 			receivedToken = input.next();
-			if (receivedToken == null) return null;
+			if (receivedToken == null) return null;			
 			romanizedToken = araMorph.romanizeWord(receivedToken.termText());
 			//Analyse it (in arabic)
 			if (araMorph.analyzeToken(receivedToken.termText())) {				
@@ -126,6 +126,7 @@ public class ArabicGlosser extends TokenFilter {
 					Solution currentSolution = (Solution)it_solutions.next();
 					for (int i = 0; i < currentSolution.getStemGlossesList().length ; i++) {
 						tokenGlosses.add(currentSolution.getStemGlossesList()[i]);
+						//same POS for all glosses
 						tokenPOS.add(currentSolution.getStemPOS());						
 					}					
 				}

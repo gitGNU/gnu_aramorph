@@ -80,9 +80,8 @@ public class ArabicStemmer extends TokenFilter {
 			//Get the first solution
 			Solution currentSolution = (Solution)tokenSolutions.get(0);
 			//This is the trick ! Only the canonical form of the stem is to be considered
-			tokenText = currentSolution.getStemVocalization(); //TODO : sould we use the "entry" ?
-			//Token is typed in order to filter it later
-			
+			tokenText = currentSolution.getStemVocalization(); //TODO : should we use the "entry" ?
+			//Token is typed in order to filter it later			
 			tokenType = currentSolution.getStemPOS();
 			//OK : we're done with this solution
 			tokenSolutions.remove(0);
@@ -99,7 +98,7 @@ public class ArabicStemmer extends TokenFilter {
 		}
 		emittedToken = new Token(tokenText,receivedToken.startOffset(),receivedToken.endOffset(),tokenType);
 		if (!firstOne) emittedToken.setPositionIncrement(0);
-		if (debug) System.out.println(emittedToken.termText() + "\t" + emittedToken.type() + "\t" + "[" + emittedToken.startOffset() + "-" + emittedToken.endOffset() + "]");
+		if (debug) System.out.println(emittedToken.termText() + "\t" + emittedToken.type() + "\t" + "[" + emittedToken.startOffset() + "-" + emittedToken.endOffset() + "]" + "\t" + emittedToken.getPositionIncrement());
 		return emittedToken;
 	}
 	
@@ -112,7 +111,7 @@ public class ArabicStemmer extends TokenFilter {
 	 * @see org.apache.lucene.analysis.Token#type()
 	 */
 	public final Token next() throws IOException {
-		//If no token is currently, fetch another one
+		//If no token is currently processed, fetch another one
 		if (!processingToken) {
 			receivedToken = input.next();
 			if (receivedToken == null) return null;

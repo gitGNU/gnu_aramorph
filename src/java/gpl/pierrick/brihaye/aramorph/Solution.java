@@ -167,7 +167,7 @@ public class Solution {
 	 * @return The glosses
 	 */
 	public String[] getPrefixGlossesList() {
-		String[] glosses = prefix.getGloss().split("/");
+		String[] glosses = prefix.getGloss().split("[/()]");
 		if (glosses.length > 0) return glosses;
 		//return at least one gloss
 		String[] gloss = new String[1];
@@ -184,7 +184,7 @@ public class Solution {
 	 * @return The glosses
 	 */
 	public String[] getStemGlossesList() {
-		String[] glosses = stem.getGloss().split("/");
+		String[] glosses = stem.getGloss().split("[/()]");		
 		if (glosses.length > 0) return glosses;
 		//return at least one gloss
 		String[] gloss = new String[1];
@@ -201,7 +201,7 @@ public class Solution {
 	 * @return The glosses
 	 */
 	public String[] getSuffixGlossesList() {
-		String[] glosses = suffix.getGloss().split("/");
+		String[] glosses = suffix.getGloss().split("[/()]");
 		if (glosses.length > 0) return glosses;
 		//return at least one gloss
 		String[] gloss = new String[1];

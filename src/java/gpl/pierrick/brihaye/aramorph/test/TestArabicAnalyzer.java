@@ -141,7 +141,7 @@ public class TestArabicAnalyzer {
 				TokenStream tokenStream = arabicStemAnalyzer.tokenStream(null, IN);
 				Token token = tokenStream.next();
 				while (token != null) {
-					ps.println(token.termText() + "\t" + "[" + token.startOffset() + "-" + token.endOffset() + "]" + "\t" + token.type());
+					ps.println(token.termText()  + "\t" + token.type() + "\t" + "[" + token.startOffset() + "-" + token.endOffset() + "]" + "\t" + token.getPositionIncrement());
 					token = tokenStream.next();
 				}
 			}

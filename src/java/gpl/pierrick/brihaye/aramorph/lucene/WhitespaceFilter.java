@@ -76,23 +76,20 @@ public final class WhitespaceFilter extends TokenFilter {
 	 */
 	public final Token next() throws IOException {
 		while (true) {
-			String emittedText;			
-			//TODO : should we have the same PositionIncrement (i.e. 0) or increment it for each "sub-token" ?
-			int positionIncrement = 0;
+			String emittedText;									
 			//New token ?
 			if (receivedText.length() == 0) {
 				receivedToken = input.next();			
 				if (receivedToken == null)	return null;
-				receivedText.append(receivedToken.termText());
-				positionIncrement = 1;
+				receivedText.append(receivedToken.termText());				
 			}
 			//sanity check
 			if (receivedToken == null)	return null;
-			emittedText = getNextPart();			
-			//Warning : all tokens are emitted with the *same* offset
+			emittedText = getNextPart();						
 			if (emittedText.length() > 0) {
+				//TODO : should we keep the receivedToken's type ?
 				Token emittedToken = new Token(emittedText, receivedToken.startOffset(), receivedToken.endOffset());
-				//emittedToken.setPositionIncrement(positionIncrement);
+				emittedToken.setPositionIncrement(receivedToken.getPositionIncrement());				
 				return emittedToken;
 			}				
 		}

@@ -141,7 +141,7 @@ public class ArabicGrammaticalFilter extends TokenFilter {
 			}
 			//Is its category of interest ?
 			if (worthyCategories.contains((String)token.type())) {
-				if (debug) System.out.println(token.termText() + "\t" + token.type() + "\t" + "[" + token.startOffset() + "-" + token.endOffset() + "]");
+				if (debug) System.out.println(token.termText() + "\t" + token.type() + "\t" + "[" + token.startOffset() + "-" + token.endOffset() + "]" + "\t" + token.getPositionIncrement());
 				//Has this termText already been delivered ?
 				if (!tokenStems.contains(token.termText())) {
 					//Mark it as delivered
