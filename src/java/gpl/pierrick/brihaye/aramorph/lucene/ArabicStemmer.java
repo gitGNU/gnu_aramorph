@@ -97,8 +97,10 @@ public class ArabicStemmer extends TokenFilter {
 				tokenText = currentSolution.getStemVocalization(); //TODO : should we use the "entry" ?
 			else
 				tokenText = currentSolution.getStemArabicVocalization(); //TODO : should we use the "entry" ?
+			if (tokenText == null) tokenText = "";
 			//Token is typed in order to filter it later			
 			tokenType = currentSolution.getStemPOS();
+			if (tokenType == null) tokenType = "NO_STEM";
 			//OK : we're done with this solution
 			tokenSolutions.remove(0);
 			//Will there be further treatment ?

@@ -891,7 +891,7 @@ public class Solution {
 		return stem.getLemmaID().replaceFirst("(_|-).*$",""); //inconsistent formatting of lemma IDs
 	}
 	
-	/** Returns the vocalizations of the <STRONG>recomputed</STRONG> prefixes in the Buckwalter transliteration system.
+	/** Returns the vocalizations of the <STRONG>recomputed</STRONG> prefixes in the Buckwalter transliteration system or  <CODE>null</CODE> if there are no prefixes for the word.
 	 * @return The vocalizations
 	 */
 	public String[] getPrefixesVocalizations() {
@@ -909,7 +909,7 @@ public class Solution {
 	}
 
 
-	/** Returns the vocalizations of the <STRONG>recomputed</STRONG> prefixes in arabic.
+	/** Returns the vocalizations of the <STRONG>recomputed</STRONG> prefixes in arabic or <CODE>null</CODE> if there are no prefixes for the word.
 	 * @return The vocalizations
 	 */
 	public String[] getPrefixesArabicVocalizations() {
@@ -926,7 +926,7 @@ public class Solution {
 		return vocalizations;
 	}
 
-	/** Returns the vocalization of the <STRONG>recomputed</STRONG> stem in the Buckwalter transliteration system.
+	/** Returns the vocalization of the <STRONG>recomputed</STRONG> stem in the Buckwalter transliteration system or <CODE>null</CODE> if there is no stem for the word.
 	 * @return The vocalization
 	 */
 	public String getStemVocalization() {
@@ -945,7 +945,7 @@ public class Solution {
 		return vocalizations[0];		
 	}
 
-	/** Returns the vocalization of the <STRONG>recomputed</STRONG> stem in arabic.
+	/** Returns the vocalization of the <STRONG>recomputed</STRONG> stem in arabic or <CODE>null</CODE> if there is no stem for the word.
 	 * @return The vocalization
 	 */
 	public String getStemArabicVocalization() {
@@ -964,7 +964,7 @@ public class Solution {
 		return vocalizations[0];		
 	}
 	
-	/** Returns the vocalizations of the <STRONG>recomputed</STRONG> suffix in the Buckwalter transliteration system.
+	/** Returns the vocalizations of the <STRONG>recomputed</STRONG> suffixes in the Buckwalter transliteration system or <CODE>null</CODE> if there ares no suffixes for the word.
 	 * @return The vocalizations
 	 */
 	public String[] getSuffixesVocalizations() {
@@ -981,7 +981,7 @@ public class Solution {
 		return vocalizations;
 	}	
 	
-	/** Returns the vocalizations <STRONG>recomputed</STRONG> of the suffix in arabic.
+	/** Returns the vocalizations of the <STRONG>recomputed</STRONG> suffixes in arabic or <CODE>null</CODE> if there ares no suffixes for the word.
 	 * @return The vocalizations
 	 */
 	public String[] getSuffixesArabicVocalizations() {
@@ -1035,7 +1035,7 @@ public class Solution {
 				if (!"".equals(vocalisations[i])) sb.append(vocalisations[i]);
 			}
 		}
-		if (this.getStemVocalization() != null) sb.append(this.getStemArabicVocalization());		
+		if (this.getStemArabicVocalization() != null) sb.append(this.getStemArabicVocalization());		
 		vocalisations = this.getSuffixesArabicVocalizations();
 		if (vocalisations != null) {
 			for (i = 0 ; i < vocalisations.length ; i++) {
@@ -1080,11 +1080,10 @@ public class Solution {
 		return sb.toString();
 	}
 	
-	/** Returns the grammatical categories of the <STRONG>recomputed</STRONG> prefixes.
+	/** Returns the grammatical categories of the <STRONG>recomputed</STRONG> prefixes or <CODE>null</CODE> if there are no prefixes for the word.
 	 * @return The grammatical categories
 	 */
-	public String[] getPrefixesPOS() {
-		//replaceFirst("^.*/","");		
+	public String[] getPrefixesPOS() {		
 		if (prefixesPOS.isEmpty()) return null;
 		String[] POS = new String[prefixesPOS.size()];
 		int i, j;
@@ -1104,11 +1103,10 @@ public class Solution {
 		return POS;
 	}
 
-	/** Returns The vocalizations using the Buckwalter transliteration system of the <STRONG>recomputed</STRONG> prefixes and their grammatical categories.
+	/** Returns The vocalizations using the Buckwalter transliteration system of the <STRONG>recomputed</STRONG> prefixes and their grammatical categories or <CODE>null</CODE> if there are no prefixes for the word.
 	 * @return The vocalizations and the grammatical categories
 	 */
-	public String[] getPrefixesLongPOS() {
-		//replaceFirst("^.*/","");		
+	public String[] getPrefixesLongPOS() {		
 		if (prefixesPOS.isEmpty()) return null;
 		String[] POS = new String[prefixesPOS.size()];
 		int i, j;
@@ -1128,11 +1126,10 @@ public class Solution {
 		return POS;
 	}
 
-	/** Returns The vocalizations in arabic of the <STRONG>recomputed</STRONG> prefixes and their grammatical categories.
+	/** Returns The vocalizations in arabic of the <STRONG>recomputed</STRONG> prefixes and their grammatical categories or <CODE>null</CODE> if there is no stem for the word.
 	 * @return The vocalizations and the grammatical categories.
 	 */
-	public String[] getPrefixesArabicLongPOS() {
-		//replaceFirst("^.*/","");		
+	public String[] getPrefixesArabicLongPOS() {		
 		if (prefixesPOS.isEmpty()) return null;
 		String[] POS = new String[prefixesPOS.size()];
 		int i, j;
@@ -1155,8 +1152,7 @@ public class Solution {
 	/** Returns the grammatical category of the <STRONG>recomputed</STRONG> stem.
 	 * @return The grammatical category
 	 */
-	public String getStemPOS() {
-		//replaceFirst("^.*/","");		
+	public String getStemPOS() {		
 		if (stemsPOS.isEmpty()) return "NO_STEM";
 		String[] POS = new String[stemsPOS.size()];
 		int i, j;
@@ -1179,12 +1175,11 @@ public class Solution {
 		return POS[0];				
 	}
 
-	/** Returns The vocalization using the Buckwalter transliteration system of the <STRONG>recomputed</STRONG> stem and its grammatical category .
+	/** Returns The vocalization using the Buckwalter transliteration system of the <STRONG>recomputed</STRONG> stem and its grammatical category  or <CODE>null</CODE> if there is no stem for the word.
 	 * @return The vocalization and the grammatical category
 	 */
 	public String getStemLongPOS() {
-		//replaceFirst("^.*/","");		
-		if (stemsPOS.isEmpty()) return "/NO_STEM";
+		if (stemsPOS.isEmpty()) return null;
 		String[] POS = new String[stemsPOS.size()];
 		int i, j;
 		String pos = null;
@@ -1205,12 +1200,11 @@ public class Solution {
 		return POS[0];				
 	}
 	
-	/** Returns The vocalization in arabic of the <STRONG>recomputed</STRONG> stem and its grammatical category.
+	/** Returns The vocalization in arabic of the <STRONG>recomputed</STRONG> stem and its grammatical category or <CODE>null</CODE> if there is no stem for the word.
 	 * @return The vocalization and the grammatical category
 	 */
-	public String getStemArabicLongPOS() {
-		//replaceFirst("^.*/","");		
-		if (stemsPOS.isEmpty()) return "/NO_STEM";
+	public String getStemArabicLongPOS() {		
+		if (stemsPOS.isEmpty()) return null;
 		String[] POS = new String[stemsPOS.size()];
 		int i, j;
 		String pos = null;
@@ -1231,7 +1225,7 @@ public class Solution {
 		return POS[0];				
 	}	
 	
-	/** Returns The grammatical categories of the <STRONG>recomputed</STRONG> suffixes.
+	/** Returns The grammatical categories of the <STRONG>recomputed</STRONG> suffixes or  <CODE>null</CODE> if there are no suffixes for the word..
 	 * @return The grammatical categories
 	 */
 	public String[] getSuffixesPOS() {
@@ -1255,7 +1249,7 @@ public class Solution {
 		return POS;
 	}	
 
-	/** Returns The vocalizations using the Buckwalter transliteration system of the <STRONG>recomputed</STRONG> suffixes and their grammatical categories.
+	/** Returns The vocalizations using the Buckwalter transliteration system of the <STRONG>recomputed</STRONG> suffixes and their grammatical categories or <CODE>null</CODE> if there is are no suffixes for the word.
 	 * @return The vocalizations and the grammatical categories
 	 */
 	public String[] getSuffixesLongPOS() {
@@ -1279,7 +1273,7 @@ public class Solution {
 		return POS;
 	}	
 
-	/** Returns The vocalization in arabic of the <STRONG>recomputed</STRONG> suffixes and their grammatical categories .
+	/** Returns The vocalization in arabic of the <STRONG>recomputed</STRONG> suffixes and their grammatical categories or <CODE>null</CODE> if there is are no suffixes for the word.
 	 * @return The vocalizations and the grammatical categories
 	 */
 	public String[] getSuffixesArabicLongPOS() {
@@ -1316,7 +1310,7 @@ public class Solution {
 				if (!"".equals(POS[i])) sb.append("\t" + "prefix : " + POS[i] + "\n");
 			}		
 		}
-		if (!"NO_STEM".equals(this.getStemPOS())) sb.append("\t" + "stem : " + this.getStemLongPOS() + "\n");
+		if (this.getStemLongPOS() != null) sb.append("\t" + "stem : " + this.getStemLongPOS() + "\n");
 		POS = this.getSuffixesLongPOS();	
 		if (POS != null) {		
 			for (i = 0 ; i < POS.length ; i++) {				
@@ -1339,7 +1333,7 @@ public class Solution {
 				if (!"".equals(POS[i])) sb.append("\t" + "prefix : " + POS[i] + "\n");
 			}		
 		}
-		if (!"NO_STEM".equals(this.getStemPOS())) sb.append("\t" + "stem : " + this.getStemArabicLongPOS() + "\n");
+		if (this.getStemArabicLongPOS() == null) sb.append("\t" + "stem : " + this.getStemArabicLongPOS() + "\n");
 		POS = this.getSuffixesArabicLongPOS();	
 		if (POS != null) {		
 			for (i = 0 ; i < POS.length ; i++) {				

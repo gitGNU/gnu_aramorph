@@ -83,8 +83,10 @@ public class ArabicGlosser extends TokenFilter {
 		String tokenType = null;			
 		try {
 			tokenText = (String)tokenGlosses.getFirst();
+			if (tokenText == null) tokenText = "";
 			//Token is typed in order to filter it later			
 			tokenType = (String)tokenPOS.getFirst();
+			if (tokenType == null) tokenType = "NO_STEM";
 			//OK : we're done with this gloss
 			tokenGlosses.removeFirst();
 			tokenPOS.removeFirst();
