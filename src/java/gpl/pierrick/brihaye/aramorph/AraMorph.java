@@ -170,9 +170,10 @@ public class AraMorph {
 		tmp_word = tmp_word.replaceAll("\u060C", ","); //\u060C : ARABIC COMMA
 		tmp_word = tmp_word.replaceAll("\u061B", ";"); //\u061B : ARABIC SEMICOLON
 		tmp_word = tmp_word.replaceAll("\u061F", "?"); //\u061F : ARABIC QUESTION MARK
+		//Not significant for morphological analysis
+		tmp_word = tmp_word.replaceAll("\u0640", ""); //\u0640 : ARABIC TATWEEL
 		//Not suitable for morphological analysis : remove all vowels/diacritics, i.e. undo the job !
 		tmp_word = tmp_word.replaceAll("[FNKaui~o]", "");
-		tmp_word = tmp_word.replaceAll("\u0640", ""); //\u0640 : ARABIC TATWEEL (Not in Buckwalter system)
 		//TODO : how to handle ARABIC LETTER SUPERSCRIPT ALEF and ARABIC LETTER ALEF WASLA ?		
 		tmp_word = tmp_word.replaceAll("[`\\{]", ""); //strip them for now
 		return tmp_word;
