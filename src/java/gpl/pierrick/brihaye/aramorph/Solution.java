@@ -34,7 +34,7 @@ import java.util.LinkedList;
 public class Solution {
 
 	/** Whether or not the dictionnaries inconsistencies should be output */
-	protected boolean debug = true; //TODO : false
+	protected boolean debug = false;
 	
 	/* The order in solutions' sequence.*/
 	protected int cnt;
@@ -57,15 +57,28 @@ public class Solution {
 	/* The suffixes glosses.*/
 	protected LinkedList suffixesGlosses;
 	
-	/** Constructs a solution for a word.
-	 * @param verbose Whether or not the dictionnaries inconsistencies should be output
+	/** Constructs a solution for a word. Note that the prefix, stem and suffix combination is <STRONG>recomputed</STRONG> 
+	 * and may not necessarily match with the information provided by the dictionaries.	 
+	 * @param cnt Order in sequence ; not very useful actually
+	 * @param prefix The prefix as provided by the prefixes dictionnary
+	 * @param stem The stem as provided by the stems dictionnary
+	 * @param suffix The suffix as provided by the suffixes dictionnary
+	 */
+	protected Solution(int cnt, DictionaryEntry prefix, DictionaryEntry stem, DictionaryEntry suffix) {
+		this(false, cnt, prefix, stem, suffix);
+	}
+
+	/** Constructs a solution for a word. Note that the prefix, stem and suffix combination is <STRONG>recomputed</STRONG> 
+	 * and may not necessarily match with the information provided by the dictionaries.	 
+	 * @param debug Whether or not the dictionnaries inconsistencies should be output
 	 * @param cnt Order in sequence ; not very useful actually
 	 * @param prefix The prefix as provided by the prefixes dictionnary
 	 * @param stem The stem as provided by the stems dictionnary
 	 * @param suffix The suffix as provided by the suffixes dictionnary
 	 */
 	protected Solution(boolean debug, int cnt, DictionaryEntry prefix, DictionaryEntry stem, DictionaryEntry suffix) {
-		//this.debug = verbose; //TODO : uncomment when fully tested		
+		this.debug = debug; 
+		this.debug = true; //TODO : suppress when fully tested		
 		this.cnt = cnt;
 		this.prefix = prefix;
 		this.stem = stem;
@@ -515,13 +528,13 @@ public class Solution {
 				suffixesPOS.addFirst(stemPOS);
 				if (stemGloss != null) suffixesGlosses.addFirst(stemGloss);
 			}	
-			else if (stemPOS.endsWith("IVSUFF_MOOD:I ")) {
+			else if (stemPOS.endsWith("IVSUFF_MOOD:I")) {
 				stemsPOS.removeLast();					
 				if (stemGloss != null) stemsGlosses.removeLast();
 				suffixesPOS.addFirst(stemPOS);
 				if (stemGloss != null) suffixesGlosses.addFirst(stemGloss);
 			}	
-			else if (stemPOS.endsWith("IVSUFF_SUBJ:2FS_MOOD:I ")) {
+			else if (stemPOS.endsWith("IVSUFF_SUBJ:2FS_MOOD:I")) {
 				stemsPOS.removeLast();					
 				if (stemGloss != null) stemsGlosses.removeLast();
 				suffixesPOS.addFirst(stemPOS);
@@ -557,7 +570,7 @@ public class Solution {
 				suffixesPOS.addFirst(stemPOS);
 				if (stemGloss != null) suffixesGlosses.addFirst(stemGloss);
 			}	
-			else if (stemPOS.endsWith("IVSUFF_SUBJ:D_MOOD:SJ ")) {
+			else if (stemPOS.endsWith("IVSUFF_SUBJ:D_MOOD:SJ")) {
 				stemsPOS.removeLast();					
 				if (stemGloss != null) stemsGlosses.removeLast();
 				suffixesPOS.addFirst(stemPOS);
