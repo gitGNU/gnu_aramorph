@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." default="all" name="ArabicAnalyzer">
+<project basedir="." default="help" name="ArabMorph">
+
+	<target name="help" description="Displays help about avalaible targets.">
+	 <echo>
+	 ArabMorph build targets :
+	 
+	 Specify the target you want to execute :
+	 compile : Compiles the source code.
+	 jar : Creates the jar file.
+	 zip : Creates a zip file containing the source files.
+	 javadoc : Builds the javadocs.
+	 site : Builds HTML documentation using Apache Forrest.	
+	 help : Displays help about avalaible targets. 
+	 </echo>	
+	</target>
     
 	<target name="init" description="Builds necessary directories.">        
         <property name="dist" value="./build"/>
@@ -48,11 +62,24 @@
         </javadoc>
     </target>
 	
-	 <target name="site" depends="init,javadoc" description="Build documentation unsing Apache Forrest.">
+	<target name="check_forrest" description="Checks whether Apache Forrest is available.">
 		<!-- An opportunity to override default settings -->
 		<property file="forrest.properties"/>
-		<property environment="env"/>
-		<property name="forrest.home" value="${env.FORREST_HOME}"/>		
+		<property environment="env"/>		
+		<property name="forrest.home" value="${env.FORREST_HOME}"/>			
+		<condition property="found.forrest">
+			<isset property="env.FORREST_HOME"/>
+		</condition>
+		<fail unless="found.forrest">
+		Unable to find Apache Forrest :
+		
+		set a FORREST_HOME environment variable
+		or
+		set a "forrest.home" property in "./forrest.properties"
+		</fail>
+	</target>
+	
+	 <target name="site" depends="check_forrest,init,javadoc" description="Builds HTML documentation using Apache Forrest." if="found.forrest">
 		<property name="project.home" location="." />
 		<property name="project.name" value="AraMorph"/>		
 		<property name="project.build-dir" value="dist"/>				
