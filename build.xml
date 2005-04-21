@@ -18,7 +18,7 @@
     
 	<target name="init" description="Builds necessary directories.">        		
         <property name="dist" value="./build"/>		
-		<property name="lucene.file" value="lucene-20030909"/>
+		<property name="lucene.file" value="lucene-1.4.3.jar"/>
 		<property name="with.sources" value="true"/>
 		<mkdir dir="${dist}"/>		
     </target>
@@ -28,7 +28,7 @@
         <javac debug="true" deprecation="true" destdir="${dist}/src" srcdir="./src/java">            
             <classpath>
 				<pathelement location="./lib/commons-collections.jar"/>
-				<pathelement location="./lib/${lucene.file}.jar"/>
+				<pathelement location="./lib/${lucene.file}"/>
 			</classpath>
         </javac>
     </target>
