@@ -22,7 +22,10 @@ See http://xml.apache.org/forrest/linking.html for more info
 	
 	<background label="Sous le capot" href="french/" tab="french">	
 		<principles label="Principes" href="principles.html" description="Principes de l'analyse morphologique" tab="french"/>
-		<dictionaries label="Dictionnaires" href="dictionaries.html" description="Format des dictionnaires" tab="french"/>		
+		<dictionaries label="Dictionnaires" href="dictionaries.html" description="Format de fichier des dictionnaires" tab="french"/>		
+		<correspondance-tables label="Tables" href="correspondance_tables.html" description="Format de fichier des tables de correspondance" tab="french"/>		
+		<morphological-categories label="Catégories morphologiques" href="morphological_categories.html" description="Catégories morphologiques" tab="french"/>		
+		<grammatical-categories label="Catégories grammaticales" href="grammatical_categories.html" description="Catégories grammaticales" tab="french"/>				
 	</background>	
 	
 	<technical label="Aspects techniques" href="french/" tab="french">		

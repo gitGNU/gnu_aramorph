@@ -5,8 +5,7 @@
     <title>Technical principles of the morphological analysis</title> 
   </header> 
   <body>
-	<warning label="Oyez !">Are you using <em>Mozilla</em> under <em>Windows 98</em> ? Vote for <fork href="http://bugzilla.mozilla.org/show_bug.cgi?id=180112">Bug 180112</fork> !</warning>
-	<section>      
+		<section>      
 	<title>The morphological analyzer</title>
 	<p>Let's create a <code>src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt</code> file in which we will type a single word, <em>كتاب</em>.</p> 
 	<p>Let's then execute the following code :</p>
@@ -84,7 +83,7 @@ Glossed as :
 		<tr><td><code>Grammatical category :</code></td><td>indicates the grammatical category of the prefix, the stem and the suffix of the solution.</td></tr>
 		<tr><td><code>Glossed as :</code></td><td>indicates one or more english glosses for the prefix, the stem and the suffix of the solution.</td></tr>
 	</table>
-	<note>The explanations about the morphological and grammatical categories are available in the <link href="site:dictionaries">dictionaries</link> section.</note>
+	<note>The explanations about the morphological categories are available in <link href="site:morphological-categories">this section</link> section those about grammatical catégories in <link href="site:grammatical-categories">this section</link>.</note>
 	</section>
 	<section>      
 	<title>How does <em>AraMorph</em> manage to propose acceptable solutions ?</title>	

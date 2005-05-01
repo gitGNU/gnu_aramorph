@@ -4,8 +4,7 @@
   <header> 
     <title>Principes techniques de l'analyse morphologique</title> 
   </header> 
-  <body>
-	<warning label="Oyez !">Vous utilisez <em>Mozilla</em> sous <em>Windows 98</em> ? Votez pour le <fork href="http://bugzilla.mozilla.org/show_bug.cgi?id=180112">Bug 180112</fork> !</warning>
+  <body>	
 	<section>      
 	<title>L'analyseur morphologique</title>
 	<p>Créons un fichier <code>src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt</code> dans lequel nous allons saisir un seul mot, <em>كتاب</em>.</p> 
@@ -84,7 +83,7 @@ Glossed as :
 		<tr><td><code>Grammatical category :</code></td><td>indique la catégorie grammaticale du préfixe, du radical et du suffixe de la solution.</td></tr>
 		<tr><td><code>Glossed as :</code></td><td>indique une ou plusieurs traductions anglaises pour le préfixe, le radical et le suffixe de la solution.</td></tr>
 	</table>
-	<note>Les explications sur les catégories morphologiques et les catégories grammaticales sont disponibles dans la rubrique concernant les <link href="site:dictionaries">dictionnaires</link>.</note>
+	<note>Les explications sur les catégories morphologiques sont disponibles dans <link href="site:morphological-categories">cette rubrique</link> et celles concernant les catégories grammaticales dans <link href="site:grammatical-categories">cette rubrique</link>.</note>
 	</section>
 	<section>      
 	<title>Comment <em>AraMorph</em> parvient-il à proposer des solutions acceptables ?</title>	
