@@ -69,7 +69,7 @@
             </sourcepath>
             <classpath>
 				<pathelement location="./lib/commons-collections.jar"/>
-				<pathelement location="./lib/${lucene.file}.jar"/>
+				<pathelement location="./lib/${lucene.file}"/>
 			</classpath>			
         </javadoc>
     </target>

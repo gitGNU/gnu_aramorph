@@ -743,7 +743,7 @@ public class AraMorph {
 	}
 	
 	/** Returns the solutions for a previously analyzed word.
-	 * @param translitered The word.
+	 * @param word The word.
 	 * @return A list of solutions
 	 * @see Solution
 	 */
