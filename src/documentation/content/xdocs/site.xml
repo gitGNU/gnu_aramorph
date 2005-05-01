@@ -28,7 +28,9 @@ See http://xml.apache.org/forrest/linking.html for more info
 	</technical>	
 		
 	<general label="About" href="english/" tab="english">
-		<index label="Presentation" href="index.html" description="Project's presentation" tab="english"/>		
+		<index label="Presentation" href="index.html" description="Project's presentation" tab="english"/>	
+		<download label="Download" href="download.html" description="Download" tab="english"/>
+		<install label="Installation" href="install.html" description="Installation" tab="english"/>					
 	</general>
 	<technical label="Technical aspects" href="english/" tab="english">		 		
 		<javadoc label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" tab="english"/>

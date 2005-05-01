@@ -8,7 +8,7 @@
 	<section>
 	<title>Construction du code source</title>
 	<p>Les sources sont livrées avec les bibliothèques <fork href="http://ant.apache.org/"><em>Ant</em></fork> nécessaires et un fichier <code>build.xml</code>.</p>
-	<warning>En l'état actuel du code, qui utilise abondamment les expressions régulières, <em>AraMorph</em> ne peut être construit et utilisé que sur un <em>JDK <strong>1.4</strong></em> ou supérieur. La modification du code qui permettrait l'utilisation de bibliothèques d'expressions régulières externes compatibles avec un <em>JDK</em> antérieur reste <link href="site:todo">à réaliser</link></warning>
+	<warning>En l'état actuel du code, qui utilise abondamment les expressions régulières, <em>AraMorph</em> ne peut être construit et utilisé que sur un <em>JDK <strong>1.4</strong></em> ou supérieur. La modification du code qui permettrait l'utilisation de bibliothèques d'expressions régulières externes compatibles avec un <em>JDK</em> antérieur reste <link href="site:todo">à réaliser</link>.</warning>
 	<p>La construction s'effectue simplement en lançant <code>build.bat</code> suivi du nom de la cible à exécuter.</p>
 	<fixme author="???">Un grand merci à qui me fournira un script <em>Unix</em> fonctionnel pour la distribution.</fixme>
 	<p>Les <em>cibles</em> disponibles sont :</p>
@@ -19,7 +19,7 @@
 			<td><code>jar</code></td>
 			<td>
 			Construit le fichier <code>ArabicAnalyzer.jar</code>. Par défaut, le résultat sera généré dans <code>${dist}</code>.<br/>
-			Selon la valeur de la propriété <code>with.sources</code> (<code>true</code> par défaut), les sources peuvent être incluses dans le fichier.
+			Selon la valeur de la propriété <code>with.sources</code> (<code>true</code> par défaut), les sources seront incluses dans le fichier.
 			</td>
 		</tr>
 		<tr><td><code>zip</code></td><td>Construit un fichier <code>ArabicAnalyzer-src.zip</code> contenant les fichiers source. Par défaut, le résultat sera généré dans <code>${dist}</code>.</td></tr>
@@ -29,7 +29,7 @@
 			<td><code>site</code></td>
 			<td>
 				Construit la documentation HTML à l'aide de <fork href="http://xml.apache.org/forrest/"><em>Apache Forrest</em></fork>.<br/>
-				Par défaut, le résultat sera généré dans <code>${dist}/html</code>. Vous pouvez définir le chemin de <em>Forrest</em> à partir d'une variable d'environnement <code>FORREST_HOME</code> ou définir la propriété <code>forrest.home</code> dans un fichier <code>./forrest.properties</code>.
+				Par défaut, le résultat sera généré dans <code>${dist}/html</code>. Vous pouvez définir le chemin de <em>Forrest</em> à partir d'une variable d'environnement <code>FORREST_HOME</code> ou définir la propriété <code>forrest.home</code> dans un fichier <code>./forrest.properties</code>.<warning>La cible est conçue pour <strong>Forrest version 0.5.1</strong>. Un grand merci à qui me fournira un fichier <code>build.xml</code> pour des versions plus récentes.</warning>
 			</td>
 		</tr>
 		<tr><td><code>clean</code></td><td>Détruit le répertoire de construction, par défaut <code>${dist}</code></td></tr>
@@ -70,7 +70,7 @@ ion with system's file.encoding
 			<tr><td><em>inFile</em></td><td>Le chemin d'un fichier texte à analyser (obligatoire)</td></tr>
 			<tr><td><em>inEncoding</em></td><td>L'encodage de ce fichier texte (<code>CP1256</code> par défaut)</td></tr>
 			<tr><td><em>outFile</em></td><td>Le chemin du fichier de sortie des résultats de l'analyse morphologique (la console par défaut)</td></tr>
-			<tr><td><em>outEncoding</em></td><td>L'encodage du fichier de sortie (<code>file.encoding</code> par défaut, avec utilisation de la translitération de Buckwalter)</td></tr>
+			<tr><td><em>outEncoding</em></td><td>L'encodage du fichier de sortie (par défaut, la propriété système <code>file.encoding</code> de la <em>JVM</em>, avec utilisation de la translitération de Buckwalter)</td></tr>
 			<tr><td><code>-v</code></td><td>Un drapeau indiquant que l'on désire une plus grande verbosité</td></tr>
 		</table>
 		<p>Voici quelques exemples d'utilisation :</p>

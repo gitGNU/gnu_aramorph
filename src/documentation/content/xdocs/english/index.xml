@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
-<document> 
+<document xml:lang="en"> 
   <header> 
     <title>Project's description</title> 
   </header> 
 <body>
-		<p><em>AraMorph</em> is a <em>Java</em> port of the homonym product  developed in <em>Perl</em> by Tim <em>Buckwalter</em> on behalf of the <em>Linguistic Data Consortium (LDC)</em> which can be downloaded from <fork href="http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49">http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49</fork>.</p>
+		<p><em>AraMorph</em> is a <em>Java</em> port of the homonym product  developed in <em>Perl</em> by <em>Tim Buckwalter</em> on behalf of the <em>Linguistic Data Consortium (LDC)</em> which can be downloaded from <fork href="http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49">http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49</fork>.</p>
 		<p>The product includes <em>Java</em> classes for the morphological analysis of arabic text files, whatever their encoding. Three test files are included in the principal encodings used for arabic : <code>UTF-8</code>, <code>ISO-8859-6</code> and <code>CP1256</code>.</p>
 		<p>This project also includes some classes which are compatible with <fork href="http://jakarta.apache.org/lucene/">Lucene</fork> architecture,
 		 in order to allow <strong>analyzing</strong>, <strong>indexing</strong> and <strong>querying</strong> documents in arabic.</p>
