@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
+<document xml:lang="en"> 
+  <header> 
+    <title>Technical principles of the morphological analysis</title> 
+  </header> 
+  <body>
+	<warning label="Oyez !">Are you using <em>Mozilla</em> under <em>Windows 98</em> ? Vote for <fork href="http://bugzilla.mozilla.org/show_bug.cgi?id=180112">Bug 180112</fork> !</warning>
+	<section>      
+	<title>The morphological analyzer</title>
+	<p>Let's create a <code>src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt</code> file in which we will type a single word, <em>كتاب</em>.</p> 
+	<p>Let's then execute the following code :</p>
+	<source>
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt UTF-8 -v
+	</source>
+	<warning>Of course, the file's encoding should fit your text editor's one.</warning>
+	<warning>The dictionaries have a fair memory footprint. You may have to increase the memory allocated to <em>Java</em> by using options such as <code>-Xms128M -Xmx192M</code>.</warning>
+	<p>Let's have a look at the output <code>results.txt</code> file, which is encoded in <code>UTF-8</code> :</p>
+	<source>
+Processing token : 	كتاب
+Transliteration : 	ktAb
+Token not yet processed.
+Token has direct solutions.
+
+SOLUTION #3
+Lemma  : 	kAtib
+Vocalized as : 	كُتّاب
+Morphology : 
+	prefix : Pref-0
+	stem : N
+	suffix : Suff-0
+Grammatical category : 
+	stem : كُتّاب	NOUN
+Glossed as : 
+	stem : authors/writers
+
+
+SOLUTION #1
+Lemma  : 	kitAb
+Vocalized as : 	كِتاب
+Morphology : 
+	prefix : Pref-0
+	stem : Ndu
+	suffix : Suff-0
+Grammatical category : 
+	stem : كِتاب	NOUN
+Glossed as : 
+	stem : book
+
+
+SOLUTION #2
+Lemma  : 	kut~Ab
+Vocalized as : 	كُتّاب
+Morphology : 
+	prefix : Pref-0
+	stem : N
+	suffix : Suff-0
+Grammatical category : 
+	stem : كُتّاب	NOUN
+Glossed as : 
+	stem : kuttab (village school)/Quran school
+
+	</source>
+	<p>The way the morphological analyzer works becomes then more obvious :</p>
+	<table>
+		<tr><th>Message</th><th>Meaning</th></tr>
+		<tr><td><code>Processing token</code></td><td>the word being processed</td></tr>
+		<tr><td><code>Transliteration</code></td><td>the transliteration of the word in the <fork href="http://www.qamus.org/transliteration.htm"><em>Buckwalter</em>'s system</fork> ; only with the <code>-v</code> parameter and if no output encoding is specified</td></tr>
+		<tr><td><code>Token not yet processed.</code></td><td>indicates that the word hasn't been processed yet and that it isn't in <em>AraMorph</em>'s cache ; only with the <code>-v</code> parameter</td></tr>
+		<tr>
+			<td><code>Token has direct solutions.</code></td>
+			<td>
+				indicates that the word can be analyzed as it is written ; only with the <code>-v</code> parameter.<br/>
+				Indeed, <em>AraMorph</em> is able to take alternative writings into consideration like a final <em>ـه</em> in place of  a <em>ـة</em> or a final <em>ـى</em> in place of a <em>ـي</em>...
+			</td>
+		</tr>
+		<tr>
+			<td><code>SOLUTION</code></td>
+			<td>indicates each solution for the word. The display order is not significant.</td>
+		</tr>	
+		<tr><td><code>Lemma</code></td><td>indicates the lemma's ID in the <link href="site:dictionaries">stems dictionary</link>.</td></tr>	
+		<tr><td><code>Vocalized as :</code></td><td>indicates the vocalization of the solution.</td></tr>
+		<tr><td><code>Morphology :</code></td><td>indicates the morphological category of the prefix, the stem and the suffix of the solution.</td></tr>
+		<tr><td><code>Grammatical category :</code></td><td>indicates the grammatical category of the prefix, the stem and the suffix of the solution.</td></tr>
+		<tr><td><code>Glossed as :</code></td><td>indicates one or more english glosses for the prefix, the stem and the suffix of the solution.</td></tr>
+	</table>
+	<note>The explanations about the morphological and grammatical categories are available in the <link href="site:dictionaries">dictionaries</link> section.</note>
+	</section>
+	<section>      
+	<title>How does <em>AraMorph</em> manage to propose acceptable solutions ?</title>	
+	<p>First, you have to know that <em>AraMorph</em>, like its predecessor in <em>Perl</em>, works with a <strong>transliteration</strong> of the arabic word. This transliteration obviously uses <em>Buckwalter</em>'s system. Thus, <em>كتاب</em> is transliterated in <em>ktAb</em> before its morphological analysis.</p>
+	<fixme author="PB">This operation should not be necessary since <em>Java</em> works <strong>natively</strong> with <em>Unicode</em>. A code optimization, that would allow to bypass the transliteration step and thus increase performance is <link href="site:todo">to be done</link>.</fixme>
+	<p>Then, <em>AraMorph</em> uses a brute force algorithm to <strong>decompose</strong> the word in a sequence of <strong>possible</strong> prefix, stem and suffix :</p>
+	<table>
+		<tr><th>prefix</th><th>stem</th><th>suffix</th></tr>
+		<tr><td><code>ktAb</code></td><td><code>Ø</code></td><td>Ø</td></tr>
+		<tr><td><code>ktA</code></td><td><code>b</code></td><td>Ø</td></tr>
+		<tr><td><code>ktA</code></td><td><code>Ø</code></td><td>b</td></tr>
+		<tr><td><code>kt</code></td><td><code>Ab</code></td><td>Ø</td></tr>
+		<tr><td><code>kt</code></td><td><code>A</code></td><td>b</td></tr>
+		<tr><td><code>kt</code></td><td><code>Ø</code></td><td>Ab</td></tr>
+		<tr><td><code>k</code></td><td><code>tAb</code></td><td>Ø</td></tr>
+		<tr><td><code>k</code></td><td><code>tA</code></td><td>b</td></tr>
+		<tr><td><code>k</code></td><td><code>t</code></td><td>Ab</td></tr>
+		<tr><td><code>k</code></td><td><code>Ø</code></td><td>tAb</td></tr>
+		<tr><td><code>Ø</code></td><td><code>ktAb</code></td><td>Ø</td></tr>
+		<tr><td><code>Ø</code></td><td><code>ktA</code></td><td>b</td></tr>
+		<tr><td><code>Ø</code></td><td><code>kt</code></td><td>Ab</td></tr>
+		<tr><td><code>Ø</code></td><td><code>k</code></td><td>tAb</td></tr>
+		<tr><td><code>Ø</code></td><td><code>Ø</code></td><td>ktAb</td></tr>		
+	</table>
+	<p>Then, <em>AraMorph</em> checks the presence of each element in three dictionaries :</p>
+	<ul>
+		<li>the prefix, in <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictPrefixes</code></li>	
+		<li>the stem, in <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictStems</code></li>	
+		<li>the suffix, in <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictSuffixes</code></li>	
+	</ul>
+	<p>If successful, <em>AraMorph</em> grabs the morphological information for each element.</p>
+	<warning>Ø prefixes or suffixes are morphologically <strong>significant</strong>.</warning>
+	<p>If applicable, <em>AraMorph</em> then checks if the morphologies of each element are compatible between them by looking-up three tables containing valid combinations :</p>
+	<ul>		
+		<li>between the prefix and the stem, in <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAB</code></li>	
+		<li>between the prefix and the suffix, in <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAC</code></li>	
+		<li>between the stem and the suffix, in <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableBC</code></li>	
+	</ul>
+	<p>A word decomposition for which :</p>
+	<ol>
+		<li>prefix, stem <strong>and</strong> suffix have a dictionary entry,</li>
+		<li>prefix, stem <strong>and</strong> suffix are morphologically compatible between each other,</li>
+	</ol>
+	<p>... <strong>is</strong> a solution. For <em>كتاب</em>, there are three ones as we can see above.</p>
+	<warning>Some informations in the stems dictionary are in fact relevant for prefixes or suffixes. <em>AraMorph</em>, when it returns a solution, tries to shift these informations towards the prefixes or the suffixes. It is thus possible to have <strong>several</strong> prefixes and/or suffixes for a single word.<br/>
+	If some interpretation problem occurs, rarely enough however, messages are displayed on the console.</warning>
+	</section>	
+  </body>  
+</document>

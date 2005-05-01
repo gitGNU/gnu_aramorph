@@ -2,7 +2,7 @@
 <!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
 <document xml:lang="fr">
 	<header>
-		<title>Description du projet</title>
+		<title>Présentation du projet</title>
 	</header>
 	<body>
 		<p><em>AraMorph</em> est un portage en <em>Java</em> du produit homonyme développé en <em>Perl</em> par <em>Tim Buckwalter</em> pour le compte du <em>Linguistic Data Consortium (LDC)</em> et accessible en ligne à l'adresse <fork href="http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49">http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49</fork>.</p>

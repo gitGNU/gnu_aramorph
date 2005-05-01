@@ -14,42 +14,44 @@ See http://xml.apache.org/forrest/linking.html for more info
 -->
 <site label="AraMorph" xmlns="http://apache.org/forrest/linkmap/1.0" tab="french" >
 
-	<general label="A propos" href="french/" tab="french">
-		<index label="Présentation" href="index.html" description="Presentation du projet" tab="french"/>
-		<download label="Téléchargement" href="download.html" description="Telechargement" tab="french"/>
-		<install label="Installation" href="install.html" description="Installation" tab="french"/>		
-		<principles label="Principes" href="principles.html" description="Principes techniques" tab="french"/>
+	<first-steps label="Premiers pas" href="french/" tab="french">
+		<index label="Présentation" href="index.html" description="Présentation du projet" tab="french"/>
+		<download label="Téléchargement" href="download.html" description="Téléchargement" tab="french"/>
+		<install label="Installation" href="install.html" description="Installation et tests" tab="french"/>
+	</first-steps>
+	
+	<background label="Sous le capot" href="french/" tab="french">	
+		<principles label="Principes" href="principles.html" description="Principes de l'analyse morphologique" tab="french"/>
 		<dictionaries label="Dictionnaires" href="dictionaries.html" description="Format des dictionnaires" tab="french"/>		
-	</general>
+	</background>	
+	
 	<technical label="Aspects techniques" href="french/" tab="french">		
-		<javadoc label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" tab="french"/>
-		<lucene label="Lucene" href="lucene.html" tab="french"/>
-		<todo label="TODO" href="todo.html" tab="french"/>
+		<lucene label="Lucene" href="lucene.html" description="Utilisation dans Lucene" tab="french"/>
+		<javadoc label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" description="Javadocs" tab="french"/>		
+		<todo label="TODO" href="todo.html" description="Ce qu'il reste à faire..." tab="french"/>
 	</technical>	
 		
-	<general label="About" href="english/" tab="english">
+	<first-steps label="First steps" href="english/" tab="english">
 		<index label="Presentation" href="index.html" description="Project's presentation" tab="english"/>	
 		<download label="Download" href="download.html" description="Download" tab="english"/>
-		<install label="Installation" href="install.html" description="Installation" tab="english"/>					
-	</general>
+		<install label="Installation" href="install.html" description="Installation and tests" tab="english"/>					
+	</first-steps>
+	
+	<background label="Under the hood" href="english/" tab="english">	
+		<principles label="Principles" href="principles.html" description="Principles of the morphological analysis" tab="english"/>
+	</background>	
+	
 	<technical label="Technical aspects" href="english/" tab="english">		 		
-		<javadoc label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" tab="english"/>
+		<javadoc label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" description="Javadocs"  tab="english"/>
 		<!--
 		<tab label="Lucene" href="lucene.html" tab="english"/>
 		<tab label="TODO" href="todo.html" tab="english"/>		
 		-->
 	</technical>
 	
-	<general label="About" href="arabic/" tab="arabic">
+	<first-steps label="First steps" href="arabic/" tab="arabic">
 		<index label="Presentation" href="index.html" description="Project's presentation" tab="arabic"/>
-	</general>
-	<technical label="Technical aspects" href="arabic/" tab="arabic">	
-		<javadoc label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" tab="arabic"/>
-		<!--
-		<tab label="Lucene" href="lucene.html" tab="arabic"/>
-		<tab label="TODO" href="todo.html" tab="arabic"/>				
-		-->
-	</technical>
+	</first-steps>
 
   <all>
     <whole_site_html label="Whole Site HTML" href="site.html"/>
