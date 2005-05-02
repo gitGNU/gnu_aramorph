@@ -6,6 +6,6 @@
   </header> 
   <body>     
       <p>Les différentes distributions sont disponibles <fork href="http://savannah.nongnu.org/download/aramorph/">ici</fork>.</p>
-	  <p>Vous pouvez également télécharger les sources contenues dans l'entrepôt CVS comme indiqué à <fork href="http://savannah.nongnu.org/cvs/?group=aramorph">cette adresse</fork> et construire votre propre distribution comme indiqué dans la rubrique <link href="site:install">installation</link>.</p>
+	  <p>Vous pouvez également télécharger les sources contenues dans l'entrepôt CVS comme indiqué à <fork href="http://savannah.nongnu.org/cvs/?group=aramorph">cette adresse</fork> et construire votre propre distribution comme indiqué dans la rubrique <link href="site:install-fr">installation</link>.</p>
   </body>
 </document>

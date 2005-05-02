@@ -17,8 +17,8 @@
 	  <ol>
 	  <li>le squelette consonnantique du préfixe (selon le système de translitération de <fork href="http://www.qamus.org/transliteration.htm"><em>Buckwalter</em></fork>)</li>
 	  <li>la vocalisation du préfixe (selon le même système)</li>
-	  <li>la <link href="site:morphological-categories">catégorie morphologique</link> du préfixe</li>
-	  <li>une ou plusieurs traductions du préfixe suivies d'une ou plusieurs <link href="site:grammatical-categories">catégories grammaticales</link>. Noter le <code>+</code> indiquant qu'un radical est attendu après ce préfixe.</li>
+	  <li>la <link href="site:morphological-categories-fr">catégorie morphologique</link> du préfixe</li>
+	  <li>une ou plusieurs traductions du préfixe suivies d'une ou plusieurs <link href="site:grammatical-categories-fr">catégories grammaticales</link>. Noter le <code>+</code> indiquant qu'un radical est attendu après ce préfixe.</li>
 	  </ol>	 
 	  <p>Certaines informations sont facultatives. L'exemple le plus caractéristique est celui du préfixe vide :</p>
 	  <source>

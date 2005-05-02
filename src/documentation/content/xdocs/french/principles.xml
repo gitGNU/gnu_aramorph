@@ -77,18 +77,18 @@ Glossed as :
 			<td><code>SOLUTION</code></td>
 			<td>indique chacune des solutions pour le mot. L'ordre d'affichage n'est pas signifiant.</td>
 		</tr>	
-		<tr><td><code>Lemma</code></td><td>indique l'identifant du lemme de la solution dans le <link href="site:dictionaries">dictionnaire des radicaux</link>.</td></tr>	
+		<tr><td><code>Lemma</code></td><td>indique l'identifant du lemme de la solution dans le <link href="site:dictionaries-fr">dictionnaire des radicaux</link>.</td></tr>	
 		<tr><td><code>Vocalized as :</code></td><td>indique la vocalisation de la solution.</td></tr>
 		<tr><td><code>Morphology :</code></td><td>indique la catégorie morphologique du préfixe, du radical et du suffixe de la solution.</td></tr>
 		<tr><td><code>Grammatical category :</code></td><td>indique la catégorie grammaticale du préfixe, du radical et du suffixe de la solution.</td></tr>
 		<tr><td><code>Glossed as :</code></td><td>indique une ou plusieurs traductions anglaises pour le préfixe, le radical et le suffixe de la solution.</td></tr>
 	</table>
-	<note>Les explications sur les catégories morphologiques sont disponibles dans <link href="site:morphological-categories">cette rubrique</link> et celles concernant les catégories grammaticales dans <link href="site:grammatical-categories">cette rubrique</link>.</note>
+	<note>Les explications sur les catégories morphologiques sont disponibles dans <link href="site:morphological-categories-fr">cette rubrique</link> et celles concernant les catégories grammaticales dans <link href="site:grammatical-categories-fr">cette rubrique</link>.</note>
 	</section>
 	<section>      
 	<title>Comment <em>AraMorph</em> parvient-il à proposer des solutions acceptables ?</title>	
 	<p>Avant toute chose, il faut savoir que <em>AraMorph</em>, comme son ancêtre en <em>Perl</em>, travaille sur une <strong>translitération</strong> du mot arabe. Cette translitération utilise naturellement le système de <em>Buckwalter</em>. Ainsi, <em>كتاب</em> est translitéré en <em>ktAb</em> avant son analyse morphologique.</p>
-	<fixme author="PB">Cette opération ne devrait pas être nécessaire car <em>Java</em> travaille <strong>nativement</strong> en <em>Unicode</em>. L'optimisation du code, qui permettrait de se passer de l'étape de translitération et donc de gagner de la performance, reste <link href="site:todo">à réaliser</link>.</fixme>
+	<fixme author="PB">Cette opération ne devrait pas être nécessaire car <em>Java</em> travaille <strong>nativement</strong> en <em>Unicode</em>. L'optimisation du code, qui permettrait de se passer de l'étape de translitération et donc de gagner de la performance, reste <link href="site:todo-fr">à réaliser</link>.</fixme>
 	<p>Ensuite, <em>AraMorph</em> utilise un algorithme de force brute pour <strong>décomposer</strong> le mot en une succession de préfixe, radical et préfixe <strong>possibles</strong> :</p>
 	<table>
 		<tr><th>préfixe</th><th>radical</th><th>suffixe</th></tr>

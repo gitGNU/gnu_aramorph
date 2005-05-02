@@ -26,7 +26,7 @@ java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-2003090
 			<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#endOffset()"><code>endOffset</code></fork>)			
 			et sa position relative par rapport au <em>token</em> précédent (<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#getPositionIncrement()"><code>positionIncrement</code></fork>).</p>
 		<p>Il faut en effet attirer l'attention sur le fait qu'un même mot arabe, parce qu'il est généralement réduit à son squelette consonnantique, donne souvent lieu à <strong>plusieurs</strong> <em>solutions</em>.</p>
-		<fixme author="PB">Quand bien même le texte serait vocalisé, les voyelles ne sont malheureusement pas prises en compte pour lever les ambiguités d'analyse. La résolution de ce problème est <link href="site:todo">à l'étude</link>.</fixme>
+		<fixme author="PB">Quand bien même le texte serait vocalisé, les voyelles ne sont malheureusement pas prises en compte pour lever les ambiguités d'analyse. La résolution de ce problème est <link href="site:todo-fr">à l'étude</link>.</fixme>
 		<note>Dans cet exemple, le texte des <em>tokens</em> est en arabe, mais pour des raisons de performance, il vaut sans doute mieux retourner des tokens translitérés selon le système de Buckwalter en ne spécifiant pas d'encodage de sortie pour le fichier de résultats.</note>
 		<warning>Dans cet exemple, et bien que <em>كتاب</em> ait 3 solutions, on ne retourne que 2 <em>tokens</em>. En effet, <em>كُتّاب</em> est présent par 2 fois, la première en tant que pluriel de <em>كاتب</em>, la seconde en tant que nom singulier valant pour <em>école coranique</em>.</warning>
 		<fixme author="PB">Que faire si un même texte de <em>token</em> renvoie des catégories grammaticales différentes ? Etant donné que les index <em>Lucene</em> perdent l'information de type, ce problème n'en est peut-être pas un.</fixme>
@@ -183,7 +183,7 @@ book	NOUN	[0-4]	0
 		<li><code>VERB_PERFECT</code></li>			
 		<li><code>NO_RESULT</code></li>
 	</ul>
-	<note label="Rappel">Les explications sur les catégories grammaticales sont disponibles dans la rubrique concernant les <link href="site:dictionaries">dictionnaires</link>.</note>		
+	<note label="Rappel">Les explications sur les catégories grammaticales sont disponibles dans la rubrique concernant les <link href="site:dictionaries-fr">dictionnaires</link>.</note>		
 	<note>Cette implémentation peut tout à fait être rediscutée !</note>
 	</section>
   </body>  

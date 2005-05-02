@@ -8,9 +8,9 @@
 	<section>
 	<title>Building from source code</title>
 	<p>The source code includes the necessary <fork href="http://ant.apache.org/"><em>Ant</em></fork> librairies together with a <code>build.xml</code> file.</p>
-	<warning>For now, the code makes a heavy use of regular expressions so that <em>AraMorph</em> needs to be build and used on a <em>JDK <strong>1.4</strong></em> or above. The code modification that would allow external regular expressions libraries that could operate with an older <em>JDK</em> is still <link href="site:todo">to be done</link>.</warning>
+	<warning>For now, the code makes a heavy use of regular expressions so that <em>AraMorph</em> needs to be build and used on a <em>JDK <strong>1.4</strong></em> or above. The code modification that would allow external regular expressions libraries that could operate with an older <em>JDK</em> is still <link href="site:todo-en">to be done</link>.</warning>
 	<p>The build is simply done when <code>build.bat</code> is invoked together with a target's name.</p>
-	<fixme author="???">Many thanks to whom will provide me a functionnal <em>Unix</em> script.</fixme>
+	<fixme author="???">Many thanks to whom will provide me a functionnal <em>Unix</em> script for the build.</fixme>
 	<p>The available <em>targets</em> are :</p>
 	<table>
 		<tr><th>Target</th><th>Action</th></tr>
@@ -40,7 +40,8 @@
 	</section>
 	<section><title>Testing the morphological analyzer</title>
 	<p>The morphological analyzer is used as such :</p>
-	<source>java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph</source>
+	<source>java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar ¶
+	gpl.pierrick.brihaye.aramorph.AraMorph</source>
 	<warning>The <em>classpath</em> must obviously point to the actual location of the <code>ArabicAnalyzer.jar</code> and <code>commons-collections.jar</code> files.</warning>
 	<p>As such, i.e. without arguments, the program displays the following help message :</p>
 	<source>
@@ -72,20 +73,30 @@ ion with system's file.encoding
 			<tr><td><em>inEncoding</em></td><td>This text file's encoding (<code>CP1256</code> by default)</td></tr>
 			<tr><td><em>outFile</em></td><td>The path of the file where the results of the morphological analysis should be output (the console by default)</td></tr>
 			<tr><td><em>outEncoding</em></td><td>The encoding of the results file (by default, the <em>JVM</em>'s <code>file.encoding</code> system property, using Buckwalter's transliteration)</td></tr>
-			<tr><td><code>-v</code></td><td>A flag to be set fro more verbosity</td></tr>
+			<tr><td><code>-v</code></td><td>A flag to be set for more verbosity</td></tr>
 		</table>
 		<p>Here are a few usage examples :</p>
 		<source>
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/UTF-8.txt UTF-8 -v
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/iso-8859-6.txt iso-8859-6 results.txt CP1256
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar ¶
+gpl.pierrick.brihaye.aramorph.AraMorph ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt
+
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar ¶
+gpl.pierrick.brihaye.aramorph.AraMorph ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/UTF-8.txt UTF-8 -v
+
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar ¶
+gpl.pierrick.brihaye.aramorph.AraMorph ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/iso-8859-6.txt iso-8859-6 results.txt CP1256
 		</source>
 	</section>
 	<section>
 		<title>Testing the arabic analyzer for Lucene</title>
 		<p>The parameters are the same except <code>-v</code> which is unuseful. The <em>Lucene</em> <code>jar</code> file must however be included in the <em>classpath</em>.</p>
 		<source>
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt results.txt
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar ¶
+gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt results.txt
 		</source>	
 		<warning>The <em>classpath</em> must obviously point to the actual location of the <code>ArabicAnalyzer.jar</code>, <code>commons-collections.jar</code> and <code>lucene*.jar</code> files.</warning>
 	</section>
@@ -95,7 +106,9 @@ java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-2003090
 		Don't expect too much however, <em>AraMorph</em> isn't designed to be an automatic translation tool.</note>
 		<p>The parameters are the same except <code>-v</code> which is unuseful. The <em>Lucene</em> <code>jar</code> file must however be included in the <em>classpath</em>.</p>
 		<source>
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicGlosser src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt results.txt
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar ¶
+gpl.pierrick.brihaye.aramorph.test.TestArabicGlosser ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt results.txt
 		</source>	
 		<warning>The <em>classpath</em> must obviously point to the actual location of the <code>ArabicAnalyzer.jar</code>, <code>commons-collections.jar</code> and <code>lucene*.jar</code> files.</warning>
 	</section>

@@ -77,18 +77,18 @@ Glossed as :
 			<td><code>SOLUTION</code></td>
 			<td>indicates each solution for the word. The display order is not significant.</td>
 		</tr>	
-		<tr><td><code>Lemma</code></td><td>indicates the lemma's ID in the <link href="site:dictionaries">stems dictionary</link>.</td></tr>	
+		<tr><td><code>Lemma</code></td><td>indicates the lemma's ID in the <link href="site:dictionaries-en">stems dictionary</link>.</td></tr>	
 		<tr><td><code>Vocalized as :</code></td><td>indicates the vocalization of the solution.</td></tr>
 		<tr><td><code>Morphology :</code></td><td>indicates the morphological category of the prefix, the stem and the suffix of the solution.</td></tr>
 		<tr><td><code>Grammatical category :</code></td><td>indicates the grammatical category of the prefix, the stem and the suffix of the solution.</td></tr>
 		<tr><td><code>Glossed as :</code></td><td>indicates one or more english glosses for the prefix, the stem and the suffix of the solution.</td></tr>
 	</table>
-	<note>The explanations about the morphological categories are available in <link href="site:morphological-categories">this section</link> section those about grammatical catégories in <link href="site:grammatical-categories">this section</link>.</note>
+	<note>The explanations about the morphological categories are available in <link href="site:morphological-categories-en">this section</link> section those about grammatical categories in <link href="site:grammatical-categories-en">this section</link>.</note>
 	</section>
 	<section>      
 	<title>How does <em>AraMorph</em> manage to propose acceptable solutions ?</title>	
 	<p>First, you have to know that <em>AraMorph</em>, like its predecessor in <em>Perl</em>, works with a <strong>transliteration</strong> of the arabic word. This transliteration obviously uses <em>Buckwalter</em>'s system. Thus, <em>كتاب</em> is transliterated in <em>ktAb</em> before its morphological analysis.</p>
-	<fixme author="PB">This operation should not be necessary since <em>Java</em> works <strong>natively</strong> with <em>Unicode</em>. A code optimization, that would allow to bypass the transliteration step and thus increase performance is <link href="site:todo">to be done</link>.</fixme>
+	<fixme author="PB">This operation should not be necessary since <em>Java</em> works <strong>natively</strong> with <em>Unicode</em>. A code optimization, that would allow to bypass the transliteration step and thus increase performance is <link href="site:todo-en">to be done</link>.</fixme>
 	<p>Then, <em>AraMorph</em> uses a brute force algorithm to <strong>decompose</strong> the word in a sequence of <strong>possible</strong> prefix, stem and suffix :</p>
 	<table>
 		<tr><th>prefix</th><th>stem</th><th>suffix</th></tr>

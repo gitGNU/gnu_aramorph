@@ -14,47 +14,48 @@ See http://xml.apache.org/forrest/linking.html for more info
 -->
 <site label="AraMorph" xmlns="http://apache.org/forrest/linkmap/1.0" tab="french" >
 
-	<first-steps label="Premiers pas" href="french/" tab="french">
-		<index label="Présentation" href="index.html" description="Présentation du projet" tab="french"/>
-		<download label="Téléchargement" href="download.html" description="Téléchargement" tab="french"/>
-		<install label="Installation" href="install.html" description="Installation et tests" tab="french"/>
-	</first-steps>
+	<first-steps-fr label="Premiers pas" href="french/" tab="french">
+		<index-fr label="Présentation" href="index.html" description="Présentation du projet" tab="french"/>
+		<download-fr label="Téléchargement" href="download.html" description="Téléchargement" tab="french"/>
+		<install-fr label="Installation" href="install.html" description="Installation et tests" tab="french"/>
+	</first-steps-fr>
 	
-	<background label="Sous le capot" href="french/" tab="french">	
-		<principles label="Principes" href="principles.html" description="Principes de l'analyse morphologique" tab="french"/>
-		<dictionaries label="Dictionnaires" href="dictionaries.html" description="Format de fichier des dictionnaires" tab="french"/>		
-		<correspondance-tables label="Tables" href="correspondance_tables.html" description="Format de fichier des tables de correspondance" tab="french"/>		
-		<morphological-categories label="Catégories morphologiques" href="morphological_categories.html" description="Catégories morphologiques" tab="french"/>		
-		<grammatical-categories label="Catégories grammaticales" href="grammatical_categories.html" description="Catégories grammaticales" tab="french"/>				
-	</background>	
+	<background-fr label="Sous le capot" href="french/" tab="french">	
+		<principles-fr label="Principes" href="principles.html" description="Principes de l'analyse morphologique" tab="french"/>
+		<dictionaries-fr label="Dictionnaires" href="dictionaries.html" description="Format de fichier des dictionnaires" tab="french"/>		
+		<correspondance-tables-fr label="Tables" href="correspondance_tables.html" description="Format de fichier des tables de correspondance" tab="french"/>		
+		<morphological-categories-fr label="Catégories morphologiques" href="morphological_categories.html" description="Catégories morphologiques" tab="french"/>		
+		<grammatical-categories-fr label="Catégories grammaticales" href="grammatical_categories.html" description="Catégories grammaticales" tab="french"/>				
+	</background-fr>	
 	
-	<technical label="Aspects techniques" href="french/" tab="french">		
-		<lucene label="Lucene" href="lucene.html" description="Utilisation dans Lucene" tab="french"/>
+	<technical-fr label="Aspects techniques" href="french/" tab="french">		
+		<lucene-fr label="Lucene" href="lucene.html" description="Utilisation dans Lucene" tab="french"/>
 		<javadoc label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" description="Javadocs" tab="french"/>		
-		<todo label="TODO" href="todo.html" description="Ce qu'il reste à faire..." tab="french"/>
-	</technical>	
+		<todo-fr label="TODO" href="todo.html" description="Ce qu'il reste à faire..." tab="french"/>
+	</technical-fr>	
 		
-	<first-steps label="First steps" href="english/" tab="english">
-		<index label="Presentation" href="index.html" description="Project's presentation" tab="english"/>	
-		<download label="Download" href="download.html" description="Download" tab="english"/>
-		<install label="Installation" href="install.html" description="Installation and tests" tab="english"/>					
-	</first-steps>
+	<first-steps-en label="First steps" href="english/" tab="english">
+		<index-en label="Presentation" href="index.html" description="Project's presentation" tab="english"/>	
+		<download-en label="Download" href="download.html" description="Download" tab="english"/>
+		<install-en label="Installation" href="install.html" description="Installation and tests" tab="english"/>					
+	</first-steps-en>
 	
-	<background label="Under the hood" href="english/" tab="english">	
-		<principles label="Principles" href="principles.html" description="Principles of the morphological analysis" tab="english"/>
-	</background>	
+	<background-en label="Under the hood" href="english/" tab="english">	
+		<principles-en label="Principles" href="principles.html" description="Principles of the morphological analysis" tab="english"/>
+		<dictionaries-en label="Dictionaries" href="dictionaries.html" description="Dictionaries file format" tab="english"/>		
+		<correspondance-tables-en label="Tables" href="correspondance_tables.html" description="Correspondance tables file format" tab="english"/>		
+		<morphological-categories-en label="Catégories morphologiques" href="morphological_categories.html" description="Morphological categories" tab="english"/>		
+		<grammatical-categories-en label="Catégories grammaticales" href="grammatical_categories.html" description="Grammatical categories" tab="english"/>				
+	</background-en>	
 	
-	<technical label="Technical aspects" href="english/" tab="english">		 		
+	<technical-en label="Technical aspects" href="english/" tab="english">		 		
 		<javadoc label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" description="Javadocs"  tab="english"/>
-		<!--
-		<tab label="Lucene" href="lucene.html" tab="english"/>
-		<tab label="TODO" href="todo.html" tab="english"/>		
-		-->
-	</technical>
+		<todo-en label="TODO" href="todo.html" description="What remains to be done..." tab="english"/>
+	</technical-en>
 	
-	<first-steps label="First steps" href="arabic/" tab="arabic">
-		<index label="Presentation" href="index.html" description="Project's presentation" tab="arabic"/>
-	</first-steps>
+	<first-steps-ar label="First steps" href="arabic/" tab="arabic">
+		<index-ar label="Presentation" href="index.html" description="Project's presentation" tab="arabic"/>
+	</first-steps-ar>
 
   <all>
     <whole_site_html label="Whole Site HTML" href="site.html"/>
