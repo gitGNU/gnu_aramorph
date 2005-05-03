@@ -10,7 +10,10 @@
 	<p>Let's create a <code>src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt</code> file in which we will type a single word, <em>كتاب</em>.</p> 
 	<p>Let's then execute the following code :</p>
 	<source>
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt UTF-8 -v
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar ¶
+gpl.pierrick.brihaye.aramorph.AraMorph ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt ¶
+CP1256 results.txt UTF-8 -v
 	</source>
 	<warning>Of course, the file's encoding should fit your text editor's one.</warning>
 	<warning>The dictionaries have a fair memory footprint. You may have to increase the memory allocated to <em>Java</em> by using options such as <code>-Xms128M -Xmx192M</code>.</warning>
@@ -77,7 +80,7 @@ Glossed as :
 			<td><code>SOLUTION</code></td>
 			<td>indicates each solution for the word. The display order is not significant.</td>
 		</tr>	
-		<tr><td><code>Lemma</code></td><td>indicates the lemma's ID in the <link href="site:dictionaries-en">stems dictionary</link>.</td></tr>	
+		<tr><td><code>Lemma</code></td><td>indicates the lemma's ID in the <strong>stems</strong> <link href="site:dictionaries-en">dictionary</link>.</td></tr>	
 		<tr><td><code>Vocalized as :</code></td><td>indicates the vocalization of the solution.</td></tr>
 		<tr><td><code>Morphology :</code></td><td>indicates the morphological category of the prefix, the stem and the suffix of the solution.</td></tr>
 		<tr><td><code>Grammatical category :</code></td><td>indicates the grammatical category of the prefix, the stem and the suffix of the solution.</td></tr>
@@ -115,14 +118,14 @@ Glossed as :
 		<li>the suffix, in <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictSuffixes</code></li>	
 	</ul>
 	<p>If successful, <em>AraMorph</em> grabs the morphological information for each element.</p>
-	<warning>Ø prefixes or suffixes are morphologically <strong>significant</strong>.</warning>
-	<p>If applicable, <em>AraMorph</em> then checks if the morphologies of each element are compatible between them by looking-up three tables containing valid combinations :</p>
+	<warning>The Ø prefixes and suffixes are morphologically <strong>significant</strong>.</warning>
+	<p>If applicable, <em>AraMorph</em> then checks if the morphologies of each element are compatible between each other by looking-up three tables containing valid combinations :</p>
 	<ul>		
 		<li>between the prefix and the stem, in <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAB</code></li>	
 		<li>between the prefix and the suffix, in <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAC</code></li>	
 		<li>between the stem and the suffix, in <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableBC</code></li>	
 	</ul>
-	<p>A word decomposition for which :</p>
+	<p>A word decomposition whose :</p>
 	<ol>
 		<li>prefix, stem <strong>and</strong> suffix have a dictionary entry,</li>
 		<li>prefix, stem <strong>and</strong> suffix are morphologically compatible between each other,</li>

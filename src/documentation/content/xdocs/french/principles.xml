@@ -10,7 +10,10 @@
 	<p>Créons un fichier <code>src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt</code> dans lequel nous allons saisir un seul mot, <em>كتاب</em>.</p> 
 	<p>Exécutons ensuite le code suivant :</p>
 	<source>
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar gpl.pierrick.brihaye.aramorph.AraMorph src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt UTF-8 -v
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar ¶
+gpl.pierrick.brihaye.aramorph.AraMorph ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 ¶
+results.txt UTF-8 -v
 	</source>
 	<warning>Naturellement, l'encodage du fichier d'entrée doit être adapté à celui utilisé par votre éditeur de texte.</warning>
 	<warning>Les dictionnaires occupent une place non négligeable en mémoire. Vous aurez peut-être à augmenter la mémoire allouée à <em>Java</em> en utilisant des options du type <code>-Xms128M -Xmx192M</code></warning>
@@ -64,7 +67,7 @@ Glossed as :
 	<table>
 		<tr><th>Message</th><th>Signification</th></tr>
 		<tr><td><code>Processing token</code></td><td>le mot actuellement traité</td></tr>
-		<tr><td><code>Transliteration</code></td><td>la translitération du mot dans le système de <fork href="http://www.qamus.org/transliteration.htm"><em>Buckwalter</em></fork> ; uniquement avec le paramètre <code>-v</code> et si aucun encodage de sortie n'est spécifié</td></tr>
+		<tr><td><code>Transliteration</code></td><td>la translitération du mot dans le <fork href="http://www.qamus.org/transliteration.htm">système de <em>Buckwalter</em></fork> ; uniquement avec le paramètre <code>-v</code> et si aucun encodage de sortie n'est spécifié</td></tr>
 		<tr><td><code>Token not yet processed.</code></td><td>indique que le mot n'a pas encore été analysé et qu'il n'est donc pas dans le cache d'<em>AraMorph</em> ; uniquement avec le paramètre <code>-v</code></td></tr>
 		<tr>
 			<td><code>Token has direct solutions.</code></td>
@@ -77,7 +80,7 @@ Glossed as :
 			<td><code>SOLUTION</code></td>
 			<td>indique chacune des solutions pour le mot. L'ordre d'affichage n'est pas signifiant.</td>
 		</tr>	
-		<tr><td><code>Lemma</code></td><td>indique l'identifant du lemme de la solution dans le <link href="site:dictionaries-fr">dictionnaire des radicaux</link>.</td></tr>	
+		<tr><td><code>Lemma</code></td><td>indique l'identifant du lemme de la solution dans le <link href="site:dictionaries-fr">dictionnaire</link> des <strong>radicaux</strong>.</td></tr>	
 		<tr><td><code>Vocalized as :</code></td><td>indique la vocalisation de la solution.</td></tr>
 		<tr><td><code>Morphology :</code></td><td>indique la catégorie morphologique du préfixe, du radical et du suffixe de la solution.</td></tr>
 		<tr><td><code>Grammatical category :</code></td><td>indique la catégorie grammaticale du préfixe, du radical et du suffixe de la solution.</td></tr>
@@ -115,14 +118,14 @@ Glossed as :
 		<li>le suffixe, dans <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictSuffixes</code></li>	
 	</ul>
 	<p>En cas de succès, <em>AraMorph</em> récupère l'information morphologique de chacun des éléments.</p>
-	<warning>Un préfixe ou un suffixe Ø sont morphologiquement <strong>signifiants</strong>.</warning>
+	<warning>Les préfixes ou les suffixes Ø sont morphologiquement <strong>signifiants</strong>.</warning>
 	<p>Le cas échéant, <em>AraMorph</em> vérifie ensuite si les morphologies de chacun des éléments sont compatibles entre elles en examinant trois tables de correspondances licites :</p>
 	<ul>		
 		<li>entre le préfixe et le radical, dans <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAB</code></li>	
 		<li>entre le préfixe et le suffixe, dans <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAC</code></li>	
 		<li>entre le radical et le suffixe, dans <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableBC</code></li>	
 	</ul>
-	<p>Une décomposition de mot pour laquelle :</p>
+	<p>Un mot pour lequel :</p>
 	<ol>
 		<li>préfixe, radical <strong>et</strong> suffixe disposent d'une entrée de dictionnaire,</li>
 		<li>préfixe, radical <strong>et</strong> suffixe sont morphologiquement compatibles entre eux,</li>

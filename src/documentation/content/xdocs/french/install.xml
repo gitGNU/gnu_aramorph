@@ -41,7 +41,7 @@
 	<p>L'analyseur morphologique est utilisé de cette façon :</p>
 	<source>java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar ¶
 	gpl.pierrick.brihaye.aramorph.AraMorph</source>
-	<warning>Le <em>classpath</em> dépend naturellement de l'endroit où <code>ArabicAnalyzer.jar</code> et <code>commons-collections.jar</code> se trouvent.</warning>
+	<warning>Le <em>classpath</em> dépend naturellement de l'endroit où les fichiers <code>ArabicAnalyzer.jar</code> et <code>commons-collections.jar</code> se trouvent.</warning>
 	<p>Utilisé tel quel, c'est à dire sans arguments, le programme renvoie le message d'aide suivant :</p>
 	<source>
 Arabic Morphological Analyzer for Java(tm)
@@ -91,26 +91,26 @@ src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/iso-8859-6.txt iso-8859-6 r
 	</section>
 	<section>
 		<title>Test de l'analyseur arabe pour Lucene</title>
-		<p>Les paramètres sont les mêmes mis à part <code>-v</code>, inutile ici. Il faut cependant inclure le <code>jar</code> <em>Lucene</em> dans le <em>classpath</em>.</p>
+		<p>Les paramètres sont les mêmes mis à part <code>-v</code>, inutile ici. Il faut cependant inclure le fichier <code>jar</code> de <em>Lucene</em> dans le <em>classpath</em>.</p>
 		<source>
 java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar ¶
 gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer ¶
 src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt results.txt
 		</source>	
-		<warning>Le <em>classpath</em> dépend naturellement de l'endroit où <code>ArabicAnalyzer.jar</code>, <code>commons-collections.jar</code> et  <code>lucene*.jar</code> se trouvent.</warning>
+		<warning>Le <em>classpath</em> dépend naturellement de l'endroit où les fichiers <code>ArabicAnalyzer.jar</code>, <code>commons-collections.jar</code> et  <code>lucene*.jar</code> se trouvent.</warning>
 	</section>
 	<section>
 		<title>Test de l'analyseur anglais pour Lucene</title>
 		<note>Oui, on peut analyser un texte arabe pour retourner des <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html"><em>tokens</em></fork> en anglais !<br/> 
 		Ne pas en attendre de miracles cependant, <em>AraMorph</em> n'ayant pas vocation à jouer le rôle de traducteur automatique.</note>
-		<p>Les paramètres sont les mêmes mis à part <code>-v</code>, inutile ici. Il faut cependant inclure le <code>jar</code> <em>Lucene</em> dans le <em>classpath</em>.</p>
+		<p>Les paramètres sont les mêmes mis à part <code>-v</code>, inutile ici. Il faut cependant inclure le fichier <code>jar</code> de <em>Lucene</em> dans le <em>classpath</em>.</p>
 		<source>
 java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar ¶
 gpl.pierrick.brihaye.aramorph.test.TestArabicGlosser ¶
 src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt ¶
 results.txt
 		</source>	
-		<warning>Le <em>classpath</em> dépend naturellement de l'endroit où <code>ArabicAnalyzer.jar</code>, <code>commons-collections.jar</code> et  <code>lucene*.jar</code> se trouvent.</warning>
+		<warning>Le <em>classpath</em> dépend naturellement de l'endroit où les fichiers <code>ArabicAnalyzer.jar</code>, <code>commons-collections.jar</code> et  <code>lucene*.jar</code> se trouvent.</warning>
 	</section>
   </body>
 </document>

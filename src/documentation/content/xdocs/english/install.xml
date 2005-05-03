@@ -8,7 +8,7 @@
 	<section>
 	<title>Building from source code</title>
 	<p>The source code includes the necessary <fork href="http://ant.apache.org/"><em>Ant</em></fork> librairies together with a <code>build.xml</code> file.</p>
-	<warning>For now, the code makes a heavy use of regular expressions so that <em>AraMorph</em> needs to be build and used on a <em>JDK <strong>1.4</strong></em> or above. The code modification that would allow external regular expressions libraries that could operate with an older <em>JDK</em> is still <link href="site:todo-en">to be done</link>.</warning>
+	<warning>For now, the code makes a heavy use of regular expressions so that <em>AraMorph</em> needs to be build and used on a <em>JDK <strong>1.4</strong></em> or above. The code modification that would allow the use of external regular expressions libraries that could operate with an older <em>JDK</em> is still <link href="site:todo-en">to be done</link>.</warning>
 	<p>The build is simply done when <code>build.bat</code> is invoked together with a target's name.</p>
 	<fixme author="???">Many thanks to whom will provide me a functionnal <em>Unix</em> script for the build.</fixme>
 	<p>The available <em>targets</em> are :</p>
