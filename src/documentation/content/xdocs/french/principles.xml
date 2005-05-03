@@ -67,7 +67,7 @@ Glossed as :
 	<table>
 		<tr><th>Message</th><th>Signification</th></tr>
 		<tr><td><code>Processing token</code></td><td>le mot actuellement traité</td></tr>
-		<tr><td><code>Transliteration</code></td><td>la translitération du mot dans le <fork href="http://www.qamus.org/transliteration.htm">système de <em>Buckwalter</em></fork> ; uniquement avec le paramètre <code>-v</code> et si aucun encodage de sortie n'est spécifié</td></tr>
+		<tr><td><code>Transliteration</code></td><td>la translitération du mot dans le <fork href="http://www.qamus.org/transliteration.htm">système de translitération de <em>Buckwalter</em></fork> ; uniquement avec le paramètre <code>-v</code> et si aucun encodage de sortie n'est spécifié</td></tr>
 		<tr><td><code>Token not yet processed.</code></td><td>indique que le mot n'a pas encore été analysé et qu'il n'est donc pas dans le cache d'<em>AraMorph</em> ; uniquement avec le paramètre <code>-v</code></td></tr>
 		<tr>
 			<td><code>Token has direct solutions.</code></td>
@@ -90,7 +90,7 @@ Glossed as :
 	</section>
 	<section>      
 	<title>Comment <em>AraMorph</em> parvient-il à proposer des solutions acceptables ?</title>	
-	<p>Avant toute chose, il faut savoir que <em>AraMorph</em>, comme son ancêtre en <em>Perl</em>, travaille sur une <strong>translitération</strong> du mot arabe. Cette translitération utilise naturellement le système de <em>Buckwalter</em>. Ainsi, <em>كتاب</em> est translitéré en <em>ktAb</em> avant son analyse morphologique.</p>
+	<p>Avant toute chose, il faut savoir que <em>AraMorph</em>, comme son ancêtre en <em>Perl</em>, travaille sur une <strong>translitération</strong> du mot arabe. Cette translitération utilise naturellement le système de translitération de <em>Buckwalter</em>. Ainsi, <em>كتاب</em> est translitéré en <em>ktAb</em> avant son analyse morphologique.</p>
 	<fixme author="PB">Cette opération ne devrait pas être nécessaire car <em>Java</em> travaille <strong>nativement</strong> en <em>Unicode</em>. L'optimisation du code, qui permettrait de se passer de l'étape de translitération et donc de gagner de la performance, reste <link href="site:todo-fr">à réaliser</link>.</fixme>
 	<p>Ensuite, <em>AraMorph</em> utilise un algorithme de force brute pour <strong>décomposer</strong> le mot en une succession de préfixe, radical et préfixe <strong>possibles</strong> :</p>
 	<table>

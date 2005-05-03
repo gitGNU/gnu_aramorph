@@ -15,7 +15,7 @@
 	  </source>
 	  <p>On constate que les commentaires sont introduits par <code>;</code> et que les lignes significatives sont divisées au moyen de tabulations déterminant respectivement :</p>
 	  <ol>
-	  <li>le squelette consonnantique du préfixe (selon le système de translitération de <fork href="http://www.qamus.org/transliteration.htm"><em>Buckwalter</em></fork>)</li>
+	  <li>le squelette consonnantique du préfixe (selon le <fork href="http://www.qamus.org/transliteration.htm">système de translitération de <em>Buckwalter</em></fork>)</li>
 	  <li>la vocalisation du préfixe (selon le même système)</li>
 	  <li>la <link href="site:morphological-categories-fr">catégorie morphologique</link> du préfixe</li>
 	  <li>une ou plusieurs traductions du préfixe suivies d'une ou plusieurs <link href="site:grammatical-categories-fr">catégories grammaticales</link>. Noter le <code>+</code> indiquant qu'un radical est attendu après ce préfixe.</li>
@@ -153,12 +153,13 @@ mkttb	mukotatib	Nall	subscriber
 ;		
 		</source>
 		<p>Le format est très légèrement différent puisqu'une ligne commençant par <code>;;</code> donne un identifiant de <strong>lemme</strong>. Tout le reste est néanmoins similaire.</p>		
-		<p>On remarquera que la catégorie grammaticale est souvent absente car elle peut être <strong>extrapolée</strong> à partir de la catégorie morphologique. On notera cependant quelques exemples où la catégorie grammaticale doit être précisée car une catégorie morphologique comme la <em>nisba</em> peut donner lieu à des utilisations nominales ou/ou bien adjectivales.</p>		
+		<p>On remarquera que la catégorie grammaticale est souvent absente car elle peut être <strong>extrapolée</strong> à partir de la catégorie morphologique. On notera cependant quelques exemples où la catégorie grammaticale doit être précisée car une catégorie morphologique comme une <em>nisba</em>, morphologicalement nominale, peut donner lieu à des utilisations adjectivales.</p>		
 		</section> 
-		<note>On remarque l'omniprésence des la translitération selon le système de <em>Buckwalter</em>.</note>
+		<note>On remarque l'omniprésence de translitérations selon le système de <em>Buckwalter</em>.</note>
  <fixme author="vous !">
 		Je suis à la recherche de scripts <em>Perl</em> qui permettraient la traduction de ce format texte vers <em>XML</em> (si possible en <em>UTF-8</em> afin de pouvoir intégrer tous types de glosses, en particulier celles utilisant des caractères accentués européens comme <em>V<strong>é</strong>drine</em> ou <em>Schr<strong>ö</strong>der</em>) et vice-versa.<br/>
-		Ceci permettrait de traiter les dictionnaires directement en arabe plutôt que par l'intermédiaire de la translitération de <em>Bukwalter</em> et permettrait d'exploiter le support <em>Unicode</em> <strong>natif</strong> de <em>Java</em>.
+		Ceci permettrait de traiter les dictionnaires directement en arabe plutôt que par l'intermédiaire du système de translitération de <em>Buckwalter</em> et permettrait d'exploiter le support <em>Unicode</em> <strong>natif</strong> de <em>Java</em>.<br/>
+		La <fork href="http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2004L02">version 2.0</fork> de la version <em>Perl</em> d'<em>Aramorph</em>, utilise des dictionnaires en XML, mais elle n'est malheureusement pas en GPL.
 		</fixme>				
   </body>
 </document>

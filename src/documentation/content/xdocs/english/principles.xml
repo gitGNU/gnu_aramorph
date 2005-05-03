@@ -67,7 +67,7 @@ Glossed as :
 	<table>
 		<tr><th>Message</th><th>Meaning</th></tr>
 		<tr><td><code>Processing token</code></td><td>the word being processed</td></tr>
-		<tr><td><code>Transliteration</code></td><td>the transliteration of the word in the <fork href="http://www.qamus.org/transliteration.htm"><em>Buckwalter</em>'s system</fork> ; only with the <code>-v</code> parameter and if no output encoding is specified</td></tr>
+		<tr><td><code>Transliteration</code></td><td>the transliteration of the word in the <fork href="http://www.qamus.org/transliteration.htm"><em>Buckwalter</em>'s transliteration system</fork> ; only with the <code>-v</code> parameter and if no output encoding is specified</td></tr>
 		<tr><td><code>Token not yet processed.</code></td><td>indicates that the word hasn't been processed yet and that it isn't in <em>AraMorph</em>'s cache ; only with the <code>-v</code> parameter</td></tr>
 		<tr>
 			<td><code>Token has direct solutions.</code></td>
@@ -90,7 +90,7 @@ Glossed as :
 	</section>
 	<section>      
 	<title>How does <em>AraMorph</em> manage to propose acceptable solutions ?</title>	
-	<p>First, you have to know that <em>AraMorph</em>, like its predecessor in <em>Perl</em>, works with a <strong>transliteration</strong> of the arabic word. This transliteration obviously uses <em>Buckwalter</em>'s system. Thus, <em>كتاب</em> is transliterated in <em>ktAb</em> before its morphological analysis.</p>
+	<p>First, you have to know that <em>AraMorph</em>, like its predecessor in <em>Perl</em>, works with a <strong>transliteration</strong> of the arabic word. This transliteration obviously uses <em>Buckwalter</em>'s transliteration system. Thus, <em>كتاب</em> is transliterated in <em>ktAb</em> before its morphological analysis.</p>
 	<fixme author="PB">This operation should not be necessary since <em>Java</em> works <strong>natively</strong> with <em>Unicode</em>. A code optimization, that would allow to bypass the transliteration step and thus increase performance is <link href="site:todo-en">to be done</link>.</fixme>
 	<p>Then, <em>AraMorph</em> uses a brute force algorithm to <strong>decompose</strong> the word in a sequence of <strong>possible</strong> prefix, stem and suffix :</p>
 	<table>
