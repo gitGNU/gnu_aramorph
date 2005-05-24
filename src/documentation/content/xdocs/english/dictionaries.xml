@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
+<document xml:lang="en"> 
+  <header> 
+    <title>Dictionaries file format</title>
+  </header> 
+  <body>   	
+	  <section>
+	  <title>Prefixes</title>
+      <p>Let's have a look at the prefixes dictionary <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictPrefixes</code> :</p>
+	  <source>
+	  ; conjunctions
+	  w	wa	Pref-Wa	and &lt;pos&gt;wa/CONJ+&lt;/pos&gt;
+	  f	fa	Pref-Wa	and;so &lt;pos&gt;fa/CONJ+&lt;/pos&gt;
+	  </source>
+	  <p>We can see that commentaries are introduced by <code>;</code> and that significant lines are divided by tabs whose significance is respectively :</p>
+	  <ol>
+	  <li>the prefix' consonantic skeleton (using  <fork href="http://www.qamus.org/transliteration.htm"><em>Buckwalter's</em> transliteration system</fork>)</li>
+	  <li>the prefix' vocalization (using the same system)</li>
+	  <li>the prefix' <link href="site:morphological-categories-en">morphological category</link></li>
+	  <li>one or several translations for the prefix, followed by one or several <link href="site:grammatical-categories-en">grammatical categories</link>. Notice the <code>+</code> which indicates that a stem is expected after this prefix.</li>
+	  </ol>	 
+	  <p>Some informations are optional. One good example is that of the empty prefix :</p>
+	  <source>
+; The first category is the null prefix (has a null gloss as well):
+		Pref-0	
+		</source>
+		<p>... where we just have a morphological category.</p>
+		</section>
+		<section>
+			<title>Suffixes</title>		
+		<p>Let's now have a look at this snippet taken from the suffixes dictionary <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictSuffixes</code> :</p>
+		<source>
+; perfect verb, null suffix: banA-h, daEA-h
+h	hu	PVSuff-0ah	he/it &lt;verb&gt; it/him        &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+hu/PVSUFF_DO:3MS&lt;/pos&gt;
+hmA	humA	PVSuff-0ah	he/it &lt;verb&gt; them (both)   &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+humA/PVSUFF_DO:3D&lt;/pos&gt;
+hm	hum	PVSuff-0ah	he/it &lt;verb&gt; them          &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+hum/PVSUFF_DO:3MP&lt;/pos&gt;
+hA	hA	PVSuff-0ah	he/it &lt;verb&gt; it/them/her   &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+hA/PVSUFF_DO:3FS&lt;/pos&gt;
+hn	hun~a	PVSuff-0ah	he/it &lt;verb&gt; them          &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+hun~a/PVSUFF_DO:3FP&lt;/pos&gt;
+k	ka	PVSuff-0ah	he/it &lt;verb&gt; you           &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+ka/PVSUFF_DO:2MS&lt;/pos&gt;
+k	ki	PVSuff-0ah	he/it &lt;verb&gt; you           &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+ki/PVSUFF_DO:2FS&lt;/pos&gt;
+kmA	kumA	PVSuff-0ah	he/it &lt;verb&gt; you (both)    &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+kumA/PVSUFF_DO:2D&lt;/pos&gt;
+km	kum	PVSuff-0ah	he/it &lt;verb&gt; you           &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+kum/PVSUFF_DO:2MP&lt;/pos&gt;
+kn	kun~a	PVSuff-0ah	he/it &lt;verb&gt; you           &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+kun~a/PVSUFF_DO:2FP&lt;/pos&gt;
+ny	niy	PVSuff-0ah	he/it &lt;verb&gt; me            &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+niy/PVSUFF_DO:1S&lt;/pos&gt;
+nA	nA	PVSuff-0ah	he/it &lt;verb&gt; us            &lt;pos&gt;+(null)/PVSUFF_SUBJ:3MS+nA/PVSUFF_DO:1P&lt;/pos&gt;
+		</source>
+		<p>The principle is exactly the same, although the example is slightly more complex. Indeed, we have a <strong>double</strong> suffixes sequence, the first one being the <em>Ø</em> perfective third masculine person suffix, the second one being relative to a pronominal direct object. One will notice the <code>+</code> that operates the junction with the stem then the subsequent <code>+</code> which operates the junction with the <em>Ø</em> suffix.</p>
+		</section>
+		<section>
+		<title>Stems</title>
+		<p>Let's have a look at this snippet taken from the stems dictionary <code>gpl/pierrick/brihaye/aramorph/dictionaries/dictstems</code> :</p>		
+		<source>
+;
+;--- ktb
+;; katab-u_1
+ktb	katab	PV	write
+ktb	kotub	IV	write
+ktb	kutib	PV_Pass	be written;be fated;be destined
+ktb	kotab	IV_Pass_yu	be written;be fated;be destined
+;; kAtab_1
+kAtb	kAtab	PV	correspond with
+kAtb	kAtib	IV_yu	correspond with
+;; &gt;akotab_1
+&gt;ktb	&gt;akotab	PV	dictate;make write
+Aktb	&gt;akotab	PV	dictate;make write
+ktb	kotib	IV_yu	dictate;make write
+ktb	kotab	IV_Pass_yu	be dictated
+;; takAtab_1
+tkAtb	takAtab	PV	correspond
+tkAtb	takAtab	IV	correspond
+;; {inokatab_1
+&lt;nktb	{inokatab	PV	subscribe
+Anktb	{inokatab	PV	subscribe
+nktb	nokatib	IV	subscribe
+;; {ikotatab_1
+&lt;kttb	{ikotatab	PV	register;enroll
+Akttb	{ikotatab	PV	register;enroll
+kttb	kotatib	IV	register;enroll
+;; {isotakotab_1
+&lt;stktb	{isotakotab	PV	make write;dictate
+Astktb	{isotakotab	PV	make write;dictate
+stktb	sotakotib	IV	make write;dictate
+;; kitAb_1
+ktAb	kitAb	Ndu	book
+ktb	kutub	N	books
+;; kitAboxAnap_1
+ktAbxAn	kitAboxAn	NapAt	library;bookstore
+ktbxAn	kutuboxAn	NapAt	library;bookstore
+;; kutubiy~_1
+ktby	kutubiy~	Ndu	book-related
+;; kutubiy~_2
+ktby	kutubiy~	Ndu	bookseller
+ktby	kutubiy~	Nap	booksellers     &lt;pos&gt;kutubiy~/NOUN&lt;/pos&gt;
+;; kut~Ab_1
+ktAb	kut~Ab	N	kuttab (village school);Quran school
+ktAtyb	katAtiyb	Ndip	kuttab (village schools);Quran schools
+;; kutay~ib_1
+ktyb	kutay~ib	NduAt	booklet
+;; kitAbap_1
+ktAb	kitAb	Nap	writing
+;; kitAbap_2
+ktAb	kitAb	Napdu	essay;piece of writing
+ktAb	kitAb	NAt	writings;essays
+;; kitAbiy~_1
+ktAby	kitAbiy~	N-ap	writing;written     &lt;pos&gt;kitAbiy~/ADJ&lt;/pos&gt;
+;; katiybap_1
+ktyb	katiyb	Napdu	brigade;squadron;corps
+ktA}b	katA}ib	Ndip	brigades;squadrons;corps
+ktA}b	katA}ib	Ndip	Phalangists
+;; katA}ibiy~_1
+ktA}by	katA}ibiy~	Nall	brigade;corps     &lt;pos&gt;katA}ibiy~/NOUN&lt;/pos&gt;
+ktA}by	katA}ibiy~	Nall	brigade;corps     &lt;pos&gt;katA}ibiy~/ADJ&lt;/pos&gt;
+;; katA}ibiy~_2
+ktA}by	katA}ibiy~	Nall	Phalangist     &lt;pos&gt;katA}ibiy~/NOUN&lt;/pos&gt;
+ktA}by	katA}ibiy~	Nall	Phalangist     &lt;pos&gt;katA}ibiy~/ADJ&lt;/pos&gt;
+;; makotab_1
+mktb	makotab	Ndu	bureau;office;department
+mkAtb	makAtib	Ndip	bureaus;offices
+;; makotabiy~_1
+mktby	makotabiy~	N-ap	office     &lt;pos&gt;makotabiy~/ADJ&lt;/pos&gt;
+;; makotabap_1
+mktb	makotab	NapAt	library;bookstore
+mkAtb	makAtib	Ndip	libraries;bookstores
+;; mikotAb_1
+mktAb	mikotAb	Ndu	printer
+;; mukAtabap_1
+mkAtb	mukAtab	NapAt	correspondence
+;; {ikotitAb_1
+&lt;kttAb	{ikotitAb	N/At	enrollment;registration;subscription
+AkttAb	{ikotitAb	N/At	enrollment;registration;subscription
+;; {isotikotAb_1
+&lt;stktAb	{isotikotAb	N/At	dictation
+AstktAb	{isotikotAb	N/At	dictation
+&lt;stktAby	{isotikotAbiy~	N-ap	dictation     &lt;pos&gt;{isotikotAbiy~/ADJ&lt;/pos&gt;
+AstktAby	{isotikotAbiy~	N-ap	dictation     &lt;pos&gt;{isotikotAbiy~/ADJ&lt;/pos&gt;
+;; kAtib_1
+kAtb	kAtib	N/ap	writer;author
+kAtb	kAtib	N/ap	clerk
+ktAb	kut~Ab	N	authors;writers
+ktb	katab	Nap	authors;writers
+;; kAtib_2
+kAtb	kAtib	Nall	writing     &lt;pos&gt;kAtib/ADJ&lt;/pos&gt;
+;; makotuwb_1
+mktwb	makotuwb	N-ap	written     &lt;pos&gt;makotuwb/ADJ&lt;/pos&gt;
+;; makotuwb_2
+mktwb	makotuwb	Ndu	letter;message
+mkAtyb	makAtiyb	Ndip	letters;messages
+;; mukAtib_1
+mkAtb	mukAtib	Nall	correspondent;reporter
+;; mukotatib_1
+mkttb	mukotatib	Nall	subscriber
+;		
+		</source>
+		<p>The format is slightly different since we have a line beginning by <code>;;</code> whose purpose is to provide a <strong>lemma</strong> identifier. The remaining is similar however.</p>		
+		<p>We will notice that the grammatical category is often missing since it can be <strong>extrapolated</strong> from the morphological category. In some cases however, we will have some examples where the grammatical category is to be explicited because, for example, morphological categories like <em>nisba</em>s, which are morphologically nominal, may have adjectival usages.</p>		
+		</section> 
+		<note>Notice that <em>Buckwalter</em>'s transliteration system is everywhere.</note>
+ <fixme author="you !">
+		I'm looking for <em>Perl</em> scripts that would help to convert this text format to <em>XML</em> (in <em>UTF-8</em> if possible so that every kind of gloss could be typed-in, in particular european accented ones like <em>V<strong>é</strong>drine</em> or <em>Schr<strong>ö</strong>der</em>) and conversely.<br/>
+		This would help in a direct processing of the dictionaries in arabic rather than through the <em>Buckwalter's</em> transliteration system, thus taking profit from <em>Java</em>'s <strong>native</strong> <em>Unicode</em>  support.<br/>
+		The <fork href="http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2004L02">version 2.0</fork> of the <em>Aramorph</em>'s <em>Perl</em> version, uses XML dictionaries, but is unfortunately not compliant with the GPL.
+		</fixme>				
+  </body>
+</document>
