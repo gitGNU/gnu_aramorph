@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
+<document xml:lang="en"> 
+  <header> 
+    <title>Correspondance tables file format</title> 
+  </header> 
+  <body>   	  
+	  <p>Their format is very simple. Let's have a look at this snippet taken from the correspondance table between prefix and stem <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAB</code> :</p>
+	  <source>IVPref-Antn-tu IV_Pass_yu</source>
+	  <p>Here, the imperfective second person feminine plural prefix (<em>تُـ</em>) is declared as being compatible with the stem of a passive imperfective verb which is itself compatible with the <em>يُـ</em> prefix.</p>
+	  <p>Let's now have a look at the correspondance table between stem and suffix <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableBC</code> :</p>
+	  <source>IV_Pass_yu IVSuff-n</source>
+	  <p>Here, the stem of the same passive imperfective verb is declared as being compatible with the imperfective second person feminine plural <em>ـنَ</em> suffix.</p> 
+	  <p>At last, the correspondance table between prefix and suffix <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAC</code> :</p>
+	  <source>IVPref-Antn-tu IVSuff-n</source>
+	  <p>... confirms that the imperfective second person feminine plural prefix is compatible with the imperfective second person feminine plural suffix ; quite obvious, isn't it ?</p> 
+  </body>
+</document>

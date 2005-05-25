@@ -7,10 +7,10 @@
   <body>   	  
 	  <p>Leur format est extrêmement simple. Examinons ce fragment de la table de correspondance entre préfixe et radical <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAB</code> :</p>
 	  <source>IVPref-Antn-tu IV_Pass_yu</source>
-	  <p>Ici, le préfixe de la deuxième personne féminin du pluriel de l'inaccompli (<em>تُـ</em>) est déclaré compatible avec un verbe à l'inaccompli passif acceptant le préfixe <em>يُـ</em>.</p>
+	  <p>Ici, le préfixe de la deuxième personne féminin du pluriel de l'inaccompli (<em>تُـ</em>) est déclaré compatible avec le radical d'un verbe à l'inaccompli passif acceptant le préfixe <em>يُـ</em>.</p>
 	  <p>Examinons maintenant la table de correspondance entre radical et suffixe <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableBC</code> :</p>
 	  <source>IV_Pass_yu IVSuff-n</source>
-	  <p>Ici, ce même verbe à l'inaccompli passif est déclaré compatible avec le suffixe de la deuxième personne féminin du pluriel de l'inaccompli <em>ـنَ</em>.</p> 
+	  <p>Ici, ce même radical de verbe à l'inaccompli passif est déclaré compatible avec le suffixe de la deuxième personne féminin du pluriel de l'inaccompli <em>ـنَ</em>.</p> 
 	  <p>Enfin, la table de correspondance entre préfixe et suffixe <code>gpl/pierrick/brihaye/aramorph/dictionaries/tableAC</code> :</p>
 	  <source>IVPref-Antn-tu IVSuff-n</source>
 	  <p>... confirme que le préfixe de la deuxième personne féminin du pluriel de l'inaccompli est compatible avec le suffixe de la deuxième personne féminin du pluriel de l'inaccompli, ce qui est bien la moindre des choses.</p>	 

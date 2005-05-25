@@ -48,7 +48,8 @@ See http://xml.apache.org/forrest/linking.html for more info
 		<grammatical-categories-en label="Grammaticales categories" href="grammatical_categories.html" description="Grammatical categories" tab="english"/>				
 	</background-en>	
 	
-	<technical-en label="Technical aspects" href="english/" tab="english">		 		
+	<technical-en label="Technical aspects" href="english/" tab="english">		
+		<lucene-fr label="Lucene" href="lucene.html" description="Using with Lucene" tab="english"/>
 		<javadoc label="Javadocs" href="http://www.nongnu.org/aramorph/javadoc/index.html" description="Javadocs"  tab="english"/>
 		<todo-en label="TODO" href="todo.html" description="What remains to be done..." tab="english"/>
 	</technical-en>
