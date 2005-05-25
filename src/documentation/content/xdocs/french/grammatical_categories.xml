@@ -34,10 +34,49 @@
 		<tr><td><code>RESULT_CLAUSE_PARTICLE</code></td><td>Particule de clause résultative</td><td>TODO : liste à définir</td></tr>		
 	  </table>
 	  </section>
+	<section>
+		<title>Radicaux</title>	
+	<table>
+		<tr><th>Catégorie</th><th>Description</th><th>Observations</th></tr>				
+		<tr><td><code>ABBREV</code></td><td>Abbréviation</td><td></td></tr>		
+		<tr><td><code>ADJ</code></td><td>Adjectif</td><td></td></tr>
+		<tr><td><code>ADV</code></td><td>Adverbe</td><td></td></tr>	  		
+		<tr><td><code>DEM_PRON_F</code></td><td>Pronom démonstratif féminin</td><td>TODO : pas de marqueur de nombre !</td></tr>
+		<tr><td><code>DEM_PRON_FS</code></td><td>Pronom démonstratif féminin singulier</td><td></td></tr>
+		<tr><td><code>DEM_PRON_FD</code></td><td>Pronom démonstratif duel</td><td></td></tr>		
+		<tr><td><code>DEM_PRON_MS</code></td><td>Pronom démonstratif masculin singulier</td><td></td></tr>
+		<tr><td><code>DEM_PRON_MD</code></td><td>Pronom démonstratif masculin duel</td><td></td></tr>
+		<tr><td><code>DEM_PRON_MP</code></td><td>Pronom démonstratif masculin pluriel</td><td></td></tr>		
+		<tr><td><code>DET</code></td><td>Déterminant ?</td><td>TODO : liste à définir et, le cas échéant, à ventiler vers les préfixes.</td></tr>	  				
+		<tr><td><code>INTERROG</code></td><td>TODO : traduire</td><td>TODO : liste à définir et, le cas échéant, à ventiler vers les préfixes. Double emploi avec <code>INTERROG_PART</code> ?</td></tr>						
+		<tr><td><code>NO_STEM</code></td><td>Pas de radical pour le mot</td><td>Marqueur généré par <em>AraMorph</em> après ventilation vers les préfixes et les suffixes</td></tr>
+		<tr><td><code>NOUN</code></td><td>Nom</td><td></td></tr>
+		<tr><td><code>NOUN_PROP</code></td><td>Nom propre</td><td></td></tr>
+		<tr><td><code>NUMERIC_COMMA</code></td><td>Séparateur décimal</td><td></td></tr>		
+		<tr><td><code>PART</code></td><td>Particule</td><td>TODO : liste à définir et, le cas échéant, à ventiler vers les préfixes.</td></tr>	 
+		<tr><td><code>PRON_1S</code></td><td>Pronom personnel : 1ère personne du singulier</td><td></td></tr>
+		<tr><td><code>PRON_2MS</code></td><td>Pronom personnel : 2ème personne du masculin singulier</td><td></td></tr>		
+		<tr><td><code>PRON_2FS</code></td><td>Pronom personnel : 2ème personne du féminin singulier</td><td></td></tr>	  
+		<tr><td><code>PRON_3MS</code></td><td>Pronom personnel : 3ème personne du masculin singulier</td><td></td></tr>		
+		<tr><td><code>PRON_3FS</code></td><td>Pronom personnel : 3ème personne du féminin singulier</td><td></td></tr>			
+		<tr><td><code>PRON_2D</code></td><td>Pronom personnel : 2ème personne du duel commun</td><td></td></tr>
+		<tr><td><code>PRON_3D</code></td><td>Pronom personnel : 3ème personne du duel commun</td><td></td></tr>
+		<tr><td><code>PRON_1P</code></td><td>Pronom personnel : 1ère personne du pluriel</td><td></td></tr>
+		<tr><td><code>PRON_2MP</code></td><td>Pronom personnel : 2ème personne du masculin pluriel</td><td></td></tr>
+		<tr><td><code>PRON_2FP</code></td><td>Pronom personnel : 2ème personne du féminin pluriel</td><td></td></tr>
+		<tr><td><code>PRON_3MP</code></td><td>Pronom personnel : 3ème personne du masculin pluriel</td><td></td></tr>
+		<tr><td><code>PRON_3FP</code></td><td>Pronom personnel : 3ème personne du féminin pluriel</td><td></td></tr>
+		<tr><td><code>REL_PRON</code></td><td>Pronom relatif</td><td></td></tr>
+		<tr><td><code>VERB_IMPERATIVE</code></td><td>Verbe à l'impératif</td><td></td></tr>
+		<tr><td><code>VERB_IMPERFECT</code></td><td>Verbe à l'inaccompli</td><td></td></tr>
+		<tr><td><code>VERB_PERFECT</code></td><td>Verbe à l'accompli</td><td></td></tr>		
+		<tr><td><code>NO_RESULT</code></td><td>Mot qui n'a pu être analysé</td><td>Mot conservé dans la mesure où l'expérience semble montrer qu'il y a de fortes chances qu'il soit un mot <strong>étranger</strong> absent du dictionnaire. Il est naturellement tout à fait possible d'écrire un <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/TokenFilter.html">filtre <em>Lucene</em> spécifique</fork> pour affiner l'analyse de ce type de <em>token</em>.</td></tr>		
+	</table>		
+	</section>	  
 	  <section>
 		  <title>Suffixes</title>	  	
 	  <table>
-		<tr><th>Catégorie</th><th>Description</th></tr>	
+		<tr><th>Catégorie</th><th>Description</th><th>Observations</th></tr>	
 		<tr><td><code>CASE_INDEF_NOM</code></td><td>Indéfini, nominatif</td><td></td></tr>		
 		<tr><td><code>CASE_INDEF_ACC</code></td><td>Indéfini, accusatif</td><td></td></tr>	  
 		<tr><td><code>CASE_INDEF_ACCGEN</code></td><td>Indéfini, accusatif/génitif</td><td></td></tr>
@@ -141,45 +180,6 @@
 		<tr><td><code>CVSUFF_SUBJ:2FP</code></td><td>Sujet d'un verbe à l'impératif : 2ème personne du féminin pluriel</td><td></td></tr>
 		-->
 	</table>
-	</section>
-	<section>
-		<title>Radicaux</title>	
-	<table>
-		<tr><th>Catégorie</th><th>Description</th><th>Observations</th><th>Signifiant</th></tr>				
-		<tr><td><code>ABBREV</code></td><td>Abbréviation</td><td></td><td>Oui</td></tr>		
-		<tr><td><code>ADJ</code></td><td>Adjectif</td><td></td><td>Oui</td></tr>
-		<tr><td><code>ADV</code></td><td>Adverbe</td><td></td><td>Oui</td></tr>	  		
-		<tr><td><code>DEM_PRON_F</code></td><td>Pronom démonstratif féminin</td><td>TODO : pas de marqueur de nombre !</td><td>Non</td></tr>
-		<tr><td><code>DEM_PRON_FS</code></td><td>Pronom démonstratif féminin singulier</td><td></td><td>Non</td></tr>
-		<tr><td><code>DEM_PRON_FD</code></td><td>Pronom démonstratif duel</td><td></td><td>Non</td></tr>		
-		<tr><td><code>DEM_PRON_MS</code></td><td>Pronom démonstratif masculin singulier</td><td></td><td>Non</td></tr>
-		<tr><td><code>DEM_PRON_MD</code></td><td>Pronom démonstratif masculin duel</td><td></td><td>Non</td></tr>
-		<tr><td><code>DEM_PRON_MP</code></td><td>Pronom démonstratif masculin pluriel</td><td></td><td>Non</td></tr>		
-		<tr><td><code>DET</code></td><td>Déterminant ?</td><td>TODO : liste à définir et, le cas échéant, à ventiler vers les préfixes.</td><td>Non</td></tr>	  				
-		<tr><td><code>INTERROG</code></td><td>TODO : traduire</td><td>TODO : liste à définir et, le cas échéant, à ventiler vers les préfixes. Double emploi avec <code>INTERROG_PART</code> ?</td><td>Oui</td></tr>						
-		<tr><td><code>NO_STEM</code></td><td>Pas de radical pour le mot</td><td>Marqueur généré par <em>AraMorph</em> après ventilation vers les préfixes et les suffixes</td><td>Non</td></tr>
-		<tr><td><code>NOUN</code></td><td>Nom</td><td></td><td>Oui</td></tr>
-		<tr><td><code>NOUN_PROP</code></td><td>Nom propre</td><td></td><td>Oui</td></tr>
-		<tr><td><code>NUMERIC_COMMA</code></td><td>Séparateur décimal</td><td></td><td>Non</td></tr>		
-		<tr><td><code>PART</code></td><td>Particule</td><td>TODO : liste à définir et, le cas échéant, à ventiler vers les préfixes.</td><td>Non</td></tr>	 
-		<tr><td><code>PRON_1S</code></td><td>Pronom personnel : 1ère personne du singulier</td><td></td><td>Non</td></tr>
-		<tr><td><code>PRON_2MS</code></td><td>Pronom personnel : 2ème personne du masculin singulier</td><td></td><td>Non</td></tr>		
-		<tr><td><code>PRON_2FS</code></td><td>Pronom personnel : 2ème personne du féminin singulier</td><td></td><td>Non</td></tr>	  
-		<tr><td><code>PRON_3MS</code></td><td>Pronom personnel : 3ème personne du masculin singulier</td><td></td><td>Non</td></tr>		
-		<tr><td><code>PRON_3FS</code></td><td>Pronom personnel : 3ème personne du féminin singulier</td><td></td><td>Non</td></tr>			
-		<tr><td><code>PRON_2D</code></td><td>Pronom personnel : 2ème personne du duel commun</td><td></td><td>Non</td></tr>
-		<tr><td><code>PRON_3D</code></td><td>Pronom personnel : 3ème personne du duel commun</td><td></td><td>Non</td></tr>
-		<tr><td><code>PRON_1P</code></td><td>Pronom personnel : 1ère personne du pluriel</td><td></td><td>Non</td></tr>
-		<tr><td><code>PRON_2MP</code></td><td>Pronom personnel : 2ème personne du masculin pluriel</td><td></td><td>Non</td></tr>
-		<tr><td><code>PRON_2FP</code></td><td>Pronom personnel : 2ème personne du féminin pluriel</td><td></td><td>Non</td></tr>
-		<tr><td><code>PRON_3MP</code></td><td>Pronom personnel : 3ème personne du masculin pluriel</td><td></td><td>Non</td></tr>
-		<tr><td><code>PRON_3FP</code></td><td>Pronom personnel : 3ème personne du féminin pluriel</td><td></td><td>Non</td></tr>
-		<tr><td><code>REL_PRON</code></td><td>Pronom relatif</td><td></td><td>Non</td></tr>
-		<tr><td><code>VERB_IMPERATIVE</code></td><td>Verbe à l'impératif</td><td></td><td>Oui</td></tr>
-		<tr><td><code>VERB_IMPERFECT</code></td><td>Verbe à l'inaccompli</td><td></td><td>Oui</td></tr>
-		<tr><td><code>VERB_PERFECT</code></td><td>Verbe à l'accompli</td><td></td><td>Oui</td></tr>		
-		<tr><td><code>NO_RESULT</code></td><td>Mot qui n'a pu être analysé</td><td>Mot conservé dans la mesure où l'expérience semble montrer qu'il y a de fortes chances qu'il soit un mot <strong>étranger</strong> absent du dictionnaire. Il est naturellement tout à fait possible d'écrire un <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/TokenFilter.html">filtre <em>Lucene</em> spécifique</fork> pour affiner l'analyse de ce type de <em>token</em>.</td><td>Oui</td></tr>		
-	</table>		
 	</section>
 	  <fixme author="PB">Compléter les TODO.</fixme>
 	  <fixme author="vous !">Seules sont listées les catégories <strong>effectivement</strong> rencontrées lors des tests. Si vous rencontrez des catégories absentes de ces listes, n'hésitez pas à m'en faire part !</fixme>

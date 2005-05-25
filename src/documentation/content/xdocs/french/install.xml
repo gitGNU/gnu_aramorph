@@ -86,14 +86,15 @@ src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/UTF-8.txt UTF-8 -v
 
 java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar ¶
 gpl.pierrick.brihaye.aramorph.AraMorph ¶
-src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/iso-8859-6.txt iso-8859-6 results.txt CP1256
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/iso-8859-6.txt ¶
+iso-8859-6 results.txt CP1256
 		</source>
 	</section>
 	<section>
 		<title>Test de l'analyseur arabe pour Lucene</title>
 		<p>Les paramètres sont les mêmes mis à part <code>-v</code>, inutile ici. Il faut cependant inclure le fichier <code>jar</code> de <em>Lucene</em> dans le <em>classpath</em>.</p>
 		<source>
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar ¶
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-1.4.3.jar ¶
 gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer ¶
 src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt results.txt
 		</source>	
@@ -105,7 +106,7 @@ src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt results.txt
 		Ne pas en attendre de miracles cependant, <em>AraMorph</em> n'ayant pas vocation à jouer le rôle de traducteur automatique.</note>
 		<p>Les paramètres sont les mêmes mis à part <code>-v</code>, inutile ici. Il faut cependant inclure le fichier <code>jar</code> de <em>Lucene</em> dans le <em>classpath</em>.</p>
 		<source>
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar ¶
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-1.4.3.jar ¶
 gpl.pierrick.brihaye.aramorph.test.TestArabicGlosser ¶
 src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/cp1256.txt ¶
 results.txt

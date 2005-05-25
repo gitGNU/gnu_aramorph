@@ -9,7 +9,9 @@
 		<title>L'analyseur arabe pour Lucene</title>
 		<p>Exécutons le code suivant :</p>
 		<source>
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt UTF-8
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-1.4.3.jar ¶
+gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt UTF-8
 		</source>		
 		<warning>Naturellement, l'encodage du fichier d'entrée doit être adapté à votre plate-forme.</warning>
 		<p>Examinons le fichier de sortie <code>results.txt</code> :</p>
@@ -31,7 +33,10 @@ java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-2003090
 		<warning>Dans cet exemple, et bien que <em>كتاب</em> ait 3 solutions, on ne retourne que 2 <em>tokens</em>. En effet, <em>كُتّاب</em> est présent par 2 fois, la première en tant que pluriel de <em>كاتب</em>, la seconde en tant que nom singulier valant pour <em>école coranique</em>.</warning>
 		<fixme author="PB">Que faire si un même texte de <em>token</em> renvoie des catégories grammaticales différentes ? Etant donné que les index <em>Lucene</em> perdent l'information de type, ce problème n'en est peut-être pas un.</fixme>
 		<p>Essayons un autre exemple avec un fichier <code>tktbn.txt</code> contenant le mot <em>تكتبن</em> :</p>
-		<source>java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib gpl.pierrick.brihaye.aramorph.AraMorph src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/tktbn.txt CP1256 results.txt UTF-8</source>
+		<source>
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-1.4.3.jar ¶
+gpl.pierrick.brihaye.aramorph.AraMorph ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/tktbn.txt CP1256 results.txt UTF-8</source>
 		<p>Examinons le fichier de sortie <code>results.txt</code> :</p>		
 		<source>
 Processing token : 	?????
@@ -101,14 +106,15 @@ Grammatical category :
 Glossed as : 
 	prefix : you [fem.pl.]
 	stem : write
-	suffix : [fem.pl.]
-	
+	suffix : [fem.pl.]	
 		</source>
 		<p>Ici, le découpage en préfixe, radical et suffixe devient très apparent.</p>
 		<warning label="Rappel">La catégorie grammaticale du préfixe, du radical et du suffixe ont été ventilées par <em>AraMorph</em>. En d'autres termes, le découpage grammatical est peut être différent du découpage morphologique.</warning>
 		<p>Pour bien comprendre que l'analyse ne retourne <strong>que</strong> le radical :</p>
 		<source>
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/tktbn.txt results.txt
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-1.4.3.jar ¶
+gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/tktbn.txt results.txt
 		</source>
 		<p>Examinons le fichier de sortie <code>results.txt</code> :</p>		
 		<source>
@@ -123,7 +129,9 @@ kotib	VERB_IMPERFECT	[0-5]	0
 		<title>L'analyseur anglais pour Lucene</title>
 		<p>Exécutons le code suivant :</p>
 		<source>
-java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-20030909.jar gpl.pierrick.brihaye.aramorph.test.TestArabicGlosser src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt UTF-8
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-1.4.3.jar ¶
+gpl.pierrick.brihaye.aramorph.test.TestArabicGlosser ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt UTF-8
 		</source>				
 		<warning>Naturellement, l'encodage du fichier d'entrée doit être adapté à votre plate-forme.</warning>
 		<p>Examinons le fichier de sortie <code>results.txt</code> :</p>
@@ -143,7 +151,7 @@ book	NOUN	[0-4]	0
 	</section>
 	<section>
 	<title>Quelles sont les solutions retenues par les analyseurs ?</title>
-	<p>Comme on peut le voir, les analyseurs renvoient des <em>tokens</em> dont le type correspond à la catégorie grammaticale du radical.<br/>
+	<p>Comme on peut le voir, les analyseurs renvoient des <em>tokens</em> dont le type correspond à la catégorie grammaticale du <strong>radical</strong>.<br/>
 	Cependant, un analyseur considèrera certaines catégories grammaticales comme attribuables à des <strong>mots vides</strong> et ne renverra donc aucun <em>token</em> pour ce radical. La liste des catégories grammaticales non signifiantes est décrite ci-après :</p>
 	<ul>		
 	<li><code>DEM_PRON_F</code></li>
@@ -183,7 +191,7 @@ book	NOUN	[0-4]	0
 		<li><code>VERB_PERFECT</code></li>			
 		<li><code>NO_RESULT</code></li>
 	</ul>
-	<note label="Rappel">Les explications sur les catégories grammaticales sont disponibles dans la rubrique concernant les <link href="site:dictionaries-fr">dictionnaires</link>.</note>		
+	<note label="Rappel">Les explications sur les catégories grammaticales sont disponibles dans <link href="site:grammatical-categories-fr">cette rubrique</link>.</note>		
 	<note>Cette implémentation peut tout à fait être rediscutée !</note>
 	</section>
   </body>  
