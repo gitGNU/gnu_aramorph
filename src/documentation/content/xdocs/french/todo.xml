@@ -5,6 +5,6 @@
     <title>Ce qu'il reste à faire</title> 
   </header> 
   <body> 
-    <p>A rédiger mais une liste est disponible dans le fichier <fork href="http://savannah.nongnu.org/cgi-bin/viewcvs/aramorph/aramorph/README.TXT?rev=1.1&amp;content-type=text/vnd.viewcvs-markup"><code>README.TXT</code></fork>.</p>
+    <p>A rédiger mais une liste est disponible dans le fichier <fork href="http://savannah.nongnu.org/cgi-bin/viewcvs/aramorph/aramorph/README.TXT?rev=HEAD&amp;content-type=text/vnd.viewcvs-markup"><code>README.TXT</code></fork>.</p>
   </body>
 </document>
