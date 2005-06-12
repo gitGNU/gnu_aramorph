@@ -189,7 +189,8 @@ book	NOUN	[0-4]	0
 		<li><code>VERB_IMPERATIVE</code></li>		
 		<li><code>VERB_IMPERFECT</code></li>		
 		<li><code>VERB_PERFECT</code></li>			
-		<li><code>NO_RESULT</code></li>
+		<li><code>NO_RESULT</code>
+		<warning>Mot conservé dans la mesure où l'expérience semble montrer qu'il y a de fortes chances qu'il soit un mot <strong>étranger</strong> absent du dictionnaire. Il est naturellement tout à fait possible d'écrire un <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/TokenFilter.html">filtre <em>Lucene</em> spécifique</fork> pour affiner l'analyse de ce type de <em>token</em>.</warning></li>
 	</ul>
 	<note label="Rappel">Les explications sur les catégories grammaticales sont disponibles dans <link href="site:grammatical-categories-fr">cette rubrique</link>.</note>		
 	<note>Cette implémentation peut tout à fait être rediscutée !</note>
