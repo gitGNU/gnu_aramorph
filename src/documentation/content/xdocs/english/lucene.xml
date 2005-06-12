@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
+<document xml:lang="en"> 
+  <header> 
+    <title>Using with Lucene</title> 
+  </header> 
+  <body>	
+	<section>
+		<title>The arabic analyzer for <fork href="http://lucene.apache.org/">Lucene</fork></title>
+		<p>Let's execute the following code :</p>
+		<source>
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-1.4.3.jar ¶
+gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt UTF-8
+		</source>		
+		<warning>Of course, the input file's encoding should be correctly configured.</warning>
+		<p>Let's have a look at the <code>results.txt</code> output file :</p>
+		<source>
+كِتاب	NOUN	[0-4]	1
+كُتّاب	NOUN	[0-4]	0	
+		</source>		
+		<p>The principle is thus the following : every matching <strong>stem</strong> returns a Lucene <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html"><em>token</em></fork>. We can see the <em>token</em>'s text (<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#termText()"><code>termText</code></fork>),
+			its grammatical category, 
+			its position in the input stream (<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#startOffset()"><code>startOffset</code></fork> and <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#endOffset()"><code>endOffset</code></fork>) and its relative position (<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/Token.html#getPositionIncrement()"><code>positionIncrement</code></fork>) in regard to the previous <em>token</em>.</p>
+		<p>It should indeed be pointed out that a same arabic word, because it is generally reducted to its consonantical skeleton, may often return <strong>several</strong> <em>solutions</em>.</p>
+		<fixme author="PB">Should a text be vocalized, the vowels are unfortunately not taken into account to disambiguize the analysis. The resolution of this problem is <link href="site:todo-en">to be done</link>.</fixme>
+		<note>In this example, the <em>tokens</em>' text is in arabic but, for performance reasons, it should be better to return the tokens in the Buckwalter's transliteration system by not specifying an output encoding for the results' file.</note>
+		<warning>In this example, although <em>كتاب</em> has 3 solutions, we only have 2 <em>tokens</em>. Indeed, <em>كُتّاب</em> is represented twice, the first time as the plural of <em>كاتب</em>, the second time as a singular noun with the meaning of <em>Quran school</em>.</warning>
+		<fixme author="PB">What to do if the <em>tokens</em> have different grammatical categories ? Since the <em>Lucene</em> index looses the type information, this problem may be inaccurate.</fixme>
+		<p>Let's try another example with a <code>tktbn.txt</code> file containing the word <em>تكتبن</em> :</p>
+		<source>
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-1.4.3.jar ¶
+gpl.pierrick.brihaye.aramorph.AraMorph ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/tktbn.txt CP1256 results.txt UTF-8</source>
+		<p>Let's have a look at the <code>results.txt</code> output file :</p>		
+		<source>
+Processing token : 	?????
+
+SOLUTION #3
+Lemma  : 	>akotab
+Vocalized as : 	tukotibna
+Morphology : 
+	prefix : IVPref-Antn-tu
+	stem : IV_yu
+	suffix : IVSuff-n
+Grammatical category : 
+	prefix : tu	IV2FP
+	stem : kotib	VERB_IMPERFECT
+	suffix : na	IVSUFF_SUBJ:FP
+Glossed as : 
+	prefix : you [fem.pl.]
+	stem : dictate/make write
+	suffix : [fem.pl.]
+
+
+SOLUTION #4
+Lemma  : 	>akotab
+Vocalized as : 	tukotabna
+Morphology : 
+	prefix : IVPref-Antn-tu
+	stem : IV_Pass_yu
+	suffix : IVSuff-n
+Grammatical category : 
+	prefix : tu	IV2FP
+	stem : kotab	VERB_IMPERFECT
+	suffix : na	IVSUFF_SUBJ:FP
+Glossed as : 
+	prefix : you [fem.pl.]
+	stem : be dictated
+	suffix : [fem.pl.]
+
+
+SOLUTION #2
+Lemma  : 	katab
+Vocalized as : 	tukotabna
+Morphology : 
+	prefix : IVPref-Antn-tu
+	stem : IV_Pass_yu
+	suffix : IVSuff-n
+Grammatical category : 
+	prefix : tu	IV2FP
+	stem : kotab	VERB_IMPERFECT
+	suffix : na	IVSUFF_SUBJ:FP
+Glossed as : 
+	prefix : you [fem.pl.]
+	stem : be written/be fated/be destined
+	suffix : [fem.pl.]
+
+
+SOLUTION #1
+Lemma  : 	katab
+Vocalized as : 	takotubna
+Morphology : 
+	prefix : IVPref-Antn-ta
+	stem : IV
+	suffix : IVSuff-n
+Grammatical category : 
+	prefix : ta	IV2FP
+	stem : kotub	VERB_IMPERFECT
+	suffix : na	IVSUFF_SUBJ:FP
+Glossed as : 
+	prefix : you [fem.pl.]
+	stem : write
+	suffix : [fem.pl.]	
+		</source>
+		<p>Here, the decomposition in prefix(es), stem and suffix(es) becomes obvious.</p>
+		<warning label="Reminder">In function of its grammatical categories, <em>AraMorph</em> may have shifted <strong>several</strong> prefixes (to the left) and/or suffixes (to the right) from the stem. In other terms, the grammatical decomposition my be different of the morphological decomposition deducted from the dictionaries.</warning>
+		<p>In order to understand that the analysis <strong>only</strong> deals with the stem :</p>
+		<source>
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-1.4.3.jar ¶
+gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/tktbn.txt results.txt
+		</source>
+		<p>Let's have a look at the <code>results.txt</code> output file :</p>		
+		<source>
+kotub	VERB_IMPERFECT	[0-5]	1
+kotab	VERB_IMPERFECT	[0-5]	0
+kotib	VERB_IMPERFECT	[0-5]	0
+		</source>
+		<p>We can effectively see that we get the stems of the different forms of the <em>كتب</em> root when it is used as an imperfective verb. Thus, using this system, the analysis of a second person feminine plural imperfective verb is the <strong>same</strong> for every imperfective form, whatever the person.</p>
+		<note>This implementation may be rediscussed !</note>
+	</section>
+	<section>
+		<title>The english glosser for Lucene</title>
+		<p>Let's execute the following code :</p>
+		<source>
+java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-1.4.3.jar ¶
+gpl.pierrick.brihaye.aramorph.test.TestArabicGlosser ¶
+src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt UTF-8
+		</source>				
+		<warning>Of course, the input file's encoding should be correctly configured.</warning>
+		<p>Let's have a look at the <code>results.txt</code> output file :</p>
+		<source>
+kuttab	NOUN	[0-4]	1
+village	NOUN	[0-4]	0
+school	NOUN	[0-4]	0
+quran	NOUN	[0-4]	0
+school	NOUN	[0-4]	0
+authors	NOUN	[0-4]	0
+writers	NOUN	[0-4]	0
+book	NOUN	[0-4]	0
+		</source>		
+		<p>Here, the principle is stricly the same except that the glosses are themselves tokenized by the <fork href="http://www.nongnu.org/aramorph/javadoc/gpl/pierrick/brihaye/aramorph/lucene/WhitespaceFilter.html"><code>WhitespaceFilter</code></fork> before being sent to Lucene's standard processing queue (<fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/standard/StandardFilter.html"><code>StandardFilter</code></fork>, <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/LowerCaseFilter.html"><code>LowerCaseFilter</code></fork> and <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/StopFilter.html"><code>StopFilter</code></fork>).</p>
+		<note>The <em>token</em>'s type is the analyzed <strong>arabic</strong> stem's  type ; it is obvious the the <strong>english</strong> word's type may be different.</note>
+		<note>This implementation may be rediscussed !</note>
+	</section>
+	<section>
+	<title>What are the solutions retained by the analyzers and the glossers ?</title>
+	<p>As we have just seen, the analyzers return some <em>tokens</em> whose type is the <strong>stem</strong>'s grammatical category.<br/>
+	However, an analyzer will consider that some types should  be regarded as related to <strong>stop words</strong> and will not return any <em>token</em> when it encounters them ; it will <strong>filter</strong> them. The list of the grammatical categories considered as <strong>non significant</strong> is as follow :</p>
+	<ul>		
+	<li><code>DEM_PRON_F</code></li>
+	<li><code>DEM_PRON_FS</code></li>
+	<li><code>DEM_PRON_FD</code></li>
+	<li><code>DEM_PRON_MD</code></li>
+	<li><code>DEM_PRON_MP</code></li>
+	<li><code>DEM_PRON_MS</code></li>
+	<li><code>DET</code></li>		
+	<li><code>INTERROG</code></li>	
+	<li><code>NO_STEM</code></li>			
+	<li><code>NUMERIC_COMMA</code></li>															
+	<li><code>PART</code></li>	
+	<li><code>PRON_1P</code></li>
+	<li><code>PRON_1S</code></li>
+	<li><code>PRON_2D</code></li>
+	<li><code>PRON_2FP</code></li>
+	<li><code>PRON_2FS</code></li>
+	<li><code>PRON_2MP</code></li>
+	<li><code>PRON_2MS</code></li>
+	<li><code>PRON_3D</code></li>
+	<li><code>PRON_3FP</code></li>
+	<li><code>PRON_3FS</code></li>
+	<li><code>PRON_3MP</code></li>														
+	<li><code>PRON_3MS</code></li>	
+	<li><code>REL_PRON</code></li>														
+	</ul>
+	<p>Conversely, this is the list of the grammatical categories that should be regarded as <strong>significant</strong> : </p>	
+	<ul>
+		<li><code>ABBREV</code></li>
+		<li><code>ADJ</code></li>		
+		<li><code>ADV</code></li>					
+		<li><code>NOUN</code></li>		
+		<li><code>NOUN_PROP</code></li>		
+		<li><code>VERB_IMPERATIVE</code></li>		
+		<li><code>VERB_IMPERFECT</code></li>		
+		<li><code>VERB_PERFECT</code></li>			
+		<li><code>NO_RESULT</code>
+		<warning>This result is kept since the experiments tend to show that there is a significant chance that this word is a <strong>foreign</strong> word missing in the dictionary. It is obviously possible to write a <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/TokenFilter.html">specific <em>Lucene</em> filter</fork> to refine the analysis of this type of <em>token</em>.</warning></li>
+	</ul>
+	<note label="Reminder">The explanations about the grammatical categories are available in <link href="site:grammatical-categories-en">this section</link>.</note>		
+	<note>This implementation may be rediscussed !</note>
+	</section>
+  </body>  
+</document>

@@ -8,7 +8,7 @@
 	<warning label="Oyez !">Vous utilisez <em>Mozilla</em> sous <em>Windows 98</em> ? Votez pour le <fork href="http://bugzilla.mozilla.org/show_bug.cgi?id=180112">Bug 180112</fork> !</warning>
 		<p><em>AraMorph</em> est un portage en <em>Java</em> du produit homonyme développé en <em>Perl</em> par <em>Tim Buckwalter</em> pour le compte du <em>Linguistic Data Consortium (LDC)</em> et accessible en ligne à l'adresse <fork href="http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49">http://www.ldc.upenn.edu/Catalog/CatalogEntry.jsp?catalogId=LDC2002L49</fork>.</p>
 		<p>Le projet inclut des classes <em>Java</em> permettant l'analyse morphologique de fichiers textuels en arabe et ce, quel que soit leur encodage. A cet effet, il est proposé 3 fichiers de test dans les principaux encodages utilisés pour la langue arabe : <code>UTF-8</code>, <code>ISO-8859-6</code> et <code>CP1256</code>.</p>
-		<p>Ce projet inclut également des classes compatibles avec l'architecture de <fork href="http://jakarta.apache.org/lucene/">Lucene</fork>,
+		<p>Ce projet inclut également des classes compatibles avec l'architecture de <fork href="http://lucene.apache.org/">Lucene</fork>,
 		 ce qui permet l'<strong>analyse</strong>, l'<strong>indexation</strong> et l'<strong>interrogation</strong> de documents en arabe.</p>
 	</body>
 </document>

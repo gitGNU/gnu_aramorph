@@ -6,14 +6,14 @@
   </header> 
   <body>	
 	<section>
-		<title>L'analyseur arabe pour Lucene</title>
+		<title>L'analyseur arabe pour <fork href="http://lucene.apache.org/">Lucene</fork></title>
 		<p>Exécutons le code suivant :</p>
 		<source>
 java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-1.4.3.jar ¶
 gpl.pierrick.brihaye.aramorph.test.TestArabicAnalyzer ¶
 src/java/gpl/pierrick/brihaye/aramorph/test/testdocs/ktAb.txt CP1256 results.txt UTF-8
 		</source>		
-		<warning>Naturellement, l'encodage du fichier d'entrée doit être adapté à votre plate-forme.</warning>
+		<warning>Naturellement, l'encodage du fichier d'entrée doit être paramétré convenablement.</warning>
 		<p>Examinons le fichier de sortie <code>results.txt</code> :</p>
 		<source>
 كِتاب	NOUN	[0-4]	1
@@ -108,8 +108,8 @@ Glossed as :
 	stem : write
 	suffix : [fem.pl.]	
 		</source>
-		<p>Ici, le découpage en préfixe, radical et suffixe devient très apparent.</p>
-		<warning label="Rappel">La catégorie grammaticale du préfixe, du radical et du suffixe ont été ventilées par <em>AraMorph</em>. En d'autres termes, le découpage grammatical est peut être différent du découpage morphologique.</warning>
+		<p>Ici, le découpage en préfixe(s), radical et suffixe(s) devient très apparent.</p>
+		<warning label="Rappel">En fonction de ses catégories grammaticales, <em>AraMorph</em> peut avoir ventilé <strong>plusieurs</strong> préfixes (vers la gauche) et/ou suffixes (vers la droite) depuis le radical. En d'autres termes, le découpage grammatical est peut être différent du découpage morphologique déduit des dictionnaires.</warning>
 		<p>Pour bien comprendre que l'analyse ne retourne <strong>que</strong> le radical :</p>
 		<source>
 java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-1.4.3.jar ¶
@@ -126,7 +126,7 @@ kotib	VERB_IMPERFECT	[0-5]	0
 		<note>Cette implémentation peut tout à fait être rediscutée !</note>
 	</section>
 	<section>
-		<title>L'analyseur anglais pour Lucene</title>
+		<title>Le glosseur anglais pour Lucene</title>
 		<p>Exécutons le code suivant :</p>
 		<source>
 java -cp build/ArabicAnalyzer.jar;lib/commons-collections.jar;lib/lucene-1.4.3.jar ¶
@@ -150,9 +150,9 @@ book	NOUN	[0-4]	0
 		<note>Cette implémentation peut tout à fait être rediscutée !</note>
 	</section>
 	<section>
-	<title>Quelles sont les solutions retenues par les analyseurs ?</title>
-	<p>Comme on peut le voir, les analyseurs renvoient des <em>tokens</em> dont le type correspond à la catégorie grammaticale du <strong>radical</strong>.<br/>
-	Cependant, un analyseur considèrera certaines catégories grammaticales comme attribuables à des <strong>mots vides</strong> et ne renverra donc aucun <em>token</em> pour ce radical. La liste des catégories grammaticales non signifiantes est décrite ci-après :</p>
+	<title>Quelles sont les solutions retenues par les analyseurs et les glosseurs ?</title>
+	<p>Comme on peut le voir, les analyseurs renvoient des <em>tokens</em> dont le type est la catégorie grammaticale du <strong>radical</strong>.<br/>
+	Cependant, un analyseur considèrera certains types comme attribuables à des <strong>mots vides</strong> et ne renverra aucun <em>token</em> lorsqu'il les rencontrera ; il les <strong>filtrera</strong>. La liste des catégories grammaticales considérées comme <strong>non signifiantes</strong> est décrite ci-après :</p>
 	<ul>		
 	<li><code>DEM_PRON_F</code></li>
 	<li><code>DEM_PRON_FS</code></li>
@@ -179,7 +179,7 @@ book	NOUN	[0-4]	0
 	<li><code>PRON_3MS</code></li>	
 	<li><code>REL_PRON</code></li>														
 	</ul>
-	<p>A contrario, voici la liste des catégories grammaticales <strong>signifiantes</strong> : </p>	
+	<p>A contrario, voici la liste des catégories grammaticales considérées comme <strong>signifiantes</strong> : </p>	
 	<ul>
 		<li><code>ABBREV</code></li>
 		<li><code>ADJ</code></li>		
@@ -190,7 +190,7 @@ book	NOUN	[0-4]	0
 		<li><code>VERB_IMPERFECT</code></li>		
 		<li><code>VERB_PERFECT</code></li>			
 		<li><code>NO_RESULT</code>
-		<warning>Mot conservé dans la mesure où l'expérience semble montrer qu'il y a de fortes chances qu'il soit un mot <strong>étranger</strong> absent du dictionnaire. Il est naturellement tout à fait possible d'écrire un <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/TokenFilter.html">filtre <em>Lucene</em> spécifique</fork> pour affiner l'analyse de ce type de <em>token</em>.</warning></li>
+		<warning>Résultat conservé dans la mesure où l'expérience semble montrer qu'il y a de fortes chances qu'il soit un mot <strong>étranger</strong> absent du dictionnaire. Il est naturellement tout à fait possible d'écrire un <fork href="http://jakarta.apache.org/lucene/docs/api/org/apache/lucene/analysis/TokenFilter.html">filtre <em>Lucene</em> spécifique</fork> pour affiner l'analyse de ce type de <em>token</em>.</warning></li>
 	</ul>
 	<note label="Rappel">Les explications sur les catégories grammaticales sont disponibles dans <link href="site:grammatical-categories-fr">cette rubrique</link>.</note>		
 	<note>Cette implémentation peut tout à fait être rediscutée !</note>
