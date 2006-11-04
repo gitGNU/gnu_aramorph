@@ -78,7 +78,6 @@ public class Solution {
 	 */
 	protected Solution(boolean debug, int cnt, DictionaryEntry prefix, DictionaryEntry stem, DictionaryEntry suffix) {
 		this.debug = debug; 
-		this.debug = true; //TODO : suppress when fully tested		
 		this.cnt = cnt;
 		this.prefix = prefix;
 		this.stem = stem;

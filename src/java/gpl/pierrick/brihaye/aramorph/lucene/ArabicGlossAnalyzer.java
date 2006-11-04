@@ -60,7 +60,7 @@ public final class ArabicGlossAnalyzer extends Analyzer {
 		result = new WhitespaceFilter(result);
 		result = new StandardFilter(result);
 		result = new LowerCaseFilter(result);
-		result = new StopFilter(result, StopFilter.makeStopTable(STOP_WORDS));				
+		result = new StopFilter(result, StopFilter.makeStopSet(STOP_WORDS));			
 		return result;
 	}	
 	
